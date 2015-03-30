@@ -1,5 +1,6 @@
 package model;
 
-public class Barrier {
+public class Barrier extends AbstractPiece{
+	
 
 }
