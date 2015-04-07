@@ -48,10 +48,7 @@ public class GameManager {
 		this.turnA = turnA;
 		this.totalOfMoves = totalOfMoves;
 	}
-	
-	public void addPlayer(Player p){
-		playerList.add(p);		
-	}
+
 	
 	public boolean getCurrentTurnOfPlayer(){
 		return this.turnA;
@@ -60,4 +57,5 @@ public class GameManager {
 	public void getSingletonInstance(){
 		
 	}
+	
 }

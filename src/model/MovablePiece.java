@@ -1,5 +1,7 @@
 package model;
 
 public interface MovablePiece {
-	public void move();
+	
+	public void move(int x, int y);
+	
 }

@@ -2,9 +2,9 @@ package model;
 
 public class Bishop extends AbstractPiece implements MovablePiece{
 	
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
+	public void move(int x, int y){
+		this.setxC(x);
+		this.setyC(y);
 	}
+	
 }

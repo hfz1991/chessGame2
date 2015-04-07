@@ -16,6 +16,8 @@ public class test {
 		GameManager gm = new GameManager(board, playerList, turnA, totalOfMoves);
 		
 		printDetails(gm);
+		
+		
 	}
 	
 	public static void printDetails(GameManager gm){
