@@ -56,14 +56,14 @@ public class InfoPanel extends JPanel  {
 	public InfoPanel(final JFrame parent, BoardPanel panel){
 
 		
-	    setPreferredSize(new Dimension(300, 640));
+	    setPreferredSize(new Dimension(240, 640));
 	    this.parent = parent;
 	    /*******************************White Player********************************/
 	    //setup information panel for white player
 	    whiteC = new JPanel(layout2);
 	    whiteC.setBackground(Color.WHITE);
 	    whiteC.setBorder(new LineBorder(new Color(0, 0, 0)));
-	    whiteC.setPreferredSize(new Dimension(300, 210));
+	    whiteC.setPreferredSize(new Dimension(240, 210));
 	    
 	    //initialize for White player
 	    
@@ -93,7 +93,7 @@ public class InfoPanel extends JPanel  {
 	    blackC = new JPanel(layout2);
 	    blackC.setBackground(Color.BLACK);
 	    whiteC.setBorder(new LineBorder(new Color(0, 0, 0)));
-	    blackC.setPreferredSize(new Dimension(300, 210));
+	    blackC.setPreferredSize(new Dimension(240, 210));
 	    
 	    //initialize for White player
 	    
@@ -128,7 +128,7 @@ public class InfoPanel extends JPanel  {
 	    
 	    JPanel buttonP = new JPanel(layout2);
 	    buttonP.setBackground(Color.WHITE);
-	    buttonP.setPreferredSize(new Dimension(300, 200));
+	    buttonP.setPreferredSize(new Dimension(240, 200));
 	    
 	    time = new JLabel("Time:    ");
 	    timerLabel = new JLabel("0:0");

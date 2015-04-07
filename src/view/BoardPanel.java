@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,13 +22,32 @@ public class BoardPanel extends JPanel{
 	GridLayout layout =new GridLayout(6,6);
 	JPanel squares[][]= new JPanel[6][6];
 	
+	JPanel testX = null;
+	
 	HashMap<String, AbstractPiece> pieceBlack;
 	HashMap<String, AbstractPiece> pieceWhite;
 	HashMap<String, AbstractPiece> pieceBarrier;
+	
+	boolean isClicked;
+	String existKey;
+	MouseEvent oldE;
+	
+	public HashMap<String, AbstractPiece> getPieceBlack(){
+		return pieceBlack;
+	}
+	
+	public HashMap<String, AbstractPiece> getPieceWhite(){
+		return pieceWhite;
+	}
+	
+	public HashMap<String, AbstractPiece> getPieceBarrier(){
+		return pieceBarrier;
+	}
+	
 	public BoardPanel() {
 		//setup Chess board
 	    setLayout(layout);
-	    setPreferredSize(new Dimension(640, 640));
+	    setPreferredSize(new Dimension(600, 600));
 	    setBorder(new LineBorder(new Color(0, 0, 0)));
 	    pieceBlack = new HashMap<String, AbstractPiece>();
 	    pieceWhite = new HashMap<String, AbstractPiece>();
@@ -33,7 +56,7 @@ public class BoardPanel extends JPanel{
 	    { 
 	        for (int j = 0; j < 6; j++) 
 	        { 
-	        	squares[i][j] = new JPanel(); 
+	        	squares[i][j] = new SquarePanel(i,j); 
 				squares[i][j].setPreferredSize(new Dimension(95, 95));
 				
 				squares[i][j].setBackground(Color.DARK_GRAY);;
@@ -43,10 +66,7 @@ public class BoardPanel extends JPanel{
 	        }
             add(squares[i][j]);
 	        } 
-	        
-	       
 	    } 
-	    
 	}
 	    //end of Chess board
 	
@@ -86,8 +106,6 @@ public class BoardPanel extends JPanel{
 		pieceWhite.put("knight_W_R", knightWR);
 		pieceWhite.put("rook_W_L", rookWL);
 		pieceWhite.put("rook_W_R", rookWR);
-				
-		
 	}
 	
 	private void addChessPiecesToBoard()
@@ -95,6 +113,7 @@ public class BoardPanel extends JPanel{
 		this.initChess();
 		squares[0][0].add( pieceBlack.get("rook_B_L"), BorderLayout.CENTER);
 		pieceBlack.get("rook_B_L").setParent(squares[0][0]);
+		
 		squares[0][1].add( pieceBlack.get("bishop_B_L"), BorderLayout.CENTER);
 		pieceBlack.get("bishop_B_L").setParent(squares[0][1]);
 		squares[0][2].add( pieceBlack.get("knight_B_L"), BorderLayout.CENTER);
@@ -105,12 +124,10 @@ public class BoardPanel extends JPanel{
 		pieceBlack.get("bishop_B_R").setParent(squares[0][4]);
 		squares[0][5].add( pieceBlack.get("rook_B_R"), BorderLayout.CENTER);
 		pieceBlack.get("rook_B_R").setParent(squares[0][5]);
-		
-		
-		
+				
 		squares[5][0].add( pieceWhite.get("rook_W_L"), BorderLayout.CENTER);
 		pieceWhite.get("rook_W_L").setParent(squares[5][0]);
-		squares[5][0].updateUI();
+		//squares[5][0].updateUI();
 		squares[5][1].add(  pieceWhite.get("bishop_W_L"), BorderLayout.CENTER);
 		pieceWhite.get("bishop_W_L").setParent(squares[5][1]);
 		squares[5][2].add(  pieceWhite.get("knight_W_L"), BorderLayout.CENTER);
@@ -181,7 +198,6 @@ public class BoardPanel extends JPanel{
 		pieceBarrier.get("barrier_11").setParent(squares[3][4]);
 		squares[3][5].add( pieceBarrier.get("barrier_12"), BorderLayout.CENTER);	
 		pieceBarrier.get("barrier_12").setParent(squares[3][5]);
-	
 	}
 	
 	public void setInitGame()
@@ -189,6 +205,48 @@ public class BoardPanel extends JPanel{
 		finaliseGame();
 		this.addChessPiecesToBoard();
 		this.addBarrierPiecesToBoard();	
+		isClicked=false;
+		//final String currentKey;
+		
+		for(int i = 0; i < 36 ;i++)
+		{
+			squares[i/6][i%6].addMouseListener(new MouseAdapter(){
+
+				public void mouseClicked(MouseEvent e) {
+					 String currentKey;
+					 
+					// TODO Auto-generated method stub
+					currentKey=SquarePanel.checkIfOccupied(pieceBlack,pieceWhite,e);
+					
+					if(isClicked==false){
+						System.out.println("isClicked==false");
+						if(currentKey != null){
+							isClicked=true;
+							existKey=currentKey;
+							oldE=e;
+							//SquarePanel.RemovePiece(existKey,e,pieceBlack,pieceWhite);
+							//repaint();
+						}else{
+							isClicked=false;
+						}
+					}else{
+						System.out.println("isClicked==true");
+						//remove piece
+						System.out.println("key: "+existKey);
+						System.out.println("key: "+currentKey);
+						
+						SquarePanel.RemovePiece(existKey,oldE,pieceBlack,pieceWhite);
+						
+						//draw the piece
+						SquarePanel.AddPiece(existKey,e,pieceBlack,pieceWhite);
+						repaint();
+
+						isClicked=false;
+					}
+				}
+				
+			});
+		}
 	}
 	
 	
@@ -199,6 +257,8 @@ public class BoardPanel extends JPanel{
 			squares[i/6][i%6].removeAll();
 		}
 	}
+	
+
 }
 
 
