@@ -4,8 +4,6 @@ public class Board {
 	
 	private PieceGroup[][] squareArray = new PieceGroup[6][6];
 	
-	
-	
 	public Board(){
 //		createPiece();
 	}
