@@ -3,6 +3,7 @@ import java.util.*;
 
 public class GameManager {
 	
+	private static GameManager singletonInstance = null; 
 	private Board board = new Board();
 	
 	private ArrayList<Player> playerList = new ArrayList<Player>();
@@ -40,22 +41,20 @@ public class GameManager {
 
 	private int totalOfMoves;
 
-	public GameManager(Board board, 
-			ArrayList<Player> playerList, boolean turnA, int totalOfMoves) {
-		super();
-		this.board = board;
-		this.playerList = playerList;
-		this.turnA = turnA;
-		this.totalOfMoves = totalOfMoves;
+	public GameManager() {
+		this.board = new Board();
+		this.totalOfMoves = 10;
 	}
 
 	
 	public boolean getCurrentTurnOfPlayer(){
 		return this.turnA;
 	}
-
-	public void getSingletonInstance(){
-		
+	
+	public static GameManager getSingleton(){
+		if (GameManager.singletonInstance == null)
+			GameManager.singletonInstance = new GameManager();
+		return GameManager.singletonInstance;
 	}
 	
 }

@@ -12,6 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import controller.newGameSaveDialogueListener;
+
 public class NewGameDialogue extends JDialog{
 
 	private JLabel selectNum;
@@ -44,17 +46,7 @@ public class NewGameDialogue extends JDialog{
 		
 		//setup buttons
 		save = new JButton("OK");
-		save.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				isCanceled = false;
-				dispose();
-			}
-			
-		});
+		save.addActionListener(new newGameSaveDialogueListener(this));
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -88,5 +80,8 @@ public class NewGameDialogue extends JDialog{
 	{
 		return isCanceled;
 	}
-
+	
+	public int getNumberOfMoves(){
+		return Integer.parseInt(this.numOfMove.getSelectedItem().toString());
+	}
 }
