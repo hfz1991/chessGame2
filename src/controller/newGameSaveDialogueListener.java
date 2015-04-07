@@ -20,8 +20,9 @@ public class newGameSaveDialogueListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		GameManager gm = GameManager.getSingleton();
-		gm.setTotalOfMoves(parentView.getNumberOfMoves());
+		
+		GameManager.getSingleton().setTotalOfMoves(parentView.getNumberOfMoves());
 		this.parentView.dispose(); 
+		
 	}
 }

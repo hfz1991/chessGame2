@@ -10,13 +10,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class BoardPanel extends JPanel{
+public class BoardPanel extends JPanel implements Observer{
 	
 	GridLayout layout =new GridLayout(6,6);
 	JPanel squares[][]= new JPanel[6][6];
@@ -108,6 +110,11 @@ public class BoardPanel extends JPanel{
 		{
 			squares[i/6][i%6].removeAll();
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
 	}
 	
 

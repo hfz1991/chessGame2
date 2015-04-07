@@ -1,8 +1,17 @@
 package model;
 
+import java.util.ArrayList;
+
 public class PieceGroup {
 	
-	private Knight knightw1 = new Knight();
+	private ArrayList<AbstractPiece> pieces;
+	
+	public PieceGroup(AbstractPiece piece1) {
+		this.pieces = new ArrayList<AbstractPiece>();
+		this.pieces.add(piece1);
+	}
+	
+	/*private Knight knightw1 = new Knight();
 	private Knight knightw2 = new Knight();
 	private Knight knightb1 = new Knight();
 	private Knight knightb2 = new Knight();
@@ -28,5 +37,5 @@ public class PieceGroup {
 	private Barrier barrier9 = new Barrier();
 	private Barrier barrier10 = new Barrier();
 	private Barrier barrier11 = new Barrier();
-	private Barrier barrier12 = new Barrier();
+	private Barrier barrier12 = new Barrier();*/
 }

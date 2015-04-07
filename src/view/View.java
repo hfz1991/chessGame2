@@ -28,5 +28,8 @@ public class View extends JFrame{
 	    setVisible(true); 
 	} 
 	
+	public BoardPanel getBoardPanel() {
+		return this.board;
+	}
 	
 }
