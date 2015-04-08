@@ -47,5 +47,7 @@ public abstract class AbstractPiece {
 		return scoreOfPiece;
 	}
 	
+	public abstract String getName();
+	
 	
 }

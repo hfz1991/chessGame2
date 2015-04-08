@@ -18,10 +18,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import model.Board;
+import model.PieceGroup;
+
 public class BoardPanel extends JPanel implements Observer{
 	
 	GridLayout layout =new GridLayout(6,6);
-	JPanel squares[][]= new JPanel[6][6];
+	SquarePanel squares[][]= new SquarePanel[6][6];
 	
 	JPanel testX = null;
 	
@@ -43,7 +46,7 @@ public class BoardPanel extends JPanel implements Observer{
 	    { 
 	        for (int j = 0; j < 6; j++) 
 	        { 
-	        	squares[i][j] = new SquarePanel(i,j); 
+	        	squares[i][j] = new SquarePanel(j,i); 
 				squares[i][j].setPreferredSize(new Dimension(95, 95));
 				
 				squares[i][j].setBackground(Color.DARK_GRAY);;
@@ -57,34 +60,23 @@ public class BoardPanel extends JPanel implements Observer{
 	}
 	    //end of Chess board
 	
-	private void initChess()
-	{
-		
-	}
 	
-	private void addChessPiecesToBoard()
+	private void setBoardPieces(PieceGroup[][] pieces)
 	{
-		this.initChess();
-		
-	}
-	
-	private void initBarrier()
-	{
-		
-
-	}
-	
-	private void addBarrierPiecesToBoard()
-	{
-		initBarrier();
+		for(int i = 0; i < pieces.length;i++) {
+			for(int j = 0; j<pieces[i].length; j++ ){
+				if(pieces[i][j] != this.squares[i][j].getCurrentPieceGroup()) {
+					this.squares[i][j].setCurrentPieceGroup(pieces[i][j]);
+				}
+ 			}
+		}
 		
 	}
 	
 	public void setInitGame()
 	{
 		finaliseGame();
-		this.addChessPiecesToBoard();
-		this.addBarrierPiecesToBoard();	
+
 		isClicked=false;
 		//final String currentKey;
 		
@@ -114,7 +106,9 @@ public class BoardPanel extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		Board gameBoard = (Board)o;
+		PieceGroup[][] pieces = gameBoard.getSquareArray();
+		this.setBoardPieces(pieces);
 	}
 	
 

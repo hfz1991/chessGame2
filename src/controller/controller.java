@@ -8,7 +8,6 @@ public class controller {
 		
 		GameManager gm = GameManager.getSingleton();
 		gm.getBoard().addObserver(view.getBoardPanel());
-		
 		view.setVisible(true);
 		
 		

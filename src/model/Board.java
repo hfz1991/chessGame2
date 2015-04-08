@@ -1,23 +1,32 @@
 package model;
 
+import java.awt.Point;
 import java.util.Observable;
 
 public class Board extends Observable {
 	
-	private PieceGroup[][] squareArray = new PieceGroup[6][6];
+	private PieceGroup[][] squareArray;
 	
 	public Board(){
-		initialisePieces();
 	}
 	
-	public void movePieces() {
+	public void movePieces(Point from, Point to) {
 		// move pieces logic here
+		
+		
+		// Example movement
+		
+		squareArray[1][0] = new PieceGroup(new Rock());
+		squareArray[0][0] = null;
+		
+		
 		
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
 	public void initialisePieces() {
+		this.squareArray = new PieceGroup[6][6];
 		squareArray[0][0] = new PieceGroup(new Rock());
 		squareArray[0][1] = new PieceGroup(new Bishop());
 		squareArray[0][2] = new PieceGroup(new Knight());
@@ -53,14 +62,5 @@ public class Board extends Observable {
 	public PieceGroup[][] getSquareArray() {
 		return squareArray;
 	}
-	
-//	public void createPiece(){
-//		squareArray = { 
-//				{rockb1, },
-//					
-//				}
-//		}
-//	}
-//	
 	
 }

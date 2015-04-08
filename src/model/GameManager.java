@@ -4,7 +4,7 @@ import java.util.*;
 public class GameManager {
 	
 	private static GameManager singletonInstance = null; 
-	private Board board = new Board();
+	private Board board;
 	
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	
@@ -46,6 +46,9 @@ public class GameManager {
 		this.totalOfMoves = 10;
 	}
 
+	public void newGame() {
+		this.board.initialisePieces();
+	}
 	
 	public boolean getCurrentTurnOfPlayer(){
 		return this.turnA;
