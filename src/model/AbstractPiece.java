@@ -49,5 +49,4 @@ public abstract class AbstractPiece {
 	
 	public abstract String getName();
 	
-	
 }

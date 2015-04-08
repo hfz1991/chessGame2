@@ -16,7 +16,7 @@ public class Board extends Observable {
 		
 		// Example movement
 		
-		squareArray[1][0] = new PieceGroup(new Rock());
+		squareArray[1][0] = new PieceGroup(new Rock(0));
 		squareArray[0][0] = null;
 		
 		
@@ -27,12 +27,12 @@ public class Board extends Observable {
 	
 	public void initialisePieces() {
 		this.squareArray = new PieceGroup[6][6];
-		squareArray[0][0] = new PieceGroup(new Rock());
-		squareArray[0][1] = new PieceGroup(new Bishop());
-		squareArray[0][2] = new PieceGroup(new Knight());
-		squareArray[0][3] = new PieceGroup(new Knight());
-		squareArray[0][4] = new PieceGroup(new Bishop());
-		squareArray[0][5] = new PieceGroup(new Rock());
+		squareArray[0][0] = new PieceGroup(new Rock(0));
+		squareArray[0][1] = new PieceGroup(new Bishop(0));
+		squareArray[0][2] = new PieceGroup(new Knight(0));
+		squareArray[0][3] = new PieceGroup(new Knight(0));
+		squareArray[0][4] = new PieceGroup(new Bishop(0));
+		squareArray[0][5] = new PieceGroup(new Rock(0));
 		
 		squareArray[2][0] = new PieceGroup(new Barrier());
 		squareArray[2][1] = new PieceGroup(new Barrier());
@@ -48,12 +48,12 @@ public class Board extends Observable {
 		squareArray[3][4] = new PieceGroup(new Barrier());
 		squareArray[3][5] = new PieceGroup(new Barrier());
 		
-		squareArray[5][0] = new PieceGroup(new Rock());
-		squareArray[5][1] = new PieceGroup(new Bishop());
-		squareArray[5][2] = new PieceGroup(new Knight());
-		squareArray[5][3] = new PieceGroup(new Knight());
-		squareArray[5][4] = new PieceGroup(new Bishop());
-		squareArray[5][5] = new PieceGroup(new Rock());
+		squareArray[5][0] = new PieceGroup(new Rock(1));
+		squareArray[5][1] = new PieceGroup(new Bishop(1));
+		squareArray[5][2] = new PieceGroup(new Knight(1));
+		squareArray[5][3] = new PieceGroup(new Knight(1));
+		squareArray[5][4] = new PieceGroup(new Bishop(1));
+		squareArray[5][5] = new PieceGroup(new Rock(1));
 		
 		this.setChanged();
 		this.notifyObservers();

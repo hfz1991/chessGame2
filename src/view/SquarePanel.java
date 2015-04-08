@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 
 import controller.PieceMovementListener;
 import model.AbstractPiece;
+import model.MovablePiece;
 import model.PieceGroup;
 
 
@@ -57,11 +58,18 @@ public class SquarePanel extends JPanel
 				try {
 					// check colour or whether the piece belongs ot a team, temprary checking star
 					File f = null;
-					if(p.getName().equals("star")) {
-						 f = new File("src/img/star.png");
-					} else {
-						f = new File("src/img/" + p.getName() + "_Black.png");
+					if(p instanceof MovablePiece){
+						MovablePiece mp = (MovablePiece) p;
+						String color = null;
+						if(mp.getColour() == 0 ) color="Black";
+						else color="White";
+						
+						f = new File("src/img/" + p.getName() + "_" + color + ".png");
 					}
+					else{
+						 f = new File("src/img/star.png");
+					}
+					
 					
 					g.drawImage(ImageIO.read(f), 0, 0, null);
 				} catch (IOException e) {
