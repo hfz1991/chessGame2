@@ -22,13 +22,13 @@ public class InfoPanel extends JPanel  {
 	
 	GridLayout layout2 =new GridLayout(3,1);
 	
-	private JLabel white;
+	private JLabel whiteLabel;
 	private JLabel moveW;
 	private JLabel scoreW;
 	private JLabel numMoveW;
 	private JLabel numScoreW;
 	
-	private JLabel black;
+	private JLabel blackLabel;
 	private JLabel moveB;
 	private JLabel scoreB;
 	private JLabel numMoveB;
@@ -36,95 +36,92 @@ public class InfoPanel extends JPanel  {
 	
 	private JLabel time;
 	private JLabel timerLabel;
-	private Timer timer;
 	private JButton newGame;
 	private JButton goBack;
+	private JButton split;
 	
 	private Box moveWhite;
 	private Box scoreWhite;
 	private Box scoreBlack;
 	private Box moveBlack;
 	private Box timerBox;
+	private Box buttonBox;
 	
-	private JPanel whiteC;
-	private JPanel blackC;
-	private MyTimerActionListener timerActionListener;
-	private JFrame parent;
+	private JPanel whitePanel;
+	private JPanel blackPanel;
 	BoardPanel board;
 	NewGameDialogue newGameDia;
 	
 	public InfoPanel(final JFrame parent, BoardPanel panel){
-
 		
 	    setPreferredSize(new Dimension(240, 640));
-	    this.parent = parent;
+	    
 	    /*******************************White Player********************************/
 	    //setup information panel for white player
-	    whiteC = new JPanel(layout2);
-	    whiteC.setBackground(Color.WHITE);
-	    whiteC.setBorder(new LineBorder(new Color(0, 0, 0)));
-	    whiteC.setPreferredSize(new Dimension(240, 210));
+	    whitePanel = new JPanel(layout2);
+	    whitePanel.setBackground(Color.WHITE);
+	    whitePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+	    whitePanel.setPreferredSize(new Dimension(240, 210));
 	    
 	    //initialize for White player
 	    
 	    moveWhite = Box.createHorizontalBox();
 	    scoreWhite = Box.createHorizontalBox();
 	    
-	    white = new JLabel("  White:");
+	    whiteLabel = new JLabel("  White:");
 	    moveW = new JLabel("  Moves:   ");
 	    scoreW = new JLabel("  Score:   ");
 	    numMoveW = new JLabel("0");
 	    numScoreW = new JLabel("0");
 	    
-	    whiteC.add(white);
+	    whitePanel.add(whiteLabel);
 	    
 	    moveWhite.add(moveW);
 	    moveWhite.add(numMoveW);
-	    whiteC.add(moveWhite);
+	    whitePanel.add(moveWhite);
 	  
 	    scoreWhite.add(scoreW);
 	    scoreWhite.add(numScoreW);
-	    whiteC.add(scoreWhite);
+	    whitePanel.add(scoreWhite);
 	   
 	    /******************************End of White Player*********************************/
 	    /******************************Black Player*********************************/
 	    
 	    //setup information panel for black player
-	    blackC = new JPanel(layout2);
-	    blackC.setBackground(Color.BLACK);
-	    whiteC.setBorder(new LineBorder(new Color(0, 0, 0)));
-	    blackC.setPreferredSize(new Dimension(240, 210));
+	    blackPanel = new JPanel(layout2);
+	    blackPanel.setBackground(Color.BLACK);
+	    whitePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+	    blackPanel.setPreferredSize(new Dimension(240, 210));
 	    
 	    //initialize for White player
 	    
 	    moveBlack = Box.createHorizontalBox();
 	    scoreBlack = Box.createHorizontalBox();
 	    
-	    black = new JLabel("  Black:");
+	    blackLabel = new JLabel("  Black:");
 	    moveB = new JLabel("  Moves:    ");
 	    scoreB = new JLabel("  Score:     ");
 	    numMoveB = new JLabel("0");
 	    numScoreB = new JLabel("0");
 	    
-	    black.setForeground(Color.WHITE);
+	    blackLabel.setForeground(Color.WHITE);
 	    moveB.setForeground(Color.WHITE);
 	    scoreB.setForeground(Color.WHITE);
 	    numMoveB.setForeground(Color.WHITE);
 	    numScoreB.setForeground(Color.WHITE);
 	    
-	    blackC.add(black);
+	    blackPanel.add(blackLabel);
 	    moveBlack.add(moveB);
 	    moveBlack.add(numMoveB);
 	    
-	    blackC.add(moveBlack);
+	    blackPanel.add(moveBlack);
 	  
 	    scoreBlack.add(scoreB);
 	    scoreBlack.add(numScoreB);
 	    
-	    blackC.add(scoreBlack);
+	    blackPanel.add(scoreBlack);
 	    
 	    /*******************************End of Black Player********************************/
-	    
 	    
 	    JPanel buttonP = new JPanel(layout2);
 	    buttonP.setBackground(Color.WHITE);
@@ -134,55 +131,49 @@ public class InfoPanel extends JPanel  {
 	    timerLabel = new JLabel("0:0");
 	    newGame = new JButton("New Game");
 	    goBack = new JButton("Return");
+	    split = new JButton("Split");
 	    
 	    timerBox = Box.createHorizontalBox();
 	    
 	    timerBox.add(time);
 	    timerBox.add(timerLabel);
 	    
-	    buttonP.add(timerBox);
-	    //buttonP.add(time);
-	    buttonP.add(newGame);
-	    buttonP.add(goBack);
+	    buttonBox = Box.createHorizontalBox();
 	    
-	    add(whiteC,BorderLayout.NORTH);
-	    add(blackC,BorderLayout.CENTER);
+	    //goBack.setBounds(10,10,25,10);
+	    
+	    buttonBox.add(goBack).setEnabled(false);
+	    buttonBox.add(split).setEnabled(false);
+	    
+	    buttonP.add(timerBox);
+	    buttonP.add(newGame);
+	    buttonP.add(buttonBox);
+	    
+	    add(whitePanel,BorderLayout.NORTH);
+	    add(blackPanel,BorderLayout.CENTER);
 	    add(buttonP,BorderLayout.SOUTH);
 	    
-	    //board = new BoardPanel();
 	    board = panel;
-	    
 	    
 	    newGame.addActionListener(new ActionListener()
 	    {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				//board.setInitGame();
+
 				newGameDia = new NewGameDialogue();
-				//System.out.print("test");;
+				
 				if(newGameDia.getIsCanceled())
 					return;
-				board.setInitGame();
 				
-				setTimer();
-				
-			}
-	    });
-	    
-	    goBack.addActionListener(new ActionListener()
-	    {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				//setTimer();
+				
 			}
-	    	
 	    });
 	}
 	
-	int second = 0;
+	// Time Function
+	
+	/*int second = 0;
 	int minute = 0;
 	public void setTimer()
 	{
@@ -227,7 +218,7 @@ public class InfoPanel extends JPanel  {
 	public void setTimerActionListener(MyTimerActionListener listener)
 	{
 		timerActionListener = listener;
-	}
+	}*/
 	
 
 }

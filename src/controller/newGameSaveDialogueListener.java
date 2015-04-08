@@ -7,6 +7,7 @@ import model.GameManager;
 
 import javax.swing.JDialog;
 
+import view.InfoPanel;
 import view.NewGameDialogue;
 
 public class newGameSaveDialogueListener implements ActionListener{
@@ -24,6 +25,9 @@ public class newGameSaveDialogueListener implements ActionListener{
 		GameManager.getSingleton().setTotalOfMoves(parentView.getNumberOfMoves());
 		GameManager.getSingleton().getBoard().initialisePieces();
 		this.parentView.dispose(); 
+		
+		//set Time function
+		//setTimer(); 
 		
 	}
 }

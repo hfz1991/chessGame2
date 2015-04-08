@@ -26,6 +26,13 @@ public class NewGameDialogue extends JDialog{
 	private Box Num;
 	private Box button;
 	private Boolean isCanceled;
+	
+	private int numMove=40;
+	private int startNum=10;
+	private int verticalAxis=400;
+	private int horizontalAxis=160;
+	
+	
 	public NewGameDialogue(){
 		
 		//select number of moves
@@ -36,8 +43,8 @@ public class NewGameDialogue extends JDialog{
 		isCanceled = true;
 		numOfMove = new JComboBox();
 		
-		for(int i = 0; i <= 40; i++){
-			numOfMove.addItem(i+10);
+		for(int i = 0; i <= numMove; i++){
+			numOfMove.addItem(i+startNum);
 		}
 		
 		Num.add(numOfMove);	  
@@ -69,7 +76,7 @@ public class NewGameDialogue extends JDialog{
 		
 		//setup frame
 		setTitle("Set Number of Moves");
-		setSize(400, 160);
+		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);
 		setLocationRelativeTo(null);
 	    setDefaultCloseOperation(DISPOSE_ON_CLOSE); 

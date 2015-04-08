@@ -12,20 +12,18 @@ public class View extends JFrame{
 	private InfoPanel info;
 
 	public View() { 
-		
-
-	    
+  
 		this.board=new BoardPanel(); 
 		this.info=new InfoPanel(this, board);
-	    add(board,BorderLayout.WEST);
-	    add(info,BorderLayout.EAST);
+		this.add(board,BorderLayout.WEST);
+		this.add(info,BorderLayout.EAST);
 	    
-		setTitle("Chess");
-		setSize(840, 640);
-		setResizable(false);
-		setLocationRelativeTo(null);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-	    setVisible(true); 
+		this.setTitle("Chess");
+		this.setSize(840, 640);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		this.setVisible(true); 
 	} 
 	
 	public BoardPanel getBoardPanel() {

@@ -25,17 +25,7 @@ public class BoardPanel extends JPanel implements Observer{
 	
 	GridLayout layout =new GridLayout(6,6);
 	SquarePanel squares[][]= new SquarePanel[6][6];
-	
-	JPanel testX = null;
-	
 
-	
-	boolean isClicked;
-	String existKey;
-	MouseEvent oldE;
-	
-//	
-	
 	public BoardPanel() {
 		//setup Chess board
 	    setLayout(layout);
@@ -71,37 +61,6 @@ public class BoardPanel extends JPanel implements Observer{
  			}
 		}
 		
-	}
-	
-	public void setInitGame()
-	{
-		finaliseGame();
-
-		isClicked=false;
-		//final String currentKey;
-		
-		for(int i = 0; i < 36 ;i++)
-		{
-			squares[i/6][i%6].addMouseListener(new MouseAdapter(){
-
-				public void mouseClicked(MouseEvent e) {
-					 String currentKey;
-					 
-					// TODO Auto-generated method stub
-					
-				}
-				
-			});
-		}
-	}
-	
-	
-	public void finaliseGame()
-	{
-		for(int i = 0; i < 36 ;i++)
-		{
-			squares[i/6][i%6].removeAll();
-		}
 	}
 
 	@Override
