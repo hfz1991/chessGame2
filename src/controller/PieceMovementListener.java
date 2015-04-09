@@ -23,21 +23,12 @@ public class PieceMovementListener implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(this.parentSquarePanel.getCurrentPieceGroup() != null) {
-			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
-		} else {
-			if(PieceMovementListener.selectedPieceSquarePanel != null) {
-				
-				// move from
-				Point from = selectedPieceSquarePanel.getLocation();
-				// move to
-				Point to = this.parentSquarePanel.getGridLocation();
-				
-				GameManager.getSingleton().getBoard().movePieces(from, to);
-			}
-		}
+		
+		
 	}
 
+	
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -47,7 +38,19 @@ public class PieceMovementListener implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(this.parentSquarePanel.getCurrentPieceGroup() != null) {
+			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
+		} else {
+			if(PieceMovementListener.selectedPieceSquarePanel != null) {
+				
+				// move from
+				Point from = selectedPieceSquarePanel.getGridLocation();
+				// move to
+				Point to = this.parentSquarePanel.getGridLocation();
+				
+				GameManager.getSingleton().getBoard().movePieces(from, to);
+			}
+		}
 	}
 
 	@Override

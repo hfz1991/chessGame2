@@ -13,13 +13,24 @@ public class Board extends Observable {
 	public void movePieces(Point from, Point to) {
 		// move pieces logic here
 		
+		System.out.println("From Point: "+ from.x +" y: " + from.y);
+//		System.out.println("To Point: "+ to.x +" y: " + to.y);
+
+		int fromX = from.x;
+		int fromY = from.y;
+		int toX = to.x;
+		int toY = to.y;
 		
-		// Example movement
-		
-		squareArray[1][0] = new PieceGroup(new Rock(0));
-		squareArray[0][0] = null;
-		
-		
+		PieceGroup pg = squareArray[fromY][fromX];
+		if (pg.getPieces() != null){
+
+			AbstractPiece piece = pg.getPieces().get(0);
+			if(!(piece instanceof Barrier)){
+				squareArray[fromY][fromX] = null;
+				squareArray[toY][toX] = pg;
+			}
+			
+		}		
 		
 		this.setChanged();
 		this.notifyObservers();
