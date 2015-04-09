@@ -18,6 +18,9 @@ import java.util.TimerTask;
 
 import javax.swing.border.LineBorder;
 
+import controller.SplitDialogueListener;
+import controller.UndoDialogueListener;
+
 public class InfoPanel extends JPanel  {
 	
 	GridLayout layout2 =new GridLayout(3,1);
@@ -51,6 +54,8 @@ public class InfoPanel extends JPanel  {
 	private JPanel blackPanel;
 	BoardPanel board;
 	NewGameDialogue newGameDia;
+	
+	UndoDialogue undoDia;
 	
 	public InfoPanel(final JFrame parent, BoardPanel panel){
 		
@@ -142,8 +147,11 @@ public class InfoPanel extends JPanel  {
 	    
 	    //goBack.setBounds(10,10,25,10);
 	    
-	    buttonBox.add(goBack).setEnabled(false);
-	    buttonBox.add(split).setEnabled(false);
+	    goBack.addActionListener(new UndoDialogueListener());
+	    split.addActionListener(new SplitDialogueListener());
+	    
+	    buttonBox.add(goBack);
+	    buttonBox.add(split);
 	    
 	    buttonP.add(timerBox);
 	    buttonP.add(newGame);

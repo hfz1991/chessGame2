@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import controller.CancelListener;
 import controller.newGameSaveDialogueListener;
 
 public class NewGameDialogue extends JDialog{
@@ -40,6 +41,7 @@ public class NewGameDialogue extends JDialog{
 		selectNum = new JLabel("Select Number of Moves for each Player: ");
 		Num.add(selectNum);
 		Num.add(Box.createHorizontalStrut(2)); 
+		
 		isCanceled = true;
 		numOfMove = new JComboBox();
 		
@@ -55,11 +57,7 @@ public class NewGameDialogue extends JDialog{
 		save = new JButton("OK");
 		save.addActionListener(new newGameSaveDialogueListener(this));
 		cancel = new JButton("Cancel");
-		cancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                isCanceled = true;
-                dispose();
-            }});
+		cancel.addActionListener(new CancelListener(this));
 		
 		button = Box.createHorizontalBox();
 		button.add(save);
