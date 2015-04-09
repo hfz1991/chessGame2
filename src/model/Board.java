@@ -13,7 +13,7 @@ public class Board extends Observable {
 	public void movePieces(Point from, Point to) {
 		// move pieces logic here
 		
-		System.out.println("From Point: "+ from.x +" y: " + from.y);
+//		System.out.println("From Point: "+ from.x +" y: " + from.y);
 //		System.out.println("To Point: "+ to.x +" y: " + to.y);
 
 		int fromX = from.x;
@@ -26,8 +26,11 @@ public class Board extends Observable {
 
 			AbstractPiece piece = pg.getPieces().get(0);
 			if(!(piece instanceof Barrier)){
+				MovablePiece movableP = (MovablePiece) piece;
+				movableP.move(toX, toY);
+				
 				squareArray[fromY][fromX] = null;
-				squareArray[toY][toX] = pg;
+				squareArray[piece.getyC()][piece.getxC()] = pg;
 			}
 			
 		}		
