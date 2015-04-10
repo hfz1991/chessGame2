@@ -13,7 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.CancelListener;
-import controller.newGameSaveDialogueListener;
+import controller.NewGameDialogueListener;
+import controller.NewGameSaveDialogueListener;
 
 public class NewGameDialogue extends JDialog{
 
@@ -26,15 +27,19 @@ public class NewGameDialogue extends JDialog{
 	private Box base;
 	private Box Num;
 	private Box button;
-	private Boolean isCanceled;
 	
 	private int numMove=40;
 	private int startNum=10;
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
+	private InfoPanel infoPanel;
 	
+	/*public NewGameDialogue(InfoPanel infoPanel) {
+		// TODO Auto-generated constructor stub
+		this.infoPanel=infoPanel;
+	}*/
 	
-	public NewGameDialogue(){
+	public NewGameDialogue(InfoPanel infoPanel){
 		
 		//select number of moves
 		Num = Box.createHorizontalBox();
@@ -42,7 +47,6 @@ public class NewGameDialogue extends JDialog{
 		Num.add(selectNum);
 		Num.add(Box.createHorizontalStrut(2)); 
 		
-		isCanceled = true;
 		numOfMove = new JComboBox();
 		
 		for(int i = 0; i <= numMove; i++){
@@ -55,7 +59,7 @@ public class NewGameDialogue extends JDialog{
 		
 		//setup buttons
 		save = new JButton("OK");
-		save.addActionListener(new newGameSaveDialogueListener(this));
+		save.addActionListener(new NewGameSaveDialogueListener(this,infoPanel));
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new CancelListener(this));
 		
@@ -80,12 +84,7 @@ public class NewGameDialogue extends JDialog{
 	    setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
 	    setVisible(true); 
 	}
-	
-	public Boolean getIsCanceled()
-	{
-		return isCanceled;
-	}
-	
+
 	public int getNumberOfMoves(){
 		return Integer.parseInt(this.numOfMove.getSelectedItem().toString());
 	}

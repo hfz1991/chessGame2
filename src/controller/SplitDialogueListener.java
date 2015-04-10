@@ -7,7 +7,7 @@ import view.SplitDialogue;
 
 public class SplitDialogueListener implements ActionListener {
 
-	SplitDialogue splitDia;
+	private SplitDialogue splitDia;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

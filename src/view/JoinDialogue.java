@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import controller.CancelListener;
+import controller.JoinDialogueSaveListener;
 
 public class JoinDialogue extends JDialog {
 
@@ -31,6 +32,7 @@ public class JoinDialogue extends JDialog {
 		infoBox.add(info);
 		
 		save = new JButton("OK");
+		save.addActionListener(new JoinDialogueSaveListener(this));
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new CancelListener(this));
 		

@@ -8,7 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import controller.CancelListener;
-import controller.newGameSaveDialogueListener;
+import controller.UndoDialogueSaveListener;
+import controller.NewGameSaveDialogueListener;
 
 public class UndoDialogue  extends JDialog{
 
@@ -32,6 +33,7 @@ public class UndoDialogue  extends JDialog{
 		infoBox.add(info);
 		
 		save = new JButton("OK");
+		save.addActionListener(new UndoDialogueSaveListener(this));
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new CancelListener(this));
 		

@@ -7,7 +7,7 @@ import view.UndoDialogue;
 
 public class UndoDialogueListener implements ActionListener {
 
-	UndoDialogue undoDia;
+	private UndoDialogue undoDia;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

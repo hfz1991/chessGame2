@@ -10,12 +10,14 @@ import javax.swing.JDialog;
 import view.InfoPanel;
 import view.NewGameDialogue;
 
-public class newGameSaveDialogueListener implements ActionListener{
+public class NewGameSaveDialogueListener implements ActionListener{
 	
 	private NewGameDialogue parentView;
+	private InfoPanel infoPanel;
 	
-	public newGameSaveDialogueListener(NewGameDialogue parentView) {
+	public NewGameSaveDialogueListener(NewGameDialogue parentView, InfoPanel infoPanel) {
 		this.parentView = parentView;
+		this.infoPanel=infoPanel;
 	}
 
 	@Override
@@ -24,7 +26,11 @@ public class newGameSaveDialogueListener implements ActionListener{
 		
 		GameManager.getSingleton().setTotalOfMoves(parentView.getNumberOfMoves());
 		GameManager.getSingleton().getBoard().initialisePieces();
+		
 		this.parentView.dispose(); 
+		this.infoPanel.getGoBack().setEnabled(true);
+		this.infoPanel.getSplit().setEnabled(true);;
+		
 		
 		//set Time function
 		//setTimer(); 

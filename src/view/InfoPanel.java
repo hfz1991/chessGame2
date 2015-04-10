@@ -18,6 +18,7 @@ import java.util.TimerTask;
 
 import javax.swing.border.LineBorder;
 
+import controller.NewGameDialogueListener;
 import controller.SplitDialogueListener;
 import controller.UndoDialogueListener;
 
@@ -145,13 +146,13 @@ public class InfoPanel extends JPanel  {
 	    
 	    buttonBox = Box.createHorizontalBox();
 	    
-	    //goBack.setBounds(10,10,25,10);
+	    newGame.addActionListener(new NewGameDialogueListener(this));
 	    
 	    goBack.addActionListener(new UndoDialogueListener());
 	    split.addActionListener(new SplitDialogueListener());
 	    
-	    buttonBox.add(goBack);
-	    buttonBox.add(split);
+	    buttonBox.add(goBack).setEnabled(false);
+	    buttonBox.add(split).setEnabled(false);
 	    
 	    buttonP.add(timerBox);
 	    buttonP.add(newGame);
@@ -160,23 +161,7 @@ public class InfoPanel extends JPanel  {
 	    add(whitePanel,BorderLayout.NORTH);
 	    add(blackPanel,BorderLayout.CENTER);
 	    add(buttonP,BorderLayout.SOUTH);
-	    
-	    board = panel;
-	    
-	    newGame.addActionListener(new ActionListener()
-	    {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
 
-				newGameDia = new NewGameDialogue();
-				
-				if(newGameDia.getIsCanceled())
-					return;
-				
-				//setTimer();
-				
-			}
-	    });
 	}
 	
 	// Time Function
@@ -228,5 +213,19 @@ public class InfoPanel extends JPanel  {
 		timerActionListener = listener;
 	}*/
 	
+	public JButton getGoBack() {
+		return goBack;
+	}
 
+	public void setGoBack(JButton goBack) {
+		this.goBack = goBack;
+	}
+
+	public JButton getSplit() {
+		return split;
+	}
+
+	public void setSplit(JButton split) {
+		this.split = split;
+	}
 }
