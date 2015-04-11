@@ -232,6 +232,4 @@ public class InfoPanel extends JPanel  {
 	public void setSplit(JButton split) {
 		this.split = split;
 	}
-	
-	
 }

@@ -23,6 +23,10 @@ public class PieceMovementListener implements MouseListener {
 	private SquarePanel parentSquarePanel;
 	
 	private List<JPanel> panelList= new ArrayList<JPanel>();
+	private ArrayList<Point> point;
+	
+	private int currX;
+	private int currY;
 	
 	public static SquarePanel selectedPieceSquarePanel = null;
 	
@@ -57,9 +61,15 @@ public class PieceMovementListener implements MouseListener {
 			
 			//change panelList to !!!!!!!!!!!!!!the function to get all possible square in a arraylist!!!!!!!!!! 
 			
-			/*panelList.add(parentSquarePanel);
+			//panelList.add(parentSquarePanel);
 			
-			for(int i=0; i<panelList.size();i++){
+			currX=this.parentSquarePanel.getGridLocation().x;
+			currY=this.parentSquarePanel.getGridLocation().y;
+			
+			point=GameManager.getSingleton().getBoard().getValidMoves(currX, currY);
+			System.out.println("point.size(): "+point.size());
+			
+			/*for(int i=0; i<point.size();i++){
 				panelList.get(i).setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
 			}*/
 			
