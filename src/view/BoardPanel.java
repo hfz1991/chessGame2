@@ -39,10 +39,10 @@ public class BoardPanel extends JPanel implements Observer{
 	        	squares[i][j] = new SquarePanel(j,i); 
 				squares[i][j].setPreferredSize(new Dimension(95, 95));
 				
-				squares[i][j].setBackground(Color.DARK_GRAY);;
+				squares[i][j].setBackground(Color.WHITE);;
 	        if(((i + j) % 2) == 0)
 	        {
-	            squares[i][j].setBackground(Color.WHITE);
+	            squares[i][j].setBackground(Color.DARK_GRAY);
 	        }
             add(squares[i][j]);
 	        } 

@@ -23,6 +23,7 @@ public class Board extends Observable {
 		int toY = to.y;
 
 		PieceGroup pg = squareArray[fromY][fromX];
+		
 		try{
 		if (pg.getPieces() != null) {
 
@@ -44,6 +45,7 @@ public class Board extends Observable {
 		catch(Exception e){
 			System.out.println("Cannot choose empty square");
 		}
+
 
 		this.setChanged();
 		this.notifyObservers();
@@ -80,6 +82,7 @@ public class Board extends Observable {
 		squareArray[5][4] = new PieceGroup(new Bishop(1, 5, 4));
 		squareArray[5][5] = new PieceGroup(new Rock(1, 5, 5));
 
+
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -108,4 +111,5 @@ public class Board extends Observable {
 		//....
 		return null;
 	}
+
 }

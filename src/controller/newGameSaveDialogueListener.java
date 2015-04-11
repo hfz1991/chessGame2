@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 
 import view.InfoPanel;
 import view.NewGameDialogue;
+import view.View;
 
 public class NewGameSaveDialogueListener implements ActionListener{
 	
@@ -31,6 +32,7 @@ public class NewGameSaveDialogueListener implements ActionListener{
 		this.infoPanel.getGoBack().setEnabled(true);
 		this.infoPanel.getSplit().setEnabled(true);;
 		
+
 		
 		//set Time function
 		//setTimer(); 

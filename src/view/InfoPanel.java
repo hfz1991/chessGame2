@@ -18,6 +18,7 @@ import java.util.TimerTask;
 
 import javax.swing.border.LineBorder;
 
+import controller.MyTimerActionListener;
 import controller.NewGameDialogueListener;
 import controller.SplitDialogueListener;
 import controller.UndoDialogueListener;
@@ -53,10 +54,13 @@ public class InfoPanel extends JPanel  {
 	
 	private JPanel whitePanel;
 	private JPanel blackPanel;
-	BoardPanel board;
-	NewGameDialogue newGameDia;
+	private BoardPanel board;
+	private NewGameDialogue newGameDia;
 	
-	UndoDialogue undoDia;
+	private MyTimerActionListener timerActionListener;
+	private Timer timer;
+	
+	private UndoDialogue undoDia;
 	
 	public InfoPanel(final JFrame parent, BoardPanel panel){
 		
@@ -166,7 +170,7 @@ public class InfoPanel extends JPanel  {
 	
 	// Time Function
 	
-	/*int second = 0;
+	int second = 0;
 	int minute = 0;
 	public void setTimer()
 	{
@@ -211,7 +215,7 @@ public class InfoPanel extends JPanel  {
 	public void setTimerActionListener(MyTimerActionListener listener)
 	{
 		timerActionListener = listener;
-	}*/
+	}
 	
 	public JButton getGoBack() {
 		return goBack;

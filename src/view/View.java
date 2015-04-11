@@ -6,10 +6,30 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import model.GameManager;
+
 public class View extends JFrame{ 
 
 	private BoardPanel board;
 	private InfoPanel info;
+	
+	private static View singletonInstanceView = null; 
+
+	public BoardPanel getBoard() {
+		return board;
+	}
+
+	public void setBoard(BoardPanel board) {
+		this.board = board;
+	}
+
+	public InfoPanel getInfo() {
+		return info;
+	}
+
+	public void setInfo(InfoPanel info) {
+		this.info = info;
+	}
 
 	public View() { 
   
