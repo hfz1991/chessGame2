@@ -33,9 +33,8 @@ public class NewGameSaveDialogueListener implements ActionListener{
 		this.infoPanel.getSplit().setEnabled(true);;
 		
 
-		
-		//set Time function
-		//setTimer(); 
+		View v = View.getView();
+		v.getInfo().setTimer(); 
 		
 	}
 }

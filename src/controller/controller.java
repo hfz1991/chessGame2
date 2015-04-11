@@ -4,7 +4,7 @@ import model.GameManager;
 
 public class controller {
 	public static void main(String[] args){
-		View view = new View();		
+		View view = View.getView();		
 		
 		GameManager gm = GameManager.getSingleton();
 		gm.getBoard().addObserver(view.getBoardPanel());

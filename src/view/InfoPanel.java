@@ -140,7 +140,7 @@ public class InfoPanel extends JPanel  {
 	    time = new JLabel("Time:    ");
 	    timerLabel = new JLabel("0:0");
 	    newGame = new JButton("New Game");
-	    goBack = new JButton("Return");
+	    goBack = new JButton("Undo");
 	    split = new JButton("Split");
 	    
 	    timerBox = Box.createHorizontalBox();
@@ -232,4 +232,6 @@ public class InfoPanel extends JPanel  {
 	public void setSplit(JButton split) {
 		this.split = split;
 	}
+	
+	
 }

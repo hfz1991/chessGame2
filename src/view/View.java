@@ -24,7 +24,7 @@ public class View extends JFrame{
 	}
 
 	public InfoPanel getInfo() {
-		return info;
+		return this.info;
 	}
 
 	public void setInfo(InfoPanel info) {
@@ -50,4 +50,10 @@ public class View extends JFrame{
 		return this.board;
 	}
 	
+	public static View getView(){
+		if(View.singletonInstanceView == null ){
+			View.singletonInstanceView = new View();
+		}
+		return singletonInstanceView;
+	}
 }
