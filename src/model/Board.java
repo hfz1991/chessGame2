@@ -91,8 +91,12 @@ public class Board extends Observable {
 		return squareArray;
 	}
 
-	public ArrayList<Point> getValidMoves(int x, int y){
-		PieceGroup pg = squareArray[x][y];
+	public ArrayList<Point> getValidMoves(int currentX, int currentY){
+		
+		int x = currentX;
+		int y = currentY;
+		
+		PieceGroup pg = this.squareArray[x][y];
 		ArrayList<Point> array = null;
 			if (pg.getPieces() != null){
 		

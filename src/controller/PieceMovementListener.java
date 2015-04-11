@@ -66,8 +66,8 @@ public class PieceMovementListener implements MouseListener {
 			currX=this.parentSquarePanel.getGridLocation().x;
 			currY=this.parentSquarePanel.getGridLocation().y;
 			
-			point=GameManager.getSingleton().getBoard().getValidMoves(currX, currY);
-			System.out.println("point.size(): "+point.size());
+			point=GameManager.getSingleton().getBoard().getValidMoves(currY, currX);
+			//System.out.println("point.size(): "+point.size());
 			
 			/*for(int i=0; i<point.size();i++){
 				panelList.get(i).setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
@@ -87,7 +87,7 @@ public class PieceMovementListener implements MouseListener {
 				//change back to no border -- show selected piece
 				selectedPieceSquarePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
 				
-				//chenge back to no border -- show valid path
+				//change back to no border -- show valid path
 				/*for(int i=0; i<panelList.size();i++){
 					panelList.get(i).setBorder(BorderFactory.createLineBorder(Color.GREEN, 0));
 					System.out.println("change color");
