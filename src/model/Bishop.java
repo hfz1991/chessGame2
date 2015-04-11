@@ -1,11 +1,16 @@
 package model;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 public class Bishop extends AbstractPiece implements MovablePiece{
 	
 	private int colour;
 	
-	public Bishop(int colour) {
+	public Bishop(int colour, int x, int y) {
 		this.colour = colour;
+		this.setxC(x);
+		this.setyC(y);
 	}
 	
 	public void move(int x, int y){
@@ -22,4 +27,47 @@ public class Bishop extends AbstractPiece implements MovablePiece{
 	public String getName() {
 		return "bishop";
 	}
+	
+	public ArrayList<Point> getValidMoves(int currentX, int currentY){
+		int x = currentX;
+		int y = currentY;
+		
+		ArrayList<Point> pointArrayList = new ArrayList<Point>();
+		
+		//Right Bottom
+		for(int i=1;x+i<6;i++){
+			if(y+i<6){
+				System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
+			}
+		}
+		
+		//Left Bottom
+		for(int i=1;x+i<6;i++){
+			if(y-i>=0){
+				System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
+			}
+		}
+		
+		//Right Up
+		for(int i=1;x-i>=0;i++){
+			if(y+i<6){
+				System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
+			}
+		}
+		
+		//Left Up
+		for(int i=1;x-i>=0;i++){
+			if(y-i>=0){
+				System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
+			}
+		}
+		
+		
+		Point p = new Point(currentX,currentY);
+		pointArrayList.add(p);
+		
+		
+		return pointArrayList;
+	}
+
 }
