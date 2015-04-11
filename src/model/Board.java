@@ -93,7 +93,7 @@ public class Board extends Observable {
 
 	public ArrayList<Point> getValidMoves(int x, int y){
 		PieceGroup pg = squareArray[x][y];
-		
+		ArrayList<Point> array = null;
 			if (pg.getPieces() != null){
 		
 
@@ -102,14 +102,14 @@ public class Board extends Observable {
 				MovablePiece movableP = (MovablePiece) piece;
 				
 				//test getValidMoves, delete later
-				ArrayList<Point> array = movableP.getValidMoves(x, y);
+				array = movableP.getValidMoves(x, y);
 			}
 		}
 	
 		
 		//remove the path after the piece in that path 
 		//....
-		return null;
+		return array;
 	}
 
 }

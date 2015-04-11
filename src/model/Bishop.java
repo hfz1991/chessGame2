@@ -37,34 +37,41 @@ public class Bishop extends AbstractPiece implements MovablePiece{
 		//Right Bottom
 		for(int i=1;x+i<6;i++){
 			if(y+i<6){
-				System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
+				Point p = new Point((x+i),(y+i));
+				pointArrayList.add(p);
+//				System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
 			}
 		}
 		
 		//Left Bottom
 		for(int i=1;x+i<6;i++){
 			if(y-i>=0){
-				System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
+				Point p = new Point((x+i),(y-i));
+				pointArrayList.add(p);
+//				System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
 			}
 		}
 		
 		//Right Up
 		for(int i=1;x-i>=0;i++){
 			if(y+i<6){
-				System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
+				Point p = new Point((x-i),(y+i));
+				pointArrayList.add(p);
+//				System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
 			}
 		}
 		
 		//Left Up
 		for(int i=1;x-i>=0;i++){
 			if(y-i>=0){
-				System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
+				Point p = new Point((x-i),(y-i));
+				pointArrayList.add(p);
+//				System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
 			}
 		}
 		
 		
-		Point p = new Point(currentX,currentY);
-		pointArrayList.add(p);
+		
 		
 		
 		return pointArrayList;
