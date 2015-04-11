@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class Board extends Observable {
@@ -84,4 +85,21 @@ public class Board extends Observable {
 		return squareArray;
 	}
 	
+	public ArrayList<Point> getValidMoves(int x, int y){
+		PieceGroup pg = squareArray[x][y];
+		if (pg.getPieces() != null){
+
+			AbstractPiece piece = pg.getPieces().get(0);
+			if(!(piece instanceof Barrier)){
+				MovablePiece movableP = (MovablePiece) piece;
+				
+				//test getValidMoves, delete later
+				ArrayList<Point> array = movableP.getValidMoves(x, y);
+			}
+		}
+		
+		//remove the path after the piece in that path 
+		//....
+		return null;
+	}
 }
