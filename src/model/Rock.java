@@ -3,30 +3,57 @@ package model;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class Rock extends AbstractPiece implements MovablePiece{
-	
+public class Rock extends AbstractPiece implements MovablePiece {
+
 	private int colour;
-	
+
 	public Rock(int colour, int x, int y) {
 		this.colour = colour;
 		this.setxC(x);
 		this.setyC(y);
 	}
 
-	public void move(int x, int y){
+	public void move(int x, int y) {
 		this.setxC(x);
 		this.setyC(y);
 	}
-	
-	public int getColour(){
+
+	public int getColour() {
 		return colour;
 	}
-	
+
 	public String getName() {
 		return "rook";
 	}
-	
-	public ArrayList<Point> getValidMoves(int currentX, int currentY){
-		return null;
+
+	public ArrayList<Point> getValidMoves(int x, int y) {
+
+		ArrayList<Point> pointArrayList = new ArrayList<Point>();
+
+		// Up
+		for (int i = 1; x - i >= 0; i++) {
+			Point p = new Point((x - i), (y));
+			pointArrayList.add(p);
+		}
+		
+		// Down
+		for (int i = 1; x + i < 6; i++) {
+			Point p = new Point((x + i), (y));
+			pointArrayList.add(p);
+		}
+
+		 //Right
+		 for(int i=1;y+i<6;i++){
+			 Point p = new Point((x),(y+i));
+			 pointArrayList.add(p);
+		 }
+
+		 //Left
+		 for(int i=1;y-i>=0;i++){
+			 Point p = new Point((x),(y-i));
+			 pointArrayList.add(p);		
+		 }
+
+		return pointArrayList;
 	}
 }

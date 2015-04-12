@@ -28,9 +28,8 @@ public class Bishop extends AbstractPiece implements MovablePiece{
 		return "bishop";
 	}
 	
-	public ArrayList<Point> getValidMoves(int currentX, int currentY){
-		int x = currentX;
-		int y = currentY;
+	public ArrayList<Point> getValidMoves(int x, int y){
+		
 		
 		ArrayList<Point> pointArrayList = new ArrayList<Point>();
 		

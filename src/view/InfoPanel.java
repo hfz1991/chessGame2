@@ -54,7 +54,6 @@ public class InfoPanel extends JPanel  {
 	
 	private JPanel whitePanel;
 	private JPanel blackPanel;
-	private BoardPanel board;
 	private NewGameDialogue newGameDia;
 	
 	private MyTimerActionListener timerActionListener;
