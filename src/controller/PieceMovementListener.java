@@ -32,6 +32,11 @@ public class PieceMovementListener implements MouseListener {
 
 	private SquarePanel currSquares[][];
 
+	//
+	private static SquarePanel prevSP = null;
+	private static ArrayList<SquarePanel> prevSPList = null;
+	private SquarePanel temp = null;
+	
 	public static SquarePanel selectedPieceSquarePanel = null;
 
 	public PieceMovementListener(SquarePanel psp) {
@@ -52,7 +57,18 @@ public class PieceMovementListener implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 
-		
+		if(prevSPList == null){
+			prevSPList = new ArrayList<SquarePanel>();
+		}
+		else{
+			for(int c=0;c<prevSPList.size();c++){
+				prevSPList.get(c).setBorder(BorderFactory
+						.createLineBorder(Color.GREEN, 0));
+			}
+			
+		}
+//				
+//		}
 		// TODO Auto-generated method stub
 		if (this.parentSquarePanel.getCurrentPieceGroup() != null) {
 			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
@@ -60,8 +76,14 @@ public class PieceMovementListener implements MouseListener {
 			// need to check if the piece is movable
 			// piece!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			// show border if player click a square
+			if(prevSP != null){
+				prevSP.setBorder(BorderFactory.createLineBorder(
+						Color.BLUE, 0));
+			}
 			parentSquarePanel.setBorder(BorderFactory.createLineBorder(
 					Color.BLUE, 3));
+			prevSP = parentSquarePanel;
+
 			currX = this.parentSquarePanel.getGridLocation().x;
 			currY = this.parentSquarePanel.getGridLocation().y;
 			
@@ -79,11 +101,16 @@ public class PieceMovementListener implements MouseListener {
 								point.get(m))) {
 							currSquares[j][i].setBorder(BorderFactory
 									.createLineBorder(Color.GREEN, 3));
+							
+							prevSPList.add(currSquares[j][i]);
+
 						}
 					}
+					
 				}
 			}
-		} else {
+		} 
+		else {
 			if (PieceMovementListener.selectedPieceSquarePanel != null) {
 
 				// move from
@@ -92,7 +119,7 @@ public class PieceMovementListener implements MouseListener {
 				Point to = this.parentSquarePanel.getGridLocation();
 
 				GameManager.getSingleton().getBoard().movePieces(from, to);
-
+				
 				// change back to no border -- show selected piece
 				selectedPieceSquarePanel.setBorder(BorderFactory
 						.createLineBorder(Color.BLUE, 0));

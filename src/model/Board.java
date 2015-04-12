@@ -98,14 +98,12 @@ public class Board extends Observable {
 		
 		PieceGroup pg = this.squareArray[x][y];
 		ArrayList<Point> array = null;
-			if (pg.getPieces() != null){
-		
+		if (pg.getPieces() != null) {
 
-				AbstractPiece piece = pg.getPieces().get(0);
-			if(!(piece instanceof Barrier)){
+			AbstractPiece piece = pg.getPieces().get(0);
+			if (!(piece instanceof Barrier)) {
 				MovablePiece movableP = (MovablePiece) piece;
-				
-				//test getValidMoves, delete later
+
 				array = movableP.getValidMoves(x, y);
 			}
 		}
