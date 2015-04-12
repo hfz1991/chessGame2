@@ -8,9 +8,8 @@ public class Knight extends AbstractPiece implements MovablePiece{
 	private int colour;
 	
 	public Knight(int colour, int x, int y) {
-		this.colour = colour;
-		this.setxC(x);
-		this.setyC(y);
+		super(colour, x, y);
+
 	}
 	
 	public void move(int x, int y){

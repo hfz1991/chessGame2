@@ -4,6 +4,18 @@ public abstract class AbstractPiece {
 	protected int point;
 	protected int xC;
 	protected int yC;
+	protected int colour;
+	
+	public AbstractPiece(int colour, int x, int y){
+		this.colour = colour;
+		this.setxC(x);
+		this.setyC(y);
+	}
+
+	public AbstractPiece(int x, int y){
+		this.setxC(x);
+		this.setyC(y);
+	}
 	
 	public int getPoint() {
 		return point;
