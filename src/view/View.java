@@ -15,9 +15,9 @@ public class View extends JFrame{
 	
 	private static View singletonInstanceView = null; 
 
-	public BoardPanel getBoard() {
+	/*public BoardPanel getBoard() {
 		return board;
-	}
+	}*/
 
 	public void setBoard(BoardPanel board) {
 		this.board = board;
