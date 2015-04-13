@@ -4,9 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class Knight extends AbstractPiece implements MovablePiece{
-	
-	private int colour;
-	
+		
 	public Knight(int colour, int x, int y) {
 		super(colour, x, y);
 

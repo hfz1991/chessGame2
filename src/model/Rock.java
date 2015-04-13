@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class Rock extends AbstractPiece implements MovablePiece {
 
-	private int colour;
-
 	public Rock(int colour, int x, int y) {
 		super(colour, x, y);
 	}
