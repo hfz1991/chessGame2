@@ -94,21 +94,28 @@ public class PieceMovementListener implements MouseListener {
 					.getValidMoves(currY, currX);
 
 
-			for (int i = 0; i < currSquares.length; i++) {
-				for (int j = 0; j < currSquares.length; j++) {
-					for (int m = 0; m < point.size(); m++) {
-						if (currSquares[i][j].getGridLocation().equals(
-								point.get(m))) {
-							currSquares[j][i].setBorder(BorderFactory
-									.createLineBorder(Color.GREEN, 3));
-							
-							prevSPList.add(currSquares[j][i]);
+			//Remove after demo
+			try{
+				for (int i = 0; i < currSquares.length; i++) {
+					for (int j = 0; j < currSquares.length; j++) {
+						for (int m = 0; m < point.size(); m++) {
+							if (currSquares[i][j].getGridLocation().equals(
+									point.get(m))) {
+								currSquares[j][i].setBorder(BorderFactory
+										.createLineBorder(Color.GREEN, 3));
+								
+								prevSPList.add(currSquares[j][i]);
 
+							}
 						}
+						
 					}
-					
 				}
 			}
+			catch(Exception e1){
+				System.out.println("Cannot move barrier");
+			}
+			
 		} 
 		else {
 			if (PieceMovementListener.selectedPieceSquarePanel != null) {
