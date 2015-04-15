@@ -24,6 +24,7 @@ public class PieceMovementListener implements MouseListener {
 	private SquarePanel parentSquarePanel;
 
 	private ArrayList<Point> point;
+	private ArrayList<Point> pointA;
 
 	private int currX;
 	private int currY;
@@ -31,8 +32,8 @@ public class PieceMovementListener implements MouseListener {
 	private int oldY;
 
 	private SquarePanel currSquares[][];
-
-	//
+	private SquarePanel oldSquares[][];
+	
 	private static SquarePanel prevSP = null;
 	private static ArrayList<SquarePanel> prevSPList = null;
 	
@@ -43,15 +44,10 @@ public class PieceMovementListener implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-
-	}
+	public void mouseClicked(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -66,8 +62,7 @@ public class PieceMovementListener implements MouseListener {
 			}
 			
 		}
-//				
-//		}
+
 		// TODO Auto-generated method stub
 		if (this.parentSquarePanel.getCurrentPieceGroup() != null) {
 			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
@@ -124,15 +119,24 @@ public class PieceMovementListener implements MouseListener {
 				// move to
 				Point to = this.parentSquarePanel.getGridLocation();
 
-				GameManager.getSingleton().getBoard().movePieces(from, to);
+				oldX = from.x;
+				oldY = from.y;
+				View v = View.getView();
+				oldSquares = v.getBoardPanel().getSquares();
+				pointA = GameManager.getSingleton().getBoard().getValidMoves(oldY, oldX);
+
+				for (int x = 0; x < pointA.size(); x++) {
+					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) {
+						GameManager.getSingleton().getBoard().movePieces(from, to);
+					}
+				}
 				
 				// change back to no border -- show selected piece
 				selectedPieceSquarePanel.setBorder(BorderFactory
 						.createLineBorder(Color.BLUE, 0));
-
-
-				View v = View.getView();
+				
 				v.getInfo().setTimer(); 
+				PieceMovementListener.selectedPieceSquarePanel = null;
 			}
 		}
 	}
