@@ -90,243 +90,261 @@ public class Board extends Observable {
 
 	public ArrayList<Point> getValidMoves(int currentX, int currentY){
 		
-		int x = currentX;
-		int y = currentY;
 		
-		PieceGroup pg = this.squareArray[x][y];
+		PieceGroup pg = this.squareArray[currentX][currentY];
 		ArrayList<Point> validArray = new ArrayList<Point>();
 		if (pg.getPieces() != null) {
 
 			AbstractPiece piece = pg.getPieces().get(0);
 			//Check if the piece is movable piece
-			if (!(piece instanceof Barrier)) {
-				
-				boolean reachToPieceFlag = false;
-				
-				//Bishop
-				if(piece instanceof Bishop){
-					//Right Bottom
-					for(int i=1;x+i<6;i++){
-						if(y+i<6){
-							if(this.squareArray[x+i][y+i] == null && reachToPieceFlag == false){
-								Point p = new Point((x+i),(y+i));
-								validArray.add(p);
-							}
-							else if(this.squareArray[x+i][y+i] != null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x+i),(y+i));
-								validArray.add(p);
-							}
-							
-//							System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
-						}
-					}
-					
-					//Left Bottom
-					reachToPieceFlag = false;
-					for(int i=1;x+i<6;i++){
-						if(y-i>=0){
-							if(this.squareArray[x+i][y-i] == null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x+i),(y-i));
-								validArray.add(p);
-							}
-							else if(this.squareArray[x+i][y-i] != null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x+i),(y-i));
-								validArray.add(p);
-							}
-							
-//							System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
-						}
-					}
-					
-					//Right Up
-					reachToPieceFlag = false;
-					for(int i=1;x-i>=0;i++){
-						if(y+i<6){
-							if(this.squareArray[x-i][y+i] == null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x-i),(y+i));
-								validArray.add(p);
-							}
-							else if(this.squareArray[x-i][y+i] != null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x-i),(y+i));
-								validArray.add(p);
-							}
-							
-//							System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
-						}
-					}
-					
-					//Left Up
-					reachToPieceFlag = false;
-					for(int i=1;x-i>=0;i++){
-						if(y-i>=0){
-							if(this.squareArray[x-i][y-i] == null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x-i),(y-i));
-								validArray.add(p);
-							}
-							else if(this.squareArray[x-i][y-i] != null && reachToPieceFlag == false){
-								reachToPieceFlag = true;
-								Point p = new Point((x-i),(y-i));
-								validArray.add(p);
-							}
-							
-//							System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
-						}
-					}
-				}
-				//Finish Bishop
-				
-				//Rock
-				reachToPieceFlag = false;
-				if(piece instanceof Rock){
-					// Up
-					for (int i = 1; x - i >= 0; i++) {
-						if(this.squareArray[x-i][y] == null && reachToPieceFlag == false){
-							Point p = new Point((x - i), (y));
-							validArray.add(p);
-						}
-						else if(this.squareArray[x-i][y] != null && reachToPieceFlag == false){
-							reachToPieceFlag = true;
-							Point p = new Point((x-i),(y));
-							validArray.add(p);
-						}
-						
-					}
-					
-					reachToPieceFlag = false;
-					// Down
-					for (int i = 1; x + i < 6; i++) {
-						if(this.squareArray[x+i][y] == null && reachToPieceFlag == false){
-							Point p = new Point((x + i), (y));
-							validArray.add(p);
-						}
-						else if(this.squareArray[x+i][y] != null && reachToPieceFlag == false){
-							reachToPieceFlag = true;
-							Point p = new Point((x+i),(y));
-							validArray.add(p);
-						}
-						
-					
-					}
-
-					reachToPieceFlag = false;
-					 //Right
-					for (int i = 1; y + i < 6; i++) {
-						if (this.squareArray[x][y+i] == null && reachToPieceFlag == false) {
-							Point p = new Point((x), (y+i));
-							validArray.add(p);
-						} else if (this.squareArray[x][y+i] != null && reachToPieceFlag == false) {
-							reachToPieceFlag = true;
-							Point p = new Point((x), (y+i));
-							validArray.add(p);
-						}
-					}
-
-					reachToPieceFlag = false;
-					 //Left
-					 for(int i=1;y-i>=0;i++){
-						if (this.squareArray[x][y-i] == null && reachToPieceFlag == false) {
-							Point p = new Point((x), (y-i));
-							validArray.add(p);
-						} else if (this.squareArray[x][y-i] != null && reachToPieceFlag == false) {
-							reachToPieceFlag = true;
-							Point p = new Point((x), (y-i));
-							validArray.add(p);
-						}
-						 
-					 }
-				}
-				//Finish Rock
-				
-				//Knight
-				if(piece instanceof Knight){
-					// Right Bottom Horizontal 
-					if (x + 1 < 6) {
-						if (y + 2 < 6) {
-							Point p = new Point((x + 1), (y + 2));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
-						}
-					}
-
-					// Right Bottom Vertical
-					if (x + 2 < 6) {
-						if (y + 1 < 6) {
-							Point p = new Point((x + 2), (y + 1));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
-						}
-					}	
-							
-					// Left Bottom Horizontal
-					if ( x + 1 < 6) {
-						if (y - 2 >= 0) {
-							Point p = new Point((x + 1), (y - 2));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
-						}
-					}
-
-					// Left Bottom Vertical
-					if (x + 2 < 6) {
-						if (y - 1 >= 0) {
-							Point p = new Point((x + 2), (y - 1));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
-						}
-					}
-					
-					// Right Up Horizontal
-					if (x - 1 >= 0) {
-						if (y + 2 < 6) {
-							Point p = new Point((x - 1), (y + 2));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
-						}
-					}
-
-					// Right Up Vertical
-					if (x - 2 >= 0) {
-						if (y + 1 < 6) {
-							Point p = new Point((x - 2), (y + 1));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
-						}
-					}
-					
-					// Left Up Horizontal
-					if (x - 1 >= 0) {
-						if (y - 2 >= 0) {
-							Point p = new Point((x - 1), (y - 2));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
-						}
-					}
-					
-					// Left Up Vertical
-					if (x - 2 >= 0) {
-						if (y - 1 >= 0) {
-							Point p = new Point((x - 2), (y - 1));
-							validArray.add(p);
-							// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
-						}
-					}
-				}
-				//Finish Knight
-			}
-			//Finish First piece checking
+			checkingValidPathPiece(piece,validArray,currentX,currentY);
 			
+			try{
+				AbstractPiece piece1 = pg.getPieces().get(1);
+				if(piece1 != null){
+					checkingValidPathPiece(piece1,validArray,currentX,currentY);
+				}
+			
+				AbstractPiece piece2 = pg.getPieces().get(2);
+				if(piece2 != null){
+					checkingValidPathPiece(piece2,validArray,currentX,currentY);
+				}
+			}
+			catch(Exception e3){
+			}
 		}
 		//Finish piece checking
 	
 		
 		//remove the path after the piece in that path 
 		//....
+		return validArray;
+	}
+	
+	public ArrayList<Point> checkingValidPathPiece(AbstractPiece piece, ArrayList<Point> validArray, int x, int y){
+		
+		if (!(piece instanceof Barrier)) {
+			
+			boolean reachToPieceFlag = false;
+			
+			//Bishop
+			if(piece instanceof Bishop){
+				//Right Bottom
+				for(int i=1;x+i<6;i++){
+					if(y+i<6){
+						if(this.squareArray[x+i][y+i] == null && reachToPieceFlag == false){
+							Point p = new Point((x+i),(y+i));
+							validArray.add(p);
+						}
+						else if(this.squareArray[x+i][y+i] != null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x+i),(y+i));
+							validArray.add(p);
+						}
+						
+//						System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
+					}
+				}
+				
+				//Left Bottom
+				reachToPieceFlag = false;
+				for(int i=1;x+i<6;i++){
+					if(y-i>=0){
+						if(this.squareArray[x+i][y-i] == null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x+i),(y-i));
+							validArray.add(p);
+						}
+						else if(this.squareArray[x+i][y-i] != null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x+i),(y-i));
+							validArray.add(p);
+						}
+						
+//						System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
+					}
+				}
+				
+				//Right Up
+				reachToPieceFlag = false;
+				for(int i=1;x-i>=0;i++){
+					if(y+i<6){
+						if(this.squareArray[x-i][y+i] == null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x-i),(y+i));
+							validArray.add(p);
+						}
+						else if(this.squareArray[x-i][y+i] != null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x-i),(y+i));
+							validArray.add(p);
+						}
+						
+//						System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
+					}
+				}
+				
+				//Left Up
+				reachToPieceFlag = false;
+				for(int i=1;x-i>=0;i++){
+					if(y-i>=0){
+						if(this.squareArray[x-i][y-i] == null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x-i),(y-i));
+							validArray.add(p);
+						}
+						else if(this.squareArray[x-i][y-i] != null && reachToPieceFlag == false){
+							reachToPieceFlag = true;
+							Point p = new Point((x-i),(y-i));
+							validArray.add(p);
+						}
+						
+//						System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
+					}
+				}
+			}
+			//Finish Bishop
+			
+			//Rock
+			reachToPieceFlag = false;
+			if(piece instanceof Rock){
+				// Up
+				for (int i = 1; x - i >= 0; i++) {
+					if(this.squareArray[x-i][y] == null && reachToPieceFlag == false){
+						Point p = new Point((x - i), (y));
+						validArray.add(p);
+					}
+					else if(this.squareArray[x-i][y] != null && reachToPieceFlag == false){
+						reachToPieceFlag = true;
+						Point p = new Point((x-i),(y));
+						validArray.add(p);
+					}
+					
+				}
+				
+				reachToPieceFlag = false;
+				// Down
+				for (int i = 1; x + i < 6; i++) {
+					if(this.squareArray[x+i][y] == null && reachToPieceFlag == false){
+						Point p = new Point((x + i), (y));
+						validArray.add(p);
+					}
+					else if(this.squareArray[x+i][y] != null && reachToPieceFlag == false){
+						reachToPieceFlag = true;
+						Point p = new Point((x+i),(y));
+						validArray.add(p);
+					}
+					
+				
+				}
+
+				reachToPieceFlag = false;
+				 //Right
+				for (int i = 1; y + i < 6; i++) {
+					if (this.squareArray[x][y+i] == null && reachToPieceFlag == false) {
+						Point p = new Point((x), (y+i));
+						validArray.add(p);
+					} else if (this.squareArray[x][y+i] != null && reachToPieceFlag == false) {
+						reachToPieceFlag = true;
+						Point p = new Point((x), (y+i));
+						validArray.add(p);
+					}
+				}
+
+				reachToPieceFlag = false;
+				 //Left
+				 for(int i=1;y-i>=0;i++){
+					if (this.squareArray[x][y-i] == null && reachToPieceFlag == false) {
+						Point p = new Point((x), (y-i));
+						validArray.add(p);
+					} else if (this.squareArray[x][y-i] != null && reachToPieceFlag == false) {
+						reachToPieceFlag = true;
+						Point p = new Point((x), (y-i));
+						validArray.add(p);
+					}
+					 
+				 }
+			}
+			//Finish Rock
+			
+			//Knight
+			if(piece instanceof Knight){
+				// Right Bottom Horizontal 
+				if (x + 1 < 6) {
+					if (y + 2 < 6) {
+						Point p = new Point((x + 1), (y + 2));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
+					}
+				}
+
+				// Right Bottom Vertical
+				if (x + 2 < 6) {
+					if (y + 1 < 6) {
+						Point p = new Point((x + 2), (y + 1));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
+					}
+				}	
+						
+				// Left Bottom Horizontal
+				if ( x + 1 < 6) {
+					if (y - 2 >= 0) {
+						Point p = new Point((x + 1), (y - 2));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
+					}
+				}
+
+				// Left Bottom Vertical
+				if (x + 2 < 6) {
+					if (y - 1 >= 0) {
+						Point p = new Point((x + 2), (y - 1));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
+					}
+				}
+				
+				// Right Up Horizontal
+				if (x - 1 >= 0) {
+					if (y + 2 < 6) {
+						Point p = new Point((x - 1), (y + 2));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
+					}
+				}
+
+				// Right Up Vertical
+				if (x - 2 >= 0) {
+					if (y + 1 < 6) {
+						Point p = new Point((x - 2), (y + 1));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
+					}
+				}
+				
+				// Left Up Horizontal
+				if (x - 1 >= 0) {
+					if (y - 2 >= 0) {
+						Point p = new Point((x - 1), (y - 2));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
+					}
+				}
+				
+				// Left Up Vertical
+				if (x - 2 >= 0) {
+					if (y - 1 >= 0) {
+						Point p = new Point((x - 2), (y - 1));
+						validArray.add(p);
+						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
+					}
+				}
+			}
+			//Finish Knight
+		}
+		//Finish First piece checking
+		
 		return validArray;
 	}
 	
