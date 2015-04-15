@@ -65,11 +65,10 @@ public class PieceMovementListener implements MouseListener {
 				prevSPList.get(c).setBorder(
 						BorderFactory.createLineBorder(Color.GREEN, 0));
 			}
-
 		}
 
 		// TODO Auto-generated method stub
-		if (this.parentSquarePanel.getCurrentPieceGroup() != null) {
+		if ((this.parentSquarePanel.getCurrentPieceGroup() != null) && (PieceMovementListener.selectedPieceSquarePanel == null)) {
 			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
 
 			if (prevSP != null) {
@@ -135,8 +134,11 @@ public class PieceMovementListener implements MouseListener {
 
 				for (int x = 0; x < pointA.size(); x++) {
 					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) {
-						GameManager.getSingleton().getBoard()
-								.movePieces(from, to);
+						if(this.parentSquarePanel.getCurrentPieceGroup()==null){
+							GameManager.getSingleton().getBoard().movePieces(from, to);
+						}else{
+							System.out.println("piece");
+						}
 					}
 				}
 

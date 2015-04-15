@@ -65,12 +65,12 @@ public class Board extends Observable {
 //		squareArray[2][4] = new PieceGroup(new Barrier(2, 4));
 //		squareArray[2][5] = new PieceGroup(new Barrier(2, 5));
 //
-//		squareArray[3][0] = new PieceGroup(new Barrier(3, 0));
-//		squareArray[3][1] = new PieceGroup(new Barrier(3, 1));
-//		squareArray[3][2] = new PieceGroup(new Barrier(3, 2));
-//		squareArray[3][3] = new PieceGroup(new Barrier(3, 3));
-//		squareArray[3][4] = new PieceGroup(new Barrier(3, 4));
-//		squareArray[3][5] = new PieceGroup(new Barrier(3, 5));
+		squareArray[3][0] = new PieceGroup(new Barrier(3, 0));
+		squareArray[3][1] = new PieceGroup(new Barrier(3, 1));
+		squareArray[3][2] = new PieceGroup(new Barrier(3, 2));
+		squareArray[3][3] = new PieceGroup(new Barrier(3, 3));
+		squareArray[3][4] = new PieceGroup(new Barrier(3, 4));
+		squareArray[3][5] = new PieceGroup(new Barrier(3, 5));
 
 		squareArray[5][0] = new PieceGroup(new Rock(1, 5, 0));
 		squareArray[5][1] = new PieceGroup(new Bishop(1, 5, 1));
