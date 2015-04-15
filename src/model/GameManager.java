@@ -10,6 +10,11 @@ public class GameManager {
 	
 	private boolean turnA;
 	
+	public GameManager() {
+		this.board = new Board();
+		this.totalOfMoves = 10;
+	}
+	
 	public Board getBoard() {
 		return board;
 	}
@@ -41,10 +46,7 @@ public class GameManager {
 
 	private int totalOfMoves;
 
-	public GameManager() {
-		this.board = new Board();
-		this.totalOfMoves = 10;
-	}
+	
 
 	public void newGame() {
 		this.board.initialisePieces();
