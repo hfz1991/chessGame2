@@ -14,19 +14,16 @@ import controller.NewGameSaveDialogueListener;
 
 public class SplitDialogue extends JDialog{
 
-	private JLabel selectNum;
+	private JLabel selectPiece;
 	private JComboBox pieceGroup;
 	
 	private JButton save;
 	private JButton cancel;
 	
 	private Box base;
-	private Box Num;
+	private Box piece;
 	private Box button;
-	private Boolean isCanceled;
 	
-	private int numMove=40;
-	private int startNum=10;
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
 	
@@ -34,19 +31,19 @@ public class SplitDialogue extends JDialog{
 	public SplitDialogue(){
 		
 		//select number of moves
-		Num = Box.createHorizontalBox();
-		selectNum = new JLabel("Select Number of Moves for each Player: ");
-		Num.add(selectNum);
-		Num.add(Box.createHorizontalStrut(2)); 
+		piece = Box.createHorizontalBox();
+		selectPiece = new JLabel("Select the piece you would like to move next: ");
+		piece.add(selectPiece);
+		piece.add(Box.createHorizontalStrut(2)); 
 		
-		isCanceled = true;
+		
 		pieceGroup = new JComboBox();
 		
 		//for test, Should get array list from model!!!!!!!!!!!!!!!!!!!!!!!!!!
 		pieceGroup.addItem("Bishop");
 		pieceGroup.addItem("Knight");
 		
-		Num.add(pieceGroup);	  
+		piece.add(pieceGroup);	  
 		
 		this.setModal(true);
 		
@@ -62,7 +59,7 @@ public class SplitDialogue extends JDialog{
 		
 		base = Box.createVerticalBox();
 		base.add(Box.createVerticalStrut(20));
-		base.add(Num);
+		base.add(piece);
 		base.add(Box.createVerticalStrut(25));
 		base.add(button);
 		
@@ -73,7 +70,8 @@ public class SplitDialogue extends JDialog{
 		setTitle("Set Number of Moves");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		View v = View.getView();
+		setLocationRelativeTo(v);
 	    setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
 	    setVisible(true); 
 	}

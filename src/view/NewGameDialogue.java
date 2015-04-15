@@ -80,7 +80,8 @@ public class NewGameDialogue extends JDialog{
 		setTitle("Set Number of Moves");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		View v = View.getView();
+		setLocationRelativeTo(v);
 	    setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
 	    setVisible(true); 
 	}

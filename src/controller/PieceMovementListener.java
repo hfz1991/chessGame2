@@ -131,14 +131,9 @@ public class PieceMovementListener implements MouseListener {
 				selectedPieceSquarePanel.setBorder(BorderFactory
 						.createLineBorder(Color.BLUE, 0));
 
-				// change back to no border -- show valid path
 
-				/*
-				 * for(int i=0; i<panelList.size();i++){
-				 * panelList.get(i).setBorder
-				 * (BorderFactory.createLineBorder(Color.GREEN, 0));
-				 * System.out.println("change color"); }
-				 */
+				View v = View.getView();
+				v.getInfo().setTimer(); 
 			}
 		}
 	}

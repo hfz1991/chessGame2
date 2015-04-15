@@ -14,10 +14,10 @@ public class View extends JFrame{
 	private InfoPanel info;
 	
 	private static View singletonInstanceView = null; 
-
-	/*public BoardPanel getBoard() {
-		return board;
-	}*/
+	
+	public BoardPanel getBoardPanel() {
+		return this.board;
+	}
 
 	public void setBoard(BoardPanel board) {
 		this.board = board;
@@ -45,10 +45,7 @@ public class View extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		this.setVisible(true); 
 	} 
-	
-	public BoardPanel getBoardPanel() {
-		return this.board;
-	}
+
 	
 	public static View getView(){
 		if(View.singletonInstanceView == null ){

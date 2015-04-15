@@ -20,7 +20,7 @@ public class NewGameDialogueListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		newGameDia = new NewGameDialogue(infoPanel);
-		System.out.println("NewGameDialogue");
+		//System.out.println("NewGameDialogue");
 	}
 
 }
