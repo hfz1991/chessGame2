@@ -24,7 +24,7 @@ public class mainTest {
 		}
 		
 		
-		System.out.println("Testing getPice() case 2...");
+		System.out.println("Testing getPiece() case 2...");
 		try{
 			PieceGroup pg1 = gm.getBoard().getPiece(0, 1);
 			AbstractPiece ap1 = pg1.getPieces().get(0);
@@ -40,7 +40,7 @@ public class mainTest {
 			System.out.println("Error!NULL Pointer exception");
 		}
 		
-		System.out.println("Testing getPice() case 3...");
+		System.out.println("Testing getPiece() case 3...");
 		try{
 			PieceGroup pg1 = gm.getBoard().getPiece(5, 3);
 			AbstractPiece ap1 = pg1.getPieces().get(0);
