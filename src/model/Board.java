@@ -334,7 +334,7 @@ public class Board extends Observable {
 		for(int i=0;i<6;i++){
 			for(int j=0;j<6;j++){
 				if(x==i && y==i) {
-					return squareArray[x][y];
+					return squareArray[y][x];
 				}
 			}
 		}

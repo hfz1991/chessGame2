@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.Point;
-import java.util.ArrayList;
 
 public class Bishop extends AbstractPiece implements MovablePiece{
 		
