@@ -58,19 +58,19 @@ public class Board extends Observable {
 		squareArray[0][4] = new PieceGroup(new Bishop(0, 0, 4));
 		squareArray[0][5] = new PieceGroup(new Rock(0, 0, 5));
 
-		squareArray[2][0] = new PieceGroup(new Barrier(2, 0));
-		squareArray[2][1] = new PieceGroup(new Barrier(2, 1));
-		squareArray[2][2] = new PieceGroup(new Barrier(2, 2));
-		squareArray[2][3] = new PieceGroup(new Barrier(2, 3));
-		squareArray[2][4] = new PieceGroup(new Barrier(2, 4));
-		squareArray[2][5] = new PieceGroup(new Barrier(2, 5));
-
-		squareArray[3][0] = new PieceGroup(new Barrier(3, 0));
-		squareArray[3][1] = new PieceGroup(new Barrier(3, 1));
-		squareArray[3][2] = new PieceGroup(new Barrier(3, 2));
-		squareArray[3][3] = new PieceGroup(new Barrier(3, 3));
-		squareArray[3][4] = new PieceGroup(new Barrier(3, 4));
-		squareArray[3][5] = new PieceGroup(new Barrier(3, 5));
+//		squareArray[2][0] = new PieceGroup(new Barrier(2, 0));
+//		squareArray[2][1] = new PieceGroup(new Barrier(2, 1));
+//		squareArray[2][2] = new PieceGroup(new Barrier(2, 2));
+//		squareArray[2][3] = new PieceGroup(new Barrier(2, 3));
+//		squareArray[2][4] = new PieceGroup(new Barrier(2, 4));
+//		squareArray[2][5] = new PieceGroup(new Barrier(2, 5));
+//
+//		squareArray[3][0] = new PieceGroup(new Barrier(3, 0));
+//		squareArray[3][1] = new PieceGroup(new Barrier(3, 1));
+//		squareArray[3][2] = new PieceGroup(new Barrier(3, 2));
+//		squareArray[3][3] = new PieceGroup(new Barrier(3, 3));
+//		squareArray[3][4] = new PieceGroup(new Barrier(3, 4));
+//		squareArray[3][5] = new PieceGroup(new Barrier(3, 5));
 
 		squareArray[5][0] = new PieceGroup(new Rock(1, 5, 0));
 		squareArray[5][1] = new PieceGroup(new Bishop(1, 5, 1));
@@ -151,7 +151,6 @@ public class Board extends Observable {
 				for(int i=1;x+i<6;i++){
 					if(y-i>=0){
 						if(this.squareArray[x+i][y-i] == null && reachToPieceFlag == false){
-							reachToPieceFlag = true;
 							Point p = new Point((x+i),(y-i));
 							validArray.add(p);
 						}
@@ -170,7 +169,6 @@ public class Board extends Observable {
 				for(int i=1;x-i>=0;i++){
 					if(y+i<6){
 						if(this.squareArray[x-i][y+i] == null && reachToPieceFlag == false){
-							reachToPieceFlag = true;
 							Point p = new Point((x-i),(y+i));
 							validArray.add(p);
 						}
@@ -189,7 +187,6 @@ public class Board extends Observable {
 				for(int i=1;x-i>=0;i++){
 					if(y-i>=0){
 						if(this.squareArray[x-i][y-i] == null && reachToPieceFlag == false){
-							reachToPieceFlag = true;
 							Point p = new Point((x-i),(y-i));
 							validArray.add(p);
 						}
