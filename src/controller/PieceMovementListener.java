@@ -35,7 +35,6 @@ public class PieceMovementListener implements MouseListener {
 	//
 	private static SquarePanel prevSP = null;
 	private static ArrayList<SquarePanel> prevSPList = null;
-	private SquarePanel temp = null;
 	
 	public static SquarePanel selectedPieceSquarePanel = null;
 

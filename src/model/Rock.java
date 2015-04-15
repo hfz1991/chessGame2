@@ -22,34 +22,5 @@ public class Rock extends AbstractPiece implements MovablePiece {
 		return "rook";
 	}
 
-	public ArrayList<Point> getValidMoves(int x, int y) {
-
-		ArrayList<Point> pointArrayList = new ArrayList<Point>();
-
-		// Up
-		for (int i = 1; x - i >= 0; i++) {
-			Point p = new Point((x - i), (y));
-			pointArrayList.add(p);
-		}
-		
-		// Down
-		for (int i = 1; x + i < 6; i++) {
-			Point p = new Point((x + i), (y));
-			pointArrayList.add(p);
-		}
-
-		 //Right
-		 for(int i=1;y+i<6;i++){
-			 Point p = new Point((x),(y+i));
-			 pointArrayList.add(p);
-		 }
-
-		 //Left
-		 for(int i=1;y-i>=0;i++){
-			 Point p = new Point((x),(y-i));
-			 pointArrayList.add(p);		
-		 }
-
-		return pointArrayList;
-	}
+	
 }
