@@ -351,8 +351,8 @@ public class Board extends Observable {
 	public PieceGroup getPiece(int x, int y){
 		for(int i=0;i<6;i++){
 			for(int j=0;j<6;j++){
-				if(x==i && y==i) {
-					return squareArray[y][x];
+				if(x==i && y==j) {
+					return squareArray[x][y];
 				}
 			}
 		}
