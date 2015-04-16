@@ -84,11 +84,7 @@ public class Board extends Observable {
 			}
 			
 		}
-		
-
-
-		
-		
+	
 		
 		this.setChanged();
 		this.notifyObservers();
