@@ -10,7 +10,6 @@ public class Bishop extends AbstractPiece implements MovablePiece{
 	}
 	
 	public void move(int x, int y){
-		System.out.println("X:" + this.getxC() + "Y:" + this.getyC());
 		this.setxC(x);
 		this.setyC(y);
 	}

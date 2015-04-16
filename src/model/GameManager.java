@@ -10,6 +10,7 @@ public class GameManager {
 	private Board board;
 	
 	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private int totalOfMoves;
 	
 	public GameManager() {
 		this.board = new Board();
@@ -36,9 +37,7 @@ public class GameManager {
 		this.totalOfMoves = totalOfMoves;
 	}
 
-	private int totalOfMoves;
 
-	
 
 	public void newGame() {
 		System.out.println("new game");
