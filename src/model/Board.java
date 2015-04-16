@@ -171,8 +171,6 @@ public class Board extends Observable {
 		//Finish piece checking
 	
 		
-		//remove the path after the piece in that path 
-		//....
 		return validArray;
 	}
 	

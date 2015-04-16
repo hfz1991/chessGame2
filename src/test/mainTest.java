@@ -60,17 +60,7 @@ public class mainTest {
 		}
 		//Finish Testing getPiece() in Board
 		
-		//Testing addPiece() in PieceGroup
-//		System.out.println("==============================================");
-//		System.out.println("Testing addPiece() case 1...");
-//		PieceGroup[][] pg2 = gm.getBoard().getSquareArray();
-//		System.out.println("Adding piece into squareArray[0][0]...");
-//		pg2[0][0].addPiece(new Rock(0,0,0,1));
-//		System.out.println("Size of PieceGroup[0][0] is " +pg2[0][0].getPieces().size());
-//		System.out.println("Adding piece into squareArray[0][0]...");
-//		pg2[0][0].addPiece(new Bishop(0,0,0,2));
-//		System.out.println("Size of PieceGroup[0][0] is " +pg2[0][0].getPieces().size());
-
+		
 		//Testing movePiece() in Board
 		System.out.println("==============================================");
 		System.out.println("Testing movePiece() case 1...(MERGE)");
@@ -111,5 +101,17 @@ public class mainTest {
 		gm.getBoard().splitPiece(fromPoint, toPoint, myRock);
 		System.out.println("\nSize of Square(5,0) (Rock) is :" + square[5][0].getPieces().size());
 		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
+		
+		//Testing addPiece() in PieceGroup
+		System.out.println("==============================================");
+		System.out.println("Testing addPiece() case 1...");
+		PieceGroup[][] pg2 = gm.getBoard().getSquareArray();
+		System.out.println("Adding piece into squareArray[0][0]...");
+		pg2[0][0].addPiece(new Rock(GameManager.BLACK_PLAYER,0,0));
+		System.out.println("Size of PieceGroup[0][0] is " +pg2[0][0].getPieces().size());
+		System.out.println("Adding piece into squareArray[0][0]...");
+		pg2[0][0].addPiece(new Bishop(GameManager.BLACK_PLAYER,0,0));
+		System.out.println("Size of PieceGroup[0][0] is " +pg2[0][0].getPieces().size());
+
 	}
 }
