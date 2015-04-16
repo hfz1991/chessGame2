@@ -18,5 +18,31 @@ public class PieceGroup {
 		return this.pieces;
 	}
 	
+	public boolean containsUnmovablePiece() {
+		for(AbstractPiece p : this.pieces) {
+			if(!(p instanceof MovablePiece)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int getPieceGroupColour() {
+		for(AbstractPiece p : this.pieces) {
+			if(p instanceof MovablePiece) {
+				return ((MovablePiece)p).getColour();
+			}
+		}
+		return -1;
+	}
+	
+	public int getPieceGroupScore() {
+		int score =0;
+		for(AbstractPiece p : this.pieces) {
+			score += p.getPoint();
+		}
+		return score;
+	}
+	
 
 }

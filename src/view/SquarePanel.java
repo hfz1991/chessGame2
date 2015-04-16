@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 
 import controller.PieceMovementListener;
 import model.AbstractPiece;
+import model.GameManager;
 import model.MovablePiece;
 import model.PieceGroup;
 
@@ -61,7 +62,7 @@ public class SquarePanel extends JPanel
 					if(p instanceof MovablePiece){
 						MovablePiece mp = (MovablePiece) p;
 						String color = null;
-						if(mp.getColour() == 0 ) color="Black";
+						if(mp.getColour() == GameManager.BLACK_PLAYER) color="Black";
 						else color="White";
 						
 						f = new File("src/img/" + p.getName() + "_" + color + ".png");

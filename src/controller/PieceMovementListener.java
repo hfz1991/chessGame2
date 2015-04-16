@@ -69,6 +69,19 @@ public class PieceMovementListener implements MouseListener {
 
 		// TODO Auto-generated method stub
 		if ((this.parentSquarePanel.getCurrentPieceGroup() != null) && (PieceMovementListener.selectedPieceSquarePanel == null)) {
+			
+			// Michael change 1
+			if(this.parentSquarePanel.getCurrentPieceGroup().containsUnmovablePiece()) {
+				return;	// A barrier cannot be moved!
+			}
+			// Michael change 2
+			int currentTurnColour = GameManager.getSingleton().getCurrentPlayerTurnColour();
+			if(this.parentSquarePanel.getCurrentPieceGroup().getPieceGroupColour() != currentTurnColour) {
+				System.out.println(this.parentSquarePanel.getCurrentPieceGroup().getPieceGroupColour());
+				System.out.println(currentTurnColour);
+				return;
+			}
+			
 			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
 
 			if (prevSP != null) {
@@ -132,11 +145,25 @@ public class PieceMovementListener implements MouseListener {
 				pointA = GameManager.getSingleton().getBoard()
 						.getValidMoves(oldY, oldX);
 
+				// Michael change 3a
+				int numberOfPiecesMoved = 0;
+				int scoreChange = 0;
+				
 				for (int x = 0; x < pointA.size(); x++) {
 					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) {
-						GameManager.getSingleton().getBoard().movePieces(from, to);
+						scoreChange += GameManager.getSingleton().getBoard().movePieces(from, to);
+						numberOfPiecesMoved++;
 					}
 				}
+				//System.out.println(scoreChange);
+				
+				// Michael change 3
+				if (numberOfPiecesMoved > 0) {
+					GameManager.getSingleton().addScoreToCurrentPlayer(scoreChange);
+					GameManager.getSingleton().increaseMoveNumber();
+					GameManager.getSingleton().nextPlayersTurn();
+				}
+				
 
 				// change back to no border -- show selected piece
 				selectedPieceSquarePanel.setBorder(BorderFactory
@@ -144,6 +171,12 @@ public class PieceMovementListener implements MouseListener {
 
 				v.getInfo().setTimer();
 				PieceMovementListener.selectedPieceSquarePanel = null;
+				
+				// Michael Change 4
+				if (GameManager.getSingleton().bothPlayersHadMaxTurns()) {
+					// Game over
+				}
+			
 			}
 		}
 	}

@@ -11,7 +11,12 @@ public class Board extends Observable {
 	public Board() {
 	}
 
-	public void movePieces(Point fromP, Point toP) {
+	/**
+	 * 
+	 * @return score change to the moving piece's player
+	 */
+	public int movePieces(Point fromP, Point toP) {
+		int scoreChange = 0;
 		// move pieces logic here
 
 		// System.out.println("From Point: "+ from.x +" y: " + from.y);
@@ -49,6 +54,10 @@ public class Board extends Observable {
 		else if(toPG.getPieces().get(0) instanceof Barrier){
 			squareArray[fromP.y][fromP.x] = null;
 			squareArray[toP.y][toP.x] = fromPG;
+	
+			scoreChange = toPG.getPieceGroupScore();
+			///////Take Piece///////////
+
 		}
 		//Click Piece
 		else{
@@ -88,17 +97,19 @@ public class Board extends Observable {
 		
 		this.setChanged();
 		this.notifyObservers();
+		return scoreChange;
 	}
 
 	public void initialisePieces() {
 		this.squareArray = new PieceGroup[6][6];
 
-		squareArray[0][0] = new PieceGroup(new Rock(0, 0, 0, 1));
-		squareArray[0][1] = new PieceGroup(new Bishop(0, 0, 1, 2));
-		squareArray[0][2] = new PieceGroup(new Knight(0, 0, 2, 3));
-		squareArray[0][3] = new PieceGroup(new Knight(0, 0, 3, 3));
-		squareArray[0][4] = new PieceGroup(new Bishop(0, 0, 4, 2));
-		squareArray[0][5] = new PieceGroup(new Rock(0, 0, 5, 1));
+
+		squareArray[0][0] = new PieceGroup(new Rock(GameManager.BLACK_PLAYER, 0, 0 , 1));
+		squareArray[0][1] = new PieceGroup(new Bishop(GameManager.BLACK_PLAYER, 0, 1, 2));
+		squareArray[0][2] = new PieceGroup(new Knight(GameManager.BLACK_PLAYER, 0, 2, 3));
+		squareArray[0][3] = new PieceGroup(new Knight(GameManager.BLACK_PLAYER, 0, 3, 3));
+		squareArray[0][4] = new PieceGroup(new Bishop(GameManager.BLACK_PLAYER, 0, 4, 2));
+		squareArray[0][5] = new PieceGroup(new Rock(GameManager.BLACK_PLAYER, 0, 5, 1));
 
 //		squareArray[2][0] = new PieceGroup(new Barrier(2, 0));
 //		squareArray[2][1] = new PieceGroup(new Barrier(2, 1));
@@ -115,12 +126,12 @@ public class Board extends Observable {
 		squareArray[3][4] = new PieceGroup(new Barrier(3, 4));
 		squareArray[3][5] = new PieceGroup(new Barrier(3, 5));
 
-		squareArray[5][0] = new PieceGroup(new Rock(1, 5, 0, 1));
-		squareArray[5][1] = new PieceGroup(new Bishop(1, 5, 1, 2));
-		squareArray[5][2] = new PieceGroup(new Knight(1, 5, 2, 3));
-		squareArray[5][3] = new PieceGroup(new Knight(1, 5, 3, 3));
-		squareArray[5][4] = new PieceGroup(new Bishop(1, 5, 4, 2));
-		squareArray[5][5] = new PieceGroup(new Rock(1, 5, 5, 1));
+		squareArray[5][0] = new PieceGroup(new Rock(GameManager.WHITE_PLAYER, 5, 0, 1));
+		squareArray[5][1] = new PieceGroup(new Bishop(GameManager.WHITE_PLAYER, 5, 1, 2));
+		squareArray[5][2] = new PieceGroup(new Knight(GameManager.WHITE_PLAYER, 5, 2, 3));
+		squareArray[5][3] = new PieceGroup(new Knight(GameManager.WHITE_PLAYER, 5, 3, 3));
+		squareArray[5][4] = new PieceGroup(new Bishop(GameManager.WHITE_PLAYER, 5, 4, 2));
+		squareArray[5][5] = new PieceGroup(new Rock(GameManager.WHITE_PLAYER, 5, 5, 1));
 
 
 		this.setChanged();

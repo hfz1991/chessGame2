@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.GameManager;
+import model.Player;
 
 import javax.swing.JDialog;
 
@@ -26,7 +27,7 @@ public class NewGameSaveDialogueListener implements ActionListener{
 		// TODO Auto-generated method stub
 		
 		GameManager.getSingleton().setTotalOfMoves(parentView.getNumberOfMoves());
-		GameManager.getSingleton().getBoard().initialisePieces();
+		GameManager.getSingleton().newGame();
 		
 		this.parentView.dispose(); 
 		this.infoPanel.getGoBack().setEnabled(true);
@@ -34,6 +35,12 @@ public class NewGameSaveDialogueListener implements ActionListener{
 		
 
 		View v = View.getView();
+		
+		// Add the InfoPanel to observe the Players
+		for(Player player : GameManager.getSingleton().getPlayerList()) {
+			player.addObserver(v.getInfo());
+		}
+		
 		v.getInfo().setTimer(); 
 		
 	}

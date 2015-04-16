@@ -13,17 +13,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.border.LineBorder;
 
+import model.GameManager;
+import model.Player;
 import controller.MyTimerActionListener;
 import controller.NewGameDialogueListener;
 import controller.SplitDialogueListener;
 import controller.UndoDialogueListener;
 
-public class InfoPanel extends JPanel  {
+public class InfoPanel extends JPanel implements Observer {
 	
 	GridLayout layout2 =new GridLayout(3,1);
 	
@@ -161,8 +165,8 @@ public class InfoPanel extends JPanel  {
 	    buttonP.add(newGame);
 	    buttonP.add(buttonBox);
 	    
-	    add(whitePanel,BorderLayout.NORTH);
-	    add(blackPanel,BorderLayout.CENTER);
+	    add(blackPanel,BorderLayout.NORTH);
+	    add(whitePanel,BorderLayout.CENTER);
 	    add(buttonP,BorderLayout.SOUTH);
 
 	}
@@ -230,5 +234,26 @@ public class InfoPanel extends JPanel  {
 
 	public void setSplit(JButton split) {
 		this.split = split;
+	}
+
+	public void update(Observable o, Object arg) {
+		Player player = (Player)o;
+		if((Integer)arg == GameManager.WHITE_PLAYER) {
+			String whiteString = "  White:";
+			if(player.getCurrentTurn()) {
+				whiteString += " YOUR TURN";
+			}
+			this.whiteLabel.setText(whiteString);
+			this.numMoveW.setText(String.valueOf(player.getNumberOfMoves()));
+			this.numScoreW.setText(String.valueOf(player.getScore()));
+		} else if((Integer)arg == GameManager.BLACK_PLAYER) {
+			String blackString = "  Black:";
+			if(player.getCurrentTurn()) {
+				blackString += " YOUR TURN";
+			}
+			this.numMoveB.setText(String.valueOf(player.getNumberOfMoves()));
+			this.blackLabel.setText(blackString);
+			this.numScoreB.setText(String.valueOf(player.getScore()));
+		}
 	}
 }
