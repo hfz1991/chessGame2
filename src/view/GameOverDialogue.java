@@ -8,10 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import controller.CancelListener;
-import controller.UndoDialogueSaveListener;
-import controller.NewGameSaveDialogueListener;
 
-public class UndoDialogue  extends JDialog{
+public class GameOverDialogue extends JDialog {
 
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
@@ -19,27 +17,23 @@ public class UndoDialogue  extends JDialog{
 	private JLabel info;
 	
 	private JButton save;
-	private JButton cancel;
 	
 	private Box base;
 	private Box infoBox;
 	private Box button;
 	
-	public UndoDialogue(){
+	public GameOverDialogue(){
 	
-		info = new JLabel("Are you sure to Undo last step?");
+		info = new JLabel(" win!");
 		
 		infoBox = Box.createHorizontalBox();
 		infoBox.add(info);
 		
 		save = new JButton("OK");
-		save.addActionListener(new UndoDialogueSaveListener(this));
-		cancel = new JButton("Cancel");
-		cancel.addActionListener(new CancelListener(this));
+		save.addActionListener(new CancelListener(this));
 		
 		button = Box.createHorizontalBox();
 		button.add(save);
-		button.add(cancel);
 		
 		base = Box.createVerticalBox();
 		base.add(Box.createVerticalStrut(20));
@@ -51,7 +45,7 @@ public class UndoDialogue  extends JDialog{
 		add(base);	
 		
 		//setup frame
-		setTitle("Undo Move");
+		setTitle("Game Over");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);
 		View v = View.getView();

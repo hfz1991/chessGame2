@@ -67,7 +67,7 @@ public class SplitDialogue extends JDialog{
 		add(base);		
 		
 		//setup frame
-		setTitle("Set Number of Moves");
+		setTitle("Split pieces");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);
 		View v = View.getView();
