@@ -1,6 +1,10 @@
 package model;
 
-
+/**
+ * Rock chess piece.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class Rock extends AbstractPiece implements MovablePiece {
 
 	public Rock(int colour, int x, int y) {

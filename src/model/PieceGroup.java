@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * PieceGroup - contains 0 - many pieces in a position
+ * on the board.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class PieceGroup {
 	
 	private ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();;

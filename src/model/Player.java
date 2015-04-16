@@ -2,6 +2,11 @@ package model;
 
 import java.util.Observable;
 
+/**
+ * Player information class.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class Player extends Observable {
 	
 	private int playerNumber;

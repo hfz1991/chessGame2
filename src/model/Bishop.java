@@ -1,6 +1,10 @@
 package model;
 
-
+/**
+ * Bishop chess piece.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class Bishop extends AbstractPiece implements MovablePiece{
 		
 

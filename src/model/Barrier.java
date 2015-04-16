@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Barrier chess piece.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class Barrier extends AbstractPiece{
 
 	public Barrier(int x, int y){

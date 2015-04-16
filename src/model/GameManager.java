@@ -1,6 +1,11 @@
 package model;
 import java.util.*;
 
+/**
+ * A model class to manage (control) the chess game.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class GameManager {
 	
 	public static final int BLACK_PLAYER = 1;
@@ -39,12 +44,15 @@ public class GameManager {
 
 
 
+	/**
+	 * @pre None - can be executed any time to reset the game.
+	 * @post A new game has been made, all of the old game's progress is gone.
+	 */
 	public void newGame() {
-		System.out.println("new game");
 		this.board.initialisePieces();
 		Player player1 = new Player(BLACK_PLAYER);
 		player1.setCurrentTurn(true);
-		Player player2 = new Player(WHITE_PLAYER);	// White = player 2, black = player 1
+		Player player2 = new Player(WHITE_PLAYER);
 		this.playerList.add(player1);
 		this.playerList.add(player2);
 	}
@@ -58,6 +66,11 @@ public class GameManager {
 		}
 	}
 	
+	/**
+	 * Set the game turn to the next player
+	 * @pre One of the game's players currently has currentTurn set to true
+	 * @post The other player will be set to true, and the old reverted to fale
+	 */
 	public void nextPlayersTurn() {
 		Player player1 = this.playerList.get(0);
 		Player player2 = this.playerList.get(1);
@@ -78,6 +91,10 @@ public class GameManager {
 		return GameManager.BLACK_PLAYER;
 	}
 	
+	/**
+	 * Get the Player whose turn it currently is
+	 * @pre The game has started
+	 */
 	private Player getCurrentPlayer() {
 		for(Player p : this.playerList) {
 			if(p.getCurrentTurn()) {
@@ -119,6 +136,9 @@ public class GameManager {
 		return null;
 	}
 	
+	/**
+	 * @return Player player with max score | null if draw
+	 */
 	public Player getPlayerWithMaxScore() {
 		Player player1 = this.playerList.get(0);
 		Player player2 = this.playerList.get(1);

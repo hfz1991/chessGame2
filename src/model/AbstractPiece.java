@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * A base class for Chess pieces.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public abstract class AbstractPiece {
 	protected int point;
 	protected int xC;

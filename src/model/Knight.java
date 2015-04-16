@@ -1,6 +1,10 @@
 package model;
 
-
+/**
+ * Knight chess piece.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class Knight extends AbstractPiece implements MovablePiece{
 		
 

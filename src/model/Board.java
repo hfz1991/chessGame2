@@ -4,6 +4,11 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
 
+/**
+ * A class representing the model of the chess game board.
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
 public class Board extends Observable {
 
 	private PieceGroup[][] squareArray;
@@ -12,15 +17,13 @@ public class Board extends Observable {
 	}
 
 	/**
-	 * 
+	 * @pre a Piece must exist in the point fromP
+	 * @post a PieceGroup or single piece is moved, taking any items in the new position
 	 * @return score change to the moving piece's player
 	 */
 	public int movePieces(Point fromP, Point toP) {
 		int scoreChange = 0;
 		// move pieces logic here
-
-		// System.out.println("From Point: "+ from.x +" y: " + from.y);
-		// System.out.println("To Point: "+ to.x +" y: " + to.y);
 
 		int fromX = fromP.x;
 		int fromY = fromP.y;
@@ -95,12 +98,15 @@ public class Board extends Observable {
 			
 		}
 	
-		
 		this.setChanged();
 		this.notifyObservers();
 		return scoreChange;
 	}
 
+	/**
+	 * @pre A GameManager and Board object exist
+	 * @post The Board object contains a set of pieces in default positions
+	 */
 	public void initialisePieces() {
 		this.squareArray = new PieceGroup[6][6];
 
@@ -143,8 +149,14 @@ public class Board extends Observable {
 		return squareArray;
 	}
 
+	/**
+	 * Get a list of points that a PieceGroup can move to.
+	 * @pre The game board exists with one of more pieces in a provided position
+	 * @param int currentX - x of selected PieceGroup (0 - )
+	 * @param int currentY - y of selected PieceGroup (0 - )
+	 * @return
+	 */
 	public ArrayList<Point> getValidMoves(int currentX, int currentY){
-		
 		
 		PieceGroup pg = this.squareArray[currentX][currentY];
 		ArrayList<Point> validArray = new ArrayList<Point>();
@@ -170,10 +182,18 @@ public class Board extends Observable {
 		}
 		//Finish piece checking
 	
-		
+
 		return validArray;
 	}
 	
+	/**
+	 * Helper method for getValidMoves
+	 * @param piece
+	 * @param validArray
+	 * @param x
+	 * @param y
+	 * @return ArrayList<Point> valid points
+	 */
 	public ArrayList<Point> checkingValidPathPiece(AbstractPiece piece, ArrayList<Point> validArray, int x, int y){
 		
 		if (!(piece instanceof Barrier)) {
@@ -195,7 +215,6 @@ public class Board extends Observable {
 							validArray.add(p);
 						}
 						
-//						System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
 					}
 				}
 				
@@ -213,7 +232,6 @@ public class Board extends Observable {
 							validArray.add(p);
 						}
 						
-//						System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
 					}
 				}
 				
@@ -231,7 +249,6 @@ public class Board extends Observable {
 							validArray.add(p);
 						}
 						
-//						System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
 					}
 				}
 				
@@ -249,7 +266,6 @@ public class Board extends Observable {
 							validArray.add(p);
 						}
 						
-//						System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
 					}
 				}
 			}
@@ -324,7 +340,6 @@ public class Board extends Observable {
 					if (y + 2 < 6) {
 						Point p = new Point((x + 1), (y + 2));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
 					}
 				}
 
@@ -333,7 +348,6 @@ public class Board extends Observable {
 					if (y + 1 < 6) {
 						Point p = new Point((x + 2), (y + 1));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y+i) );
 					}
 				}	
 						
@@ -342,7 +356,6 @@ public class Board extends Observable {
 					if (y - 2 >= 0) {
 						Point p = new Point((x + 1), (y - 2));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
 					}
 				}
 
@@ -351,7 +364,6 @@ public class Board extends Observable {
 					if (y - 1 >= 0) {
 						Point p = new Point((x + 2), (y - 1));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x+i) + "Valid y:" + (y-i) );
 					}
 				}
 				
@@ -360,7 +372,6 @@ public class Board extends Observable {
 					if (y + 2 < 6) {
 						Point p = new Point((x - 1), (y + 2));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
 					}
 				}
 
@@ -369,7 +380,6 @@ public class Board extends Observable {
 					if (y + 1 < 6) {
 						Point p = new Point((x - 2), (y + 1));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y+i) );
 					}
 				}
 				
@@ -378,7 +388,6 @@ public class Board extends Observable {
 					if (y - 2 >= 0) {
 						Point p = new Point((x - 1), (y - 2));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
 					}
 				}
 				
@@ -387,7 +396,6 @@ public class Board extends Observable {
 					if (y - 1 >= 0) {
 						Point p = new Point((x - 2), (y - 1));
 						validArray.add(p);
-						// System.out.println("Valid X:" + (x-i) + "Valid y:" + (y-i) );
 					}
 				}
 			}
@@ -398,6 +406,10 @@ public class Board extends Observable {
 		return validArray;
 	}
 	
+	/**
+	 * @pre A PieceGroup with multiple pieces exists.
+	 * @post The multiple pieces in the PieceGroup are separated.
+	 */
 	public void splitPiece(Point fromP, Point toP, AbstractPiece piece){
 		PieceGroup fromPG = squareArray[fromP.y][fromP.x];
 		for(int i=0 ; i < fromPG.getPieces().size(); i++){
