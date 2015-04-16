@@ -112,12 +112,12 @@ public class Board extends Observable {
 		squareArray[0][4] = new PieceGroup(new Bishop(GameManager.BLACK_PLAYER, 0, 4));
 		squareArray[0][5] = new PieceGroup(new Rock(GameManager.BLACK_PLAYER, 0, 5));
 
-//		squareArray[2][0] = new PieceGroup(new Barrier(2, 0));
-//		squareArray[2][1] = new PieceGroup(new Barrier(2, 1));
-//		squareArray[2][2] = new PieceGroup(new Barrier(2, 2));
-//		squareArray[2][3] = new PieceGroup(new Barrier(2, 3));
-//		squareArray[2][4] = new PieceGroup(new Barrier(2, 4));
-//		squareArray[2][5] = new PieceGroup(new Barrier(2, 5));
+		squareArray[2][0] = new PieceGroup(new Barrier(2, 0));
+		squareArray[2][1] = new PieceGroup(new Barrier(2, 1));
+		squareArray[2][2] = new PieceGroup(new Barrier(2, 2));
+		squareArray[2][3] = new PieceGroup(new Barrier(2, 3));
+		squareArray[2][4] = new PieceGroup(new Barrier(2, 4));
+		squareArray[2][5] = new PieceGroup(new Barrier(2, 5));
 
 
 		squareArray[3][0] = new PieceGroup(new Barrier(3, 0));
@@ -398,6 +398,24 @@ public class Board extends Observable {
 		//Finish First piece checking
 		
 		return validArray;
+	}
+	
+	public void splitPiece(Point fromP, Point toP, AbstractPiece piece){
+		PieceGroup fromPG = squareArray[fromP.y][fromP.x];
+		for(int i=0 ; i < fromPG.getPieces().size(); i++){
+			if(piece.getClass() == fromPG.getPieces().get(i).getClass()){
+				if(squareArray[toP.y][toP.x] == null){
+					squareArray[toP.y][toP.x] = new PieceGroup(piece);
+				}
+				else{
+					squareArray[toP.y][toP.x].getPieces().add(piece);
+				}
+				fromPG.removePiece(piece);
+			}
+		}
+		this.setChanged();
+		this.notifyObservers();
+		
 	}
 	
 	public int getNumberOfPlayerPieces(int playerNumber) {

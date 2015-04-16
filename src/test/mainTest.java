@@ -90,5 +90,26 @@ public class mainTest {
 			System.out.println("NULL...OK");
 		}
 		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
+		System.out.println("\nMoving Knight(5,3) to merge Bishop(5,1)...");
+		Point KnightPoint = new Point(3,5);
+		gm.getBoard().movePieces(KnightPoint, targetPoint);
+		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
+
+		System.out.println("\nMoving One More Piece(5,4) to merge Bishop(5,1)...");
+		Point ExtraP = new Point(4,5);
+		gm.getBoard().movePieces(ExtraP, targetPoint);
+		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
+		System.out.println("Size of Square(5,4) (Bishop) is :" + square[5][4].getPieces().size());
+
+		//Testing splitPiece() in Board
+		System.out.println("==============================================");
+		System.out.println("Testing splitPiece() case 1...(SPLIT)");
+		Point fromPoint = new Point(1,5);
+		Point toPoint = new Point (0,5);
+		AbstractPiece myRock = gm.getBoard().getPiece(5, 1).getPieces().get(1);
+		System.out.println("\nSplit Rock(5,1) to Square(5,0)...");
+		gm.getBoard().splitPiece(fromPoint, toPoint, myRock);
+		System.out.println("\nSize of Square(5,0) (Rock) is :" + square[5][0].getPieces().size());
+		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
 	}
 }

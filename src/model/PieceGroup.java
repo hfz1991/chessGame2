@@ -13,6 +13,9 @@ public class PieceGroup {
 	public void addPiece(AbstractPiece piece){
 		this.pieces.add(piece);
 	}
+	public void removePiece(AbstractPiece piece){
+		this.pieces.remove(piece);
+	}
 	
 	public ArrayList<AbstractPiece> getPieces(){
 		return this.pieces;
