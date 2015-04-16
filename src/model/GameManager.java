@@ -98,10 +98,38 @@ public class GameManager {
 	public boolean bothPlayersHadMaxTurns() {
 		for(Player p : this.playerList) {
 			if(p.getNumberOfMoves() < this.totalOfMoves) {
-				return true;
+				return false;
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * If all of one player's pieces have been eliminated, return the other player
+	 * @return Player winner|null game not over
+	 */
+	public Player getWinningPlayerDueToElimination() {
+		Player player1 = this.playerList.get(0);
+		Player player2 = this.playerList.get(1);
+		if(this.board.getNumberOfPlayerPieces(player1.getPlayerNumber()) == 0) {
+			return player2;
+		}
+		if(this.board.getNumberOfPlayerPieces(player2.getPlayerNumber()) == 0) {
+			return player1;
+		}
+		return null;
+	}
+	
+	public Player getPlayerWithMaxScore() {
+		Player player1 = this.playerList.get(0);
+		Player player2 = this.playerList.get(1);
+		if(player1.getScore() > player2.getScore()) {
+			return player1;
+		} else if(player2.getScore() > player1.getScore()) {
+			return player2;
+		} else {
+			return null;
+		}
 	}
 	
 	public static GameManager getSingleton(){

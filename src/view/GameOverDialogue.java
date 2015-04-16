@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
+import model.Player;
 import controller.CancelListener;
 
 public class GameOverDialogue extends JDialog {
@@ -22,7 +23,13 @@ public class GameOverDialogue extends JDialog {
 	private Box infoBox;
 	private Box button;
 	
-	public GameOverDialogue(){
+	// Player winner: null if it is a draw, otherwise gives the winning player
+	public GameOverDialogue(Player winner){
+		if(winner != null) {
+			System.out.println(winner.getPlayerNumber());
+		} else {
+			System.out.println("Draw");
+		}
 	
 		info = new JLabel(" win!");
 		

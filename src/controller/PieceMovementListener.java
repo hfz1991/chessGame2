@@ -17,7 +17,9 @@ import model.AbstractPiece;
 import model.Barrier;
 import model.GameManager;
 import model.PieceGroup;
+import model.Player;
 import view.BoardPanel;
+import view.GameOverDialogue;
 import view.SquarePanel;
 import view.View;
 
@@ -173,8 +175,14 @@ public class PieceMovementListener implements MouseListener {
 				PieceMovementListener.selectedPieceSquarePanel = null;
 				
 				// Michael Change 4
-				if (GameManager.getSingleton().bothPlayersHadMaxTurns()) {
-					// Game over
+				Player winner = GameManager.getSingleton().getWinningPlayerDueToElimination();
+				if(winner != null) {
+					// Game over because a player's pieces were eliminated
+					new GameOverDialogue(winner);
+				} else if (GameManager.getSingleton().bothPlayersHadMaxTurns()) {
+					// Game over because turns are all done
+					winner = GameManager.getSingleton().getPlayerWithMaxScore();
+					new GameOverDialogue(winner);
 				}
 			
 			}

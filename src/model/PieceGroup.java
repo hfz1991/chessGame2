@@ -41,7 +41,12 @@ public class PieceGroup {
 		for(AbstractPiece p : this.pieces) {
 			score += p.getPoint();
 		}
+		System.out.println("Score: " + score);
 		return score;
+	}
+	
+	public int getNumberOfPiecesInGroup() {
+		return this.pieces.size();
 	}
 	
 

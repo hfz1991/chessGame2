@@ -89,6 +89,8 @@ public class Board extends Observable {
 			{
 				squareArray[fromP.y][fromP.x] = null;
 				squareArray[toP.y][toP.x] = fromPG;
+				
+				scoreChange = toPG.getPieceGroupScore();
 			}
 			
 		}
@@ -396,6 +398,21 @@ public class Board extends Observable {
 		//Finish First piece checking
 		
 		return validArray;
+	}
+	
+	public int getNumberOfPlayerPieces(int playerNumber) {
+		int pieceCounter = 0;
+		for(int i = 0; i < this.squareArray.length; i++) {
+			for(int j = 0; j < this.squareArray[i].length; j++) {
+				if(squareArray[i][j] != null) {
+					PieceGroup pg = squareArray[i][j];
+					if(pg.getPieceGroupColour() == playerNumber) {
+						pieceCounter += pg.getNumberOfPiecesInGroup();
+					}
+				}
+			}
+		}
+		return pieceCounter;
 	}
 	
 	public PieceGroup getPiece(int x, int y){
