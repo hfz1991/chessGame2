@@ -3,8 +3,8 @@ package model;
 
 public class Rock extends AbstractPiece implements MovablePiece {
 
-	public Rock(int colour, int x, int y) {
-		super(colour, x, y);
+	public Rock(int colour, int x, int y, int type) {
+		super(colour, x, y, type);
 	}
 
 	public void move(int x, int y) {

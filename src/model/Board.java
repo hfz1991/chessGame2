@@ -22,21 +22,22 @@ public class Board extends Observable {
 		int toX = toP.x;
 		int toY = toP.y;
 
-		PieceGroup pg = squareArray[fromY][fromX];
-
+		PieceGroup fromPG = squareArray[fromY][fromX];
+		PieceGroup toPG = squareArray[toP.y][toP.x];
+		//Click Blank Square
 		if(squareArray[toY][toX] == null)
 		{
 			try{
-				if (pg.getPieces() != null) {
+				if (fromPG.getPieces() != null) {
 
-					AbstractPiece piece = pg.getPieces().get(0);
+					AbstractPiece piece = fromPG.getPieces().get(0);
 					if (!(piece instanceof Barrier)) {
 						MovablePiece movableP = (MovablePiece) piece;
 
 						movableP.move(toX, toY);
 
 						squareArray[fromY][fromX] = null;
-						squareArray[piece.getyC()][piece.getxC()] = pg;
+						squareArray[piece.getyC()][piece.getxC()] = fromPG;
 					}
 
 				}
@@ -45,17 +46,43 @@ public class Board extends Observable {
 					System.out.println("Cannot choose empty square");
 				}
 		}
-		else{
-			///////Take Piece///////////
-			PieceGroup fromPG = squareArray[fromP.y][fromP.x];
-			PieceGroup toPG = squareArray[toP.y][toP.x];
-
-			PieceGroup fromPiece = squareArray[fromP.y][fromP.x];
-			
-			//If not in the same team
+		else if(toPG.getPieces().get(0) instanceof Barrier){
 			squareArray[fromP.y][fromP.x] = null;
 			squareArray[toP.y][toP.x] = fromPG;
-			///////Take Piece///////////
+		}
+		//Click Piece
+		else{
+			//Same team, Merge 
+			
+			if(fromPG.getPieces().get(0).getColour() == toPG.getPieces().get(0).getColour())
+			{
+				//Check is the same type
+				boolean sameTypeFlag = false;
+				for(int i=0 ; i < fromPG.getPieces().size(); i ++){
+					for(int j=0 ; j< toPG.getPieces().size() ; j++){
+						if(fromPG.getPieces().get(i).getType() == toPG.getPieces().get(j).getType()){
+							sameTypeFlag = true;
+						}
+					}
+				}
+				
+				//check size is less and equal to 3 and not same type
+				if(fromPG.getPieces().size() < 3 && sameTypeFlag == false){
+					
+					for(int i=0 ; i < fromPG.getPieces().size(); i ++){
+						toPG.getPieces().add(fromPG.getPieces().get(i));
+					}
+					squareArray[fromP.y][fromP.x] = null;
+				}
+				
+			}
+			///////Not in the same team, Take Piece///////////
+			else
+			{
+				squareArray[fromP.y][fromP.x] = null;
+				squareArray[toP.y][toP.x] = fromPG;
+			}
+			
 		}
 		
 
@@ -70,12 +97,12 @@ public class Board extends Observable {
 	public void initialisePieces() {
 		this.squareArray = new PieceGroup[6][6];
 
-		squareArray[0][0] = new PieceGroup(new Rock(0, 0, 0));
-		squareArray[0][1] = new PieceGroup(new Bishop(0, 0, 1));
-		squareArray[0][2] = new PieceGroup(new Knight(0, 0, 2));
-		squareArray[0][3] = new PieceGroup(new Knight(0, 0, 3));
-		squareArray[0][4] = new PieceGroup(new Bishop(0, 0, 4));
-		squareArray[0][5] = new PieceGroup(new Rock(0, 0, 5));
+		squareArray[0][0] = new PieceGroup(new Rock(0, 0, 0, 1));
+		squareArray[0][1] = new PieceGroup(new Bishop(0, 0, 1, 2));
+		squareArray[0][2] = new PieceGroup(new Knight(0, 0, 2, 3));
+		squareArray[0][3] = new PieceGroup(new Knight(0, 0, 3, 3));
+		squareArray[0][4] = new PieceGroup(new Bishop(0, 0, 4, 2));
+		squareArray[0][5] = new PieceGroup(new Rock(0, 0, 5, 1));
 
 //		squareArray[2][0] = new PieceGroup(new Barrier(2, 0));
 //		squareArray[2][1] = new PieceGroup(new Barrier(2, 1));
@@ -92,12 +119,12 @@ public class Board extends Observable {
 		squareArray[3][4] = new PieceGroup(new Barrier(3, 4));
 		squareArray[3][5] = new PieceGroup(new Barrier(3, 5));
 
-		squareArray[5][0] = new PieceGroup(new Rock(1, 5, 0));
-		squareArray[5][1] = new PieceGroup(new Bishop(1, 5, 1));
-		squareArray[5][2] = new PieceGroup(new Knight(1, 5, 2));
-		squareArray[5][3] = new PieceGroup(new Knight(1, 5, 3));
-		squareArray[5][4] = new PieceGroup(new Bishop(1, 5, 4));
-		squareArray[5][5] = new PieceGroup(new Rock(1, 5, 5));
+		squareArray[5][0] = new PieceGroup(new Rock(1, 5, 0, 1));
+		squareArray[5][1] = new PieceGroup(new Bishop(1, 5, 1, 2));
+		squareArray[5][2] = new PieceGroup(new Knight(1, 5, 2, 3));
+		squareArray[5][3] = new PieceGroup(new Knight(1, 5, 3, 3));
+		squareArray[5][4] = new PieceGroup(new Bishop(1, 5, 4, 2));
+		squareArray[5][5] = new PieceGroup(new Rock(1, 5, 5, 1));
 
 
 		this.setChanged();

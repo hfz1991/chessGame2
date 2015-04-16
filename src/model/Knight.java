@@ -3,8 +3,8 @@ package model;
 
 public class Knight extends AbstractPiece implements MovablePiece{
 		
-	public Knight(int colour, int x, int y) {
-		super(colour, x, y);
+	public Knight(int colour, int x, int y, int type) {
+		super(colour, x, y, type);
 
 	}
 	
