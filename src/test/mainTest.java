@@ -10,7 +10,7 @@ public class mainTest {
 		gm.getBoard().initialisePieces();
 		
 		
-		
+		System.out.println("==============================================");
 		//Testing getPiece() in Board
 		System.out.println("Testing getPiece() case 1...");
 		PieceGroup pg = gm.getBoard().getPiece(0, 0);
@@ -56,5 +56,17 @@ public class mainTest {
 			System.out.println("Error!NULL Pointer exception");
 		}
 		//Finish Testing getPiece() in Board
+		
+		//Testing addPiece() in PieceGroup
+		System.out.println("==============================================");
+		System.out.println("Testing addPiece() case 1...");
+		PieceGroup[][] pg2 = gm.getBoard().getSquareArray();
+		System.out.println("Adding piece into squareArray[0][0]...");
+		pg2[0][0].addPiece(new Rock(0,0,0));
+		System.out.println("Size of PieceGroup[0][0] is " +pg2[0][0].getPieces().size());
+		System.out.println("Adding piece into squareArray[0][0]...");
+		pg2[0][0].addPiece(new Bishop(0,0,0));
+		System.out.println("Size of PieceGroup[0][0] is " +pg2[0][0].getPieces().size());
+
 	}
 }

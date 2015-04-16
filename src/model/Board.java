@@ -64,7 +64,8 @@ public class Board extends Observable {
 //		squareArray[2][3] = new PieceGroup(new Barrier(2, 3));
 //		squareArray[2][4] = new PieceGroup(new Barrier(2, 4));
 //		squareArray[2][5] = new PieceGroup(new Barrier(2, 5));
-//
+
+
 		squareArray[3][0] = new PieceGroup(new Barrier(3, 0));
 		squareArray[3][1] = new PieceGroup(new Barrier(3, 1));
 		squareArray[3][2] = new PieceGroup(new Barrier(3, 2));

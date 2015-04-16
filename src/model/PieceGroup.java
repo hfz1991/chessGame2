@@ -10,6 +10,10 @@ public class PieceGroup {
 		this.pieces.add(piece1);
 	}
 	
+	public void addPiece(AbstractPiece piece){
+		this.pieces.add(piece);
+	}
+	
 	public ArrayList<AbstractPiece> getPieces(){
 		return this.pieces;
 	}
