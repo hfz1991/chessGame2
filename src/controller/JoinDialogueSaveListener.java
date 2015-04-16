@@ -5,20 +5,28 @@ import java.awt.event.ActionListener;
 
 import view.JoinDialogue;
 
-public class JoinDialogueSaveListener implements ActionListener {
+/**
+ * A controller class -- join dialogue save listener.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class JoinDialogueSaveListener implements ActionListener 
+{
 
 	private JoinDialogue joinDia;
 	
-	public JoinDialogueSaveListener(JoinDialogue joinDialogue) {
+	public JoinDialogueSaveListener(JoinDialogue joinDialogue) 
+	{
 		// TODO Auto-generated constructor stub
 		joinDia=joinDialogue;
 	}
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		// TODO Auto-generated method stub
-		System.out.println("JoinDialogueSaveListener");
 		joinDia.dispose();
 	}
 

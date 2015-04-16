@@ -6,7 +6,6 @@ package model;
  * @author Michael Kowalenko
  */
 public class Bishop extends AbstractPiece implements MovablePiece{
-		
 
 	public Bishop(int colour, int x, int y) {
 		super(colour, x, y);
@@ -26,8 +25,5 @@ public class Bishop extends AbstractPiece implements MovablePiece{
 	public String getName() {
 		return "bishop";
 	}
-	
-	
-
 
 }

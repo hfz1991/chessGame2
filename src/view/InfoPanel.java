@@ -4,22 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.swing.border.LineBorder;
-
 import model.GameManager;
 import model.Player;
 import controller.MyTimerActionListener;
@@ -27,9 +21,16 @@ import controller.NewGameDialogueListener;
 import controller.SplitDialogueListener;
 import controller.UndoDialogueListener;
 
-public class InfoPanel extends JPanel implements Observer {
+/**
+ * A view class to show the info panel.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class InfoPanel extends JPanel implements Observer 
+{
 	
-	GridLayout layout2 =new GridLayout(3,1);
+	GridLayout layout2 = new GridLayout(3,1);
 	
 	private JLabel whiteLabel;
 	private JLabel moveW;
@@ -58,18 +59,16 @@ public class InfoPanel extends JPanel implements Observer {
 	
 	private JPanel whitePanel;
 	private JPanel blackPanel;
-	private NewGameDialogue newGameDia;
-	
+
 	private MyTimerActionListener timerActionListener;
 	private Timer timer;
-	
-	private UndoDialogue undoDia;
-	
-	public InfoPanel(final JFrame parent, BoardPanel panel){
+
+	public InfoPanel(final JFrame parent, BoardPanel panel)
+	{
 		
 	    setPreferredSize(new Dimension(240, 640));
 	    
-	    /*******************************White Player********************************/
+	    //White Player//
 	    //setup information panel for white player
 	    whitePanel = new JPanel(layout2);
 	    whitePanel.setBackground(Color.WHITE);
@@ -77,7 +76,6 @@ public class InfoPanel extends JPanel implements Observer {
 	    whitePanel.setPreferredSize(new Dimension(240, 210));
 	    
 	    //initialize for White player
-	    
 	    moveWhite = Box.createHorizontalBox();
 	    scoreWhite = Box.createHorizontalBox();
 	    
@@ -96,10 +94,10 @@ public class InfoPanel extends JPanel implements Observer {
 	    scoreWhite.add(scoreW);
 	    scoreWhite.add(numScoreW);
 	    whitePanel.add(scoreWhite);
-	   
-	    /******************************End of White Player*********************************/
-	    /******************************Black Player*********************************/
+	    //End of White Player//
 	    
+	    
+	    //Black Player//
 	    //setup information panel for black player
 	    blackPanel = new JPanel(layout2);
 	    blackPanel.setBackground(Color.BLACK);
@@ -107,7 +105,6 @@ public class InfoPanel extends JPanel implements Observer {
 	    blackPanel.setPreferredSize(new Dimension(240, 210));
 	    
 	    //initialize for White player
-	    
 	    moveBlack = Box.createHorizontalBox();
 	    scoreBlack = Box.createHorizontalBox();
 	    
@@ -134,7 +131,7 @@ public class InfoPanel extends JPanel implements Observer {
 	    
 	    blackPanel.add(scoreBlack);
 	    
-	    /*******************************End of Black Player********************************/
+	    //End of Black Player//
 	    
 	    JPanel buttonP = new JPanel(layout2);
 	    buttonP.setBackground(Color.WHITE);
@@ -220,35 +217,45 @@ public class InfoPanel extends JPanel implements Observer {
 		timerActionListener = listener;
 	}
 	
-	public JButton getGoBack() {
+	public JButton getGoBack() 
+	{
 		return goBack;
 	}
 
-	public void setGoBack(JButton goBack) {
+	public void setGoBack(JButton goBack) 
+	{
 		this.goBack = goBack;
 	}
 
-	public JButton getSplit() {
+	public JButton getSplit() 
+	{
 		return split;
 	}
 
-	public void setSplit(JButton split) {
+	public void setSplit(JButton split) 
+	{
 		this.split = split;
 	}
 
-	public void update(Observable o, Object arg) {
+	//player takes turn to move
+	public void update(Observable o, Object arg) 
+	{
 		Player player = (Player)o;
-		if((Integer)arg == GameManager.WHITE_PLAYER) {
+		if((Integer)arg == GameManager.WHITE_PLAYER) 
+		{
 			String whiteString = "  White:";
-			if(player.getCurrentTurn()) {
+			if(player.getCurrentTurn()) 
+			{
 				whiteString += " YOUR TURN";
 			}
 			this.whiteLabel.setText(whiteString);
 			this.numMoveW.setText(String.valueOf(player.getNumberOfMoves()));
 			this.numScoreW.setText(String.valueOf(player.getScore()));
-		} else if((Integer)arg == GameManager.BLACK_PLAYER) {
+		} else if((Integer)arg == GameManager.BLACK_PLAYER) 
+		{
 			String blackString = "  Black:";
-			if(player.getCurrentTurn()) {
+			if(player.getCurrentTurn()) 
+			{
 				blackString += " YOUR TURN";
 			}
 			this.numMoveB.setText(String.valueOf(player.getNumberOfMoves()));

@@ -2,36 +2,44 @@
 package view;
 
 import java.awt.*;
-
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
-import model.GameManager;
+/**
+ * A view class to show overall view.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
 
-public class View extends JFrame{ 
+public class View extends JFrame
+{ 
 
 	private BoardPanel board;
 	private InfoPanel info;
 	
 	private static View singletonInstanceView = null; 
 	
-	public BoardPanel getBoardPanel() {
+	public BoardPanel getBoardPanel() 
+	{
 		return this.board;
 	}
 
-	public void setBoard(BoardPanel board) {
+	public void setBoard(BoardPanel board) 
+	{
 		this.board = board;
 	}
 
-	public InfoPanel getInfo() {
+	public InfoPanel getInfo() 
+	{
 		return this.info;
 	}
 
-	public void setInfo(InfoPanel info) {
+	public void setInfo(InfoPanel info) 
+	{
 		this.info = info;
 	}
 
-	public View() { 
+	public View() 
+	{ 
   
 		this.board=new BoardPanel(); 
 		this.info=new InfoPanel(this, board);
@@ -47,8 +55,10 @@ public class View extends JFrame{
 	} 
 
 	
-	public static View getView(){
-		if(View.singletonInstanceView == null ){
+	public static View getView()
+	{
+		if(View.singletonInstanceView == null )
+		{
 			View.singletonInstanceView = new View();
 		}
 		return singletonInstanceView;

@@ -1,21 +1,13 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.PieceMovementListener;
@@ -24,6 +16,11 @@ import model.GameManager;
 import model.MovablePiece;
 import model.PieceGroup;
 
+/**
+ * A view class to show the square panel.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
 
 public class SquarePanel extends JPanel
 {
@@ -35,31 +32,36 @@ public class SquarePanel extends JPanel
 	{
 			location = new Point(x,y);
 			
-			// Remember: the listener should not work if the game is not in progress>???
-			// !!!!!!!!!!!!!!!!!!!!
 			this.addMouseListener(new PieceMovementListener(this));
  
 	}
 	
-	public PieceGroup getCurrentPieceGroup() {
+	public PieceGroup getCurrentPieceGroup() 
+	{
 		return this.currentPieceGroup;
 	}
 	
-	public void setCurrentPieceGroup(PieceGroup currentPieceGroup) {
+	public void setCurrentPieceGroup(PieceGroup currentPieceGroup) 
+	{
 		this.currentPieceGroup = currentPieceGroup;
 		
 		repaint();
 	}
 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) 
+	{
 		super.paintComponent(g);
-		if(this.currentPieceGroup != null) {
+		if(this.currentPieceGroup != null) 
+		{
 			ArrayList<AbstractPiece> pieces = this.currentPieceGroup.getPieces();
-			for(AbstractPiece p : pieces) {
-				try {
+			for(AbstractPiece p : pieces) 
+			{
+				try 
+				{
 					// check colour or whether the piece belongs ot a team, temprary checking star
 					File f = null;
-					if(p instanceof MovablePiece){
+					if(p instanceof MovablePiece)
+					{
 						MovablePiece mp = (MovablePiece) p;
 						String color = null;
 						if(mp.getColour() == GameManager.BLACK_PLAYER) color="Black";
@@ -67,13 +69,14 @@ public class SquarePanel extends JPanel
 						
 						f = new File("src/img/" + p.getName() + "_" + color + ".png");
 					}
-					else{
+					else
+					{
 						 f = new File("src/img/star.png");
 					}
 					
-					
 					g.drawImage(ImageIO.read(f), 0, 0, null);
-				} catch (IOException e) {
+				} catch (IOException e) 
+				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

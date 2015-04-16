@@ -2,28 +2,31 @@ package controller;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import model.AbstractPiece;
 import model.Barrier;
 import model.GameManager;
 import model.PieceGroup;
 import model.Player;
-import view.BoardPanel;
 import view.GameOverDialogue;
 import view.SquarePanel;
 import view.View;
 
-public class PieceMovementListener implements MouseListener {
+/**
+ * A controller class -- piece movement listener.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ * @author Fang Zhou He
+ * @author Michael Kowalenko
+ */
+
+public class PieceMovementListener implements MouseListener 
+{
 
 	private SquarePanel parentSquarePanel;
 
@@ -45,48 +48,54 @@ public class PieceMovementListener implements MouseListener {
 
 	public static SquarePanel selectedPieceSquarePanel = null;
 
-	public PieceMovementListener(SquarePanel psp) {
+	public PieceMovementListener(SquarePanel psp) 
+	{
 		this.parentSquarePanel = psp;
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) 
+	{
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) 
+	{
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) 
+	{
 
 		if (prevSPList == null) {
 			prevSPList = new ArrayList<SquarePanel>();
 		} else {
-			for (int c = 0; c < prevSPList.size(); c++) {
+			for (int c = 0; c < prevSPList.size(); c++) 
+			{
 				prevSPList.get(c).setBorder(
 						BorderFactory.createLineBorder(Color.GREEN, 0));
 			}
 		}
 
 		// TODO Auto-generated method stub
-		if ((this.parentSquarePanel.getCurrentPieceGroup() != null) && (PieceMovementListener.selectedPieceSquarePanel == null)) {
-			
-			// Michael change 1
-			if(this.parentSquarePanel.getCurrentPieceGroup().containsUnmovablePiece()) {
-				return;	// A barrier cannot be moved!
+		if ((this.parentSquarePanel.getCurrentPieceGroup() != null) && (PieceMovementListener.selectedPieceSquarePanel == null)) 
+		{
+			// A barrier cannot be moved
+			if(this.parentSquarePanel.getCurrentPieceGroup().containsUnmovablePiece()) 
+			{
+				return;	
 			}
-			// Michael change 2
+			
 			int currentTurnColour = GameManager.getSingleton().getCurrentPlayerTurnColour();
-			if(this.parentSquarePanel.getCurrentPieceGroup().getPieceGroupColour() != currentTurnColour) {
-				System.out.println(this.parentSquarePanel.getCurrentPieceGroup().getPieceGroupColour());
-				System.out.println(currentTurnColour);
+			if(this.parentSquarePanel.getCurrentPieceGroup().getPieceGroupColour() != currentTurnColour) 
+			{
 				return;
 			}
 			
 			PieceMovementListener.selectedPieceSquarePanel = this.parentSquarePanel;
 
-			if (prevSP != null) {
+			if (prevSP != null) 
+			{
 				prevSP.setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
 			}
 
@@ -100,7 +109,8 @@ public class PieceMovementListener implements MouseListener {
 
 			//only show border for movable piece
 			AbstractPiece piece = newSquareArray.getPieces().get(0);
-			if (!(piece instanceof Barrier)) {
+			if (!(piece instanceof Barrier)) 
+			{
 				parentSquarePanel.setBorder(BorderFactory.createLineBorder(
 						Color.BLUE, 3));
 			}
@@ -112,12 +122,17 @@ public class PieceMovementListener implements MouseListener {
 					.getValidMoves(currY, currX);
 
 			// Remove after demo
-			try {
-				for (int i = 0; i < currSquares.length; i++) {
-					for (int j = 0; j < currSquares.length; j++) {
-						for (int m = 0; m < point.size(); m++) {
+			try 
+			{
+				for (int i = 0; i < currSquares.length; i++) 
+				{
+					for (int j = 0; j < currSquares.length; j++) 
+					{
+						for (int m = 0; m < point.size(); m++) 
+						{
 							if (currSquares[i][j].getGridLocation().equals(
-									point.get(m))) {
+									point.get(m))) 
+							{
 								currSquares[j][i].setBorder(BorderFactory
 										.createLineBorder(Color.GREEN, 3));
 
@@ -132,8 +147,10 @@ public class PieceMovementListener implements MouseListener {
 				System.out.println("Cannot move barrier");
 			}
 
-		} else {
-			if (PieceMovementListener.selectedPieceSquarePanel != null) {
+		} else 
+		{
+			if (PieceMovementListener.selectedPieceSquarePanel != null) 
+			{
 
 				// move from
 				Point from = selectedPieceSquarePanel.getGridLocation();
@@ -147,20 +164,20 @@ public class PieceMovementListener implements MouseListener {
 				pointA = GameManager.getSingleton().getBoard()
 						.getValidMoves(oldY, oldX);
 
-				// Michael change 3a
 				int numberOfPiecesMoved = 0;
 				int scoreChange = 0;
 				
-				for (int x = 0; x < pointA.size(); x++) {
-					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) {
+				for (int x = 0; x < pointA.size(); x++) 
+				{
+					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) 
+					{
 						scoreChange += GameManager.getSingleton().getBoard().movePieces(from, to);
 						numberOfPiecesMoved++;
 					}
 				}
-				//System.out.println(scoreChange);
 				
-				// Michael change 3
-				if (numberOfPiecesMoved > 0) {
+				if (numberOfPiecesMoved > 0) 
+				{
 					GameManager.getSingleton().addScoreToCurrentPlayer(scoreChange);
 					GameManager.getSingleton().increaseMoveNumber();
 					GameManager.getSingleton().nextPlayersTurn();
@@ -174,12 +191,13 @@ public class PieceMovementListener implements MouseListener {
 				v.getInfo().setTimer();
 				PieceMovementListener.selectedPieceSquarePanel = null;
 				
-				// Michael Change 4
 				Player winner = GameManager.getSingleton().getWinningPlayerDueToElimination();
-				if(winner != null) {
+				if(winner != null) 
+				{
 					// Game over because a player's pieces were eliminated
 					new GameOverDialogue(winner);
-				} else if (GameManager.getSingleton().bothPlayersHadMaxTurns()) {
+				} else if (GameManager.getSingleton().bothPlayersHadMaxTurns()) 
+				{
 					// Game over because turns are all done
 					winner = GameManager.getSingleton().getPlayerWithMaxScore();
 					new GameOverDialogue(winner);

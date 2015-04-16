@@ -64,7 +64,6 @@ public class Board extends Observable {
 		//Click Piece
 		else{
 			//Same team, Merge 
-			
 			if(fromPG.getPieces().get(0).getColour() == toPG.getPieces().get(0).getColour())
 			{
 				//Check is the same type
@@ -87,7 +86,7 @@ public class Board extends Observable {
 				}
 				
 			}
-			///////Not in the same team, Take Piece///////////
+			//Not in the same team, Take Piece//
 			else
 			{
 				squareArray[fromP.y][fromP.x] = null;

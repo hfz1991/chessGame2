@@ -6,26 +6,32 @@ import java.awt.event.ActionListener;
 import model.GameManager;
 import model.Player;
 
-import javax.swing.JDialog;
-
 import view.InfoPanel;
 import view.NewGameDialogue;
 import view.View;
 
-public class NewGameSaveDialogueListener implements ActionListener{
+/**
+ * A controller class -- new game save dialogue listener.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class NewGameSaveDialogueListener implements ActionListener
+{
 	
 	private NewGameDialogue parentView;
 	private InfoPanel infoPanel;
 	
-	public NewGameSaveDialogueListener(NewGameDialogue parentView, InfoPanel infoPanel) {
+	public NewGameSaveDialogueListener(NewGameDialogue parentView, InfoPanel infoPanel) 
+	{
 		this.parentView = parentView;
 		this.infoPanel=infoPanel;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0) 
+	{
 		// TODO Auto-generated method stub
-		
 		GameManager.getSingleton().setTotalOfMoves(parentView.getNumberOfMoves());
 		GameManager.getSingleton().newGame();
 		
@@ -33,11 +39,11 @@ public class NewGameSaveDialogueListener implements ActionListener{
 		this.infoPanel.getGoBack().setEnabled(true);
 		this.infoPanel.getSplit().setEnabled(true);;
 		
-
 		View v = View.getView();
 		
 		// Add the InfoPanel to observe the Players
-		for(Player player : GameManager.getSingleton().getPlayerList()) {
+		for(Player player : GameManager.getSingleton().getPlayerList()) 
+		{
 			player.addObserver(v.getInfo());
 		}
 		

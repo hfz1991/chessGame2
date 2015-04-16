@@ -1,18 +1,22 @@
 package view;
 
 import java.awt.FlowLayout;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
 import controller.CancelListener;
 import controller.SplitDialogueSaveListener;
-import controller.NewGameSaveDialogueListener;
 
-public class SplitDialogue extends JDialog{
+/**
+ * A view class to show the split dialogue.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class SplitDialogue extends JDialog
+{
 
 	private JLabel selectPiece;
 	private JComboBox pieceGroup;
@@ -28,7 +32,8 @@ public class SplitDialogue extends JDialog{
 	private int horizontalAxis=160;
 	
 	
-	public SplitDialogue(){
+	public SplitDialogue()
+	{
 		
 		//select number of moves
 		piece = Box.createHorizontalBox();
@@ -36,13 +41,9 @@ public class SplitDialogue extends JDialog{
 		piece.add(selectPiece);
 		piece.add(Box.createHorizontalStrut(2)); 
 		
-		
 		pieceGroup = new JComboBox();
-		
-		//for test, Should get array list from model!!!!!!!!!!!!!!!!!!!!!!!!!!
 		pieceGroup.addItem("Bishop");
 		pieceGroup.addItem("Knight");
-		
 		piece.add(pieceGroup);	  
 		
 		this.setModal(true);
@@ -66,7 +67,7 @@ public class SplitDialogue extends JDialog{
 		setLayout(new FlowLayout());
 		add(base);		
 		
-		//setup frame
+		//setup dialogue
 		setTitle("Split pieces");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);

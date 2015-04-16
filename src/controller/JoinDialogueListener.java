@@ -5,12 +5,20 @@ import java.awt.event.ActionListener;
 
 import view.JoinDialogue;
 
-public class JoinDialogueListener implements ActionListener{
+/**
+ * A controller class -- join dialogue listener.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class JoinDialogueListener implements ActionListener
+{
 
 	private JoinDialogue joinDia;
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		// TODO Auto-generated method stub
 		joinDia= new JoinDialogue();
 		

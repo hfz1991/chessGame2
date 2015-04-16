@@ -5,19 +5,27 @@ import java.awt.event.ActionListener;
 
 import view.UndoDialogue;
 
-public class UndoDialogueSaveListener implements ActionListener {
+/**
+ * A controller class -- undo save dialogue listener.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class UndoDialogueSaveListener implements ActionListener 
+{
 
 	private UndoDialogue undoDia;
 	
-	public UndoDialogueSaveListener(UndoDialogue undoDialogue) {
+	public UndoDialogueSaveListener(UndoDialogue undoDialogue) 
+	{
 		// TODO Auto-generated constructor stub
 		undoDia=undoDialogue;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("UndoDialogueSaveListener");
+	public void actionPerformed(ActionEvent e) 
+	{
+		// TODO Auto-generated method stub	
 		undoDia.dispose();
 	}
 

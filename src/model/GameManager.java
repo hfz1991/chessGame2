@@ -42,8 +42,6 @@ public class GameManager {
 		this.totalOfMoves = totalOfMoves;
 	}
 
-
-
 	/**
 	 * @pre None - can be executed any time to reset the game.
 	 * @post A new game has been made, all of the old game's progress is gone.

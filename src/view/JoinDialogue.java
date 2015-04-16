@@ -10,7 +10,14 @@ import javax.swing.JLabel;
 import controller.CancelListener;
 import controller.JoinDialogueSaveListener;
 
-public class JoinDialogue extends JDialog {
+/**
+ * A view class to show the merge piece panel.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class JoinDialogue extends JDialog 
+{
 
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
@@ -24,7 +31,8 @@ public class JoinDialogue extends JDialog {
 	private Box infoBox;
 	private Box button;
 	
-	public JoinDialogue(){
+	public JoinDialogue()
+	{
 	
 		info = new JLabel("Are you sure to Join these two piece?");
 		
@@ -49,7 +57,7 @@ public class JoinDialogue extends JDialog {
 		setLayout(new FlowLayout());
 		add(base);	
 		
-		//setup frame
+		//setup dialogue
 		setTitle("Marge pieces");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);

@@ -1,23 +1,26 @@
 package view;
 
 import java.awt.FlowLayout;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
 import controller.CancelListener;
 import controller.UndoDialogueSaveListener;
-import controller.NewGameSaveDialogueListener;
 
-public class UndoDialogue  extends JDialog{
+/**
+ * A view class to show the undo dialogue.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class UndoDialogue  extends JDialog
+{
 
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
 	
 	private JLabel info;
-	
 	private JButton save;
 	private JButton cancel;
 	
@@ -25,7 +28,8 @@ public class UndoDialogue  extends JDialog{
 	private Box infoBox;
 	private Box button;
 	
-	public UndoDialogue(){
+	public UndoDialogue()
+	{
 	
 		info = new JLabel("Are you sure to Undo last step?");
 		
@@ -50,7 +54,7 @@ public class UndoDialogue  extends JDialog{
 		setLayout(new FlowLayout());
 		add(base);	
 		
-		//setup frame
+		//setup dialogue
 		setTitle("Undo Move");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);

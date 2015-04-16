@@ -1,22 +1,26 @@
 package view;
 
 import java.awt.FlowLayout;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
 import model.Player;
 import controller.CancelListener;
 
-public class GameOverDialogue extends JDialog {
+/**
+ * A view class to show the game over dialogue.
+ * @author Yidan Zhang
+ * @author Chao Wang
+ */
+
+public class GameOverDialogue extends JDialog 
+{
 
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
 	
 	private JLabel info;
-	
 	private JButton save;
 	
 	private Box base;
@@ -24,10 +28,13 @@ public class GameOverDialogue extends JDialog {
 	private Box button;
 	
 	// Player winner: null if it is a draw, otherwise gives the winning player
-	public GameOverDialogue(Player winner){
-		if(winner != null) {
+	public GameOverDialogue(Player winner)
+	{
+		if(winner != null) 
+		{
 			System.out.println(winner.getPlayerNumber());
-		} else {
+		} else 
+		{
 			System.out.println("Draw");
 		}
 	
@@ -51,7 +58,7 @@ public class GameOverDialogue extends JDialog {
 		setLayout(new FlowLayout());
 		add(base);	
 		
-		//setup frame
+		//setup dialogue
 		setTitle("Game Over");
 		setSize(verticalAxis, horizontalAxis);
 		setResizable(false);
