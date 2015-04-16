@@ -138,6 +138,7 @@ public class PieceMovementListener implements MouseListener {
 							GameManager.getSingleton().getBoard().movePieces(from, to);
 						}else{
 							System.out.println("piece");
+							GameManager.getSingleton().getBoard().takePiece(from, to);
 						}
 					}
 				}

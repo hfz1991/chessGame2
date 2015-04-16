@@ -357,4 +357,15 @@ public class Board extends Observable {
 		return null;
 	}
 	
+	public void takePiece(Point fromP, Point toP){
+		PieceGroup fromPG = squareArray[fromP.y][fromP.x];
+		PieceGroup toPG = squareArray[toP.y][toP.x];
+		
+		squareArray[fromP.y][fromP.x] = null;
+		squareArray[toP.y][toP.x] = fromPG;
+		
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
 }
