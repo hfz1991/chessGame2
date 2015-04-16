@@ -134,12 +134,7 @@ public class PieceMovementListener implements MouseListener {
 
 				for (int x = 0; x < pointA.size(); x++) {
 					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) {
-						if(this.parentSquarePanel.getCurrentPieceGroup()==null){
-							GameManager.getSingleton().getBoard().movePieces(from, to);
-						}else{
-							System.out.println("piece");
-							GameManager.getSingleton().getBoard().takePiece(from, to);
-						}
+						GameManager.getSingleton().getBoard().movePieces(from, to);
 					}
 				}
 

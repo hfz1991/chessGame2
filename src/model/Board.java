@@ -11,39 +11,58 @@ public class Board extends Observable {
 	public Board() {
 	}
 
-	public void movePieces(Point from, Point to) {
+	public void movePieces(Point fromP, Point toP) {
 		// move pieces logic here
 
 		// System.out.println("From Point: "+ from.x +" y: " + from.y);
 		// System.out.println("To Point: "+ to.x +" y: " + to.y);
 
-		int fromX = from.x;
-		int fromY = from.y;
-		int toX = to.x;
-		int toY = to.y;
+		int fromX = fromP.x;
+		int fromY = fromP.y;
+		int toX = toP.x;
+		int toY = toP.y;
 
 		PieceGroup pg = squareArray[fromY][fromX];
+
+		if(squareArray[toY][toX] == null)
+		{
+			try{
+				if (pg.getPieces() != null) {
+
+					AbstractPiece piece = pg.getPieces().get(0);
+					if (!(piece instanceof Barrier)) {
+						MovablePiece movableP = (MovablePiece) piece;
+
+						movableP.move(toX, toY);
+
+						squareArray[fromY][fromX] = null;
+						squareArray[piece.getyC()][piece.getxC()] = pg;
+					}
+
+				}
+				}
+				catch(Exception e){
+					System.out.println("Cannot choose empty square");
+				}
+		}
+		else{
+			///////Take Piece///////////
+			PieceGroup fromPG = squareArray[fromP.y][fromP.x];
+			PieceGroup toPG = squareArray[toP.y][toP.x];
+
+			PieceGroup fromPiece = squareArray[fromP.y][fromP.x];
+			
+			//If not in the same team
+			squareArray[fromP.y][fromP.x] = null;
+			squareArray[toP.y][toP.x] = fromPG;
+			///////Take Piece///////////
+		}
 		
-		try{
-		if (pg.getPieces() != null) {
-
-			AbstractPiece piece = pg.getPieces().get(0);
-			if (!(piece instanceof Barrier)) {
-				MovablePiece movableP = (MovablePiece) piece;
-
-				movableP.move(toX, toY);
-
-				squareArray[fromY][fromX] = null;
-				squareArray[piece.getyC()][piece.getxC()] = pg;
-			}
-
-		}
-		}
-		catch(Exception e){
-			System.out.println("Cannot choose empty square");
-		}
 
 
+		
+		
+		
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -357,15 +376,9 @@ public class Board extends Observable {
 		return null;
 	}
 	
-	public void takePiece(Point fromP, Point toP){
-		PieceGroup fromPG = squareArray[fromP.y][fromP.x];
-		PieceGroup toPG = squareArray[toP.y][toP.x];
-		
-		squareArray[fromP.y][fromP.x] = null;
-		squareArray[toP.y][toP.x] = fromPG;
-		
-		this.setChanged();
-		this.notifyObservers();
-	}
+
 	
+	public void mergePiece(){
+		
+	}
 }
