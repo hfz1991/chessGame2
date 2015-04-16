@@ -5,11 +5,9 @@ public abstract class AbstractPiece {
 	protected int xC;
 	protected int yC;
 	protected int colour;
-	protected int type;
 	
-	public AbstractPiece(int colour, int x, int y, int type){
+	public AbstractPiece(int colour, int x, int y){
 		this.colour = colour;
-		this.type = type;
 		this.setxC(x);
 		this.setyC(y);
 	}
@@ -47,9 +45,6 @@ public abstract class AbstractPiece {
 		return this.colour;
 	}
 	
-	public int getType(){
-		return this.type;
-	}
 	
 	public int merge(AbstractPiece pieceA, AbstractPiece pieceB){
 		pieceA.setxC(pieceB.getxC());
