@@ -121,9 +121,7 @@ public class PieceMovementListener implements MouseListener
 			point = GameManager.getSingleton().getBoard()
 					.getValidMoves(currY, currX);
 
-			// Remove after demo
-			try 
-			{
+
 				for (int i = 0; i < currSquares.length; i++) 
 				{
 					for (int j = 0; j < currSquares.length; j++) 
@@ -143,9 +141,7 @@ public class PieceMovementListener implements MouseListener
 
 					}
 				}
-			} catch (Exception e1) {
-				System.out.println("Cannot move barrier");
-			}
+			
 
 		} else 
 		{

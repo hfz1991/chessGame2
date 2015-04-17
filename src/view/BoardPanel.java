@@ -1,10 +1,7 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.util.Observable;
-import java.util.Observer;
+import java.awt.*;
+import java.util.*;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import model.Board;
@@ -61,7 +58,6 @@ public class BoardPanel extends JPanel implements Observer
 
 	// end of Chess board
 
-	
 	/**
 	 * @pre a PieceGroup must exist
 	 * @post set board pieces for squares
@@ -87,5 +83,4 @@ public class BoardPanel extends JPanel implements Observer
 		PieceGroup[][] pieces = gameBoard.getSquareArray();
 		this.setBoardPieces(pieces);
 	}
-
 }

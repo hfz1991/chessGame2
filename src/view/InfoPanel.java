@@ -32,37 +32,16 @@ public class InfoPanel extends JPanel implements Observer
 	
 	GridLayout layout2 = new GridLayout(3,1);
 	
-	private JLabel whiteLabel;
-	private JLabel moveW;
-	private JLabel scoreW;
-	private JLabel numMoveW;
-	private JLabel numScoreW;
-	
-	private JLabel blackLabel;
-	private JLabel moveB;
-	private JLabel scoreB;
-	private JLabel numMoveB;
-	private JLabel numScoreB;
-	
-	private JLabel time;
-	private JLabel timerLabel;
-	private JButton newGame;
-	private JButton goBack;
-	private JButton split;
-	
-	private Box moveWhite;
-	private Box scoreWhite;
-	private Box scoreBlack;
-	private Box moveBlack;
-	private Box timerBox;
-	private Box buttonBox;
-	
-	private JPanel whitePanel;
-	private JPanel blackPanel;
-
+	private JLabel whiteLabel, moveW, scoreW, numMoveW, numScoreW;
+	private JLabel blackLabel, moveB, scoreB, numMoveB, numScoreB;
+	private JLabel time, timerLabel;
+	private JButton newGame, goBack, split;
+	private Box moveWhite, scoreWhite, scoreBlack, moveBlack, timerBox, buttonBox;
+	private JPanel whitePanel, blackPanel;
 	private MyTimerActionListener timerActionListener;
 	private Timer timer;
 
+	
 	public InfoPanel(final JFrame parent, BoardPanel panel)
 	{
 		
