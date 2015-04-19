@@ -38,14 +38,7 @@ public class SplitDialogue extends JDialog
 	
 	public SplitDialogue(String[] pieceName)
 	{
-		// setup dialogue
-		setTitle("Split pieces");
-		setSize(verticalAxis, horizontalAxis);
-		setResizable(false);
-		View v = View.getView();
-		setLocationRelativeTo(v);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setVisible(true);
+		
 		
 		//select number of moves
 		piece = Box.createHorizontalBox();
@@ -81,7 +74,14 @@ public class SplitDialogue extends JDialog
 		setLayout(new FlowLayout());
 		add(base);		
 		
-		
+		// setup dialogue
+		setTitle("Split pieces");
+		setSize(verticalAxis, horizontalAxis);
+		setResizable(false);
+		View v = View.getView();
+		setLocationRelativeTo(v);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setVisible(true);
 	    
 	    selectedIndex = pieceGroup.getSelectedIndex();
 	}
