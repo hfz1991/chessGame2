@@ -4,7 +4,11 @@ import java.awt.Point;
 
 import model.*;
 
-
+/**
+ * Test class
+ * @author Fang Zhou He
+ * 
+ */
 public class mainTest {
 	public static void main(String[] args){
 		

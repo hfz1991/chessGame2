@@ -9,6 +9,7 @@ import view.SplitDialogue;
  * A controller class -- split dialogue listener.
  * @author Yidan Zhang
  * @author Chao Wang
+ * @author Fang Zhou He
  */
 
 public class SplitDialogueListener implements ActionListener 
@@ -18,7 +19,6 @@ public class SplitDialogueListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		// TODO Auto-generated method stub
 		splitDia = new SplitDialogue();
 	}
 

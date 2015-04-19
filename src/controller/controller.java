@@ -5,6 +5,7 @@ import model.GameManager;
 
 /**
  * A controller class -- controller.
+ * @author Fang Zhou He
  * @author Yidan Zhang
  * @author Chao Wang
  */
