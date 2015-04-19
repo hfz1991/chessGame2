@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.AbstractPiece;
+import model.Board;
 import model.GameManager;
 import view.SplitDialogue;
 import view.View;
@@ -23,14 +25,16 @@ public class SplitDialogueSaveListener implements ActionListener
 	
 	public SplitDialogueSaveListener(SplitDialogue splitDialogue) 
 	{
-		Point point = GameManager.getSingleton().getBoard().getcurrentSelectedPoint();
 		splitDia = splitDialogue;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		System.out.println("#SELECTED: " +splitDia.getSelectedIndex());
+		Board board = GameManager.getSingleton().getBoard();
+		Point point = board.getcurrentSelectedPoint();
+		int index = splitDia.getIndex();
+		AbstractPiece ap = GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().get(index);
 		splitDia.dispose();
 	}
 	

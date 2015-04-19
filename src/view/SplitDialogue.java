@@ -83,10 +83,12 @@ public class SplitDialogue extends JDialog
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	    
-	    selectedIndex = pieceGroup.getSelectedIndex();
+	   
 	}
 	
-	public int getSelectedIndex(){
+	public int getIndex(){
+		selectedIndex = pieceGroup.getSelectedIndex();
+	    System.out.println("#SELECTED: " +selectedIndex);
 		return selectedIndex;
 	}
 }
