@@ -21,7 +21,7 @@ public class Rock extends AbstractPiece implements MovablePiece {
 	}
 
 	public String getName() {
-		return "rook";
+		return "rock";
 	}
 
 	

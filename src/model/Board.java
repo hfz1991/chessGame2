@@ -12,10 +12,21 @@ import java.util.Observable;
 public class Board extends Observable {
 
 	private PieceGroup[][] squareArray;
-
+	private Point currentSelectedPoint;
+	
 	public Board() {
+		currentSelectedPoint = new Point();
 	}
-
+	
+	public void setCurrentSelectedPoint(int x, int y){
+		currentSelectedPoint.x=x;
+		currentSelectedPoint.y=y;
+	}
+	
+	public Point getcurrentSelectedPoint(){
+		return currentSelectedPoint;
+	}
+	
 	/**
 	 * @pre a Piece must exist in the point fromP
 	 * @post a PieceGroup or single piece is moved, taking any items in the new position

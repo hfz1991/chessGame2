@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.FlowLayout;
+import java.awt.Point;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+
 import controller.CancelListener;
 import controller.SplitDialogueSaveListener;
 
@@ -13,6 +16,7 @@ import controller.SplitDialogueSaveListener;
  * A view class to show the split dialogue.
  * @author Yidan Zhang
  * @author Chao Wang
+ * @author Fang Zhou He
  */
 
 public class SplitDialogue extends JDialog
@@ -30,10 +34,18 @@ public class SplitDialogue extends JDialog
 	
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
+	private int selectedIndex;
 	
-	
-	public SplitDialogue()
+	public SplitDialogue(String[] pieceName)
 	{
+		// setup dialogue
+		setTitle("Split pieces");
+		setSize(verticalAxis, horizontalAxis);
+		setResizable(false);
+		View v = View.getView();
+		setLocationRelativeTo(v);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setVisible(true);
 		
 		//select number of moves
 		piece = Box.createHorizontalBox();
@@ -42,8 +54,10 @@ public class SplitDialogue extends JDialog
 		piece.add(Box.createHorizontalStrut(2)); 
 		
 		pieceGroup = new JComboBox();
-		pieceGroup.addItem("Bishop");
-		pieceGroup.addItem("Knight");
+		for(int i=0; i < pieceName.length ; i++){
+			pieceGroup.addItem(pieceName[i]);
+		}
+		
 		piece.add(pieceGroup);	  
 		
 		this.setModal(true);
@@ -67,14 +81,12 @@ public class SplitDialogue extends JDialog
 		setLayout(new FlowLayout());
 		add(base);		
 		
-		//setup dialogue
-		setTitle("Split pieces");
-		setSize(verticalAxis, horizontalAxis);
-		setResizable(false);
-		View v = View.getView();
-		setLocationRelativeTo(v);
-	    setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
-	    setVisible(true); 
+		
+	    
+	    selectedIndex = pieceGroup.getSelectedIndex();
 	}
 	
+	public int getSelectedIndex(){
+		return selectedIndex;
+	}
 }

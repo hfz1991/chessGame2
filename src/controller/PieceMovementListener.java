@@ -76,8 +76,10 @@ public class PieceMovementListener implements MouseListener
 						BorderFactory.createLineBorder(Color.GREEN, 0));
 			}
 		}
-
-		// TODO Auto-generated method stub
+		
+		//Set coordinate of currentSelectedSquare
+		GameManager.getSingleton().getBoard().setCurrentSelectedPoint(this.parentSquarePanel.getGridLocation().x,this.parentSquarePanel.getGridLocation().y);
+		
 		if ((this.parentSquarePanel.getCurrentPieceGroup() != null) && (PieceMovementListener.selectedPieceSquarePanel == null)) 
 		{
 			// A barrier cannot be moved

@@ -215,6 +215,8 @@ public class InfoPanel extends JPanel implements Observer
 	{
 		this.split = split;
 	}
+	
+	
 
 	//player takes turn to move
 	public void update(Observable o, Object arg) 

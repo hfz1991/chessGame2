@@ -1,8 +1,10 @@
 package controller;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.GameManager;
 import view.SplitDialogue;
 
 /**
@@ -16,10 +18,17 @@ public class SplitDialogueListener implements ActionListener
 {
 	private SplitDialogue splitDia;
 	
+
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		splitDia = new SplitDialogue();
+		Point point = GameManager.getSingleton().getBoard().getcurrentSelectedPoint();
+		int size = GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().size();
+		String pieceName[] = new String[size];
+		for(int i=0; i < size ; i++){
+			pieceName[i]=GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().get(i).getName();
+		}
+		splitDia = new SplitDialogue(pieceName);
 	}
 
 }
