@@ -3,6 +3,7 @@ package controller;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import model.AbstractPiece;
 import model.Board;
@@ -21,7 +22,7 @@ public class SplitDialogueSaveListener implements ActionListener
 {
 
 	private SplitDialogue splitDia;
-	
+	private ArrayList<Point> pointList;
 	
 	public SplitDialogueSaveListener(SplitDialogue splitDialogue) 
 	{
@@ -36,6 +37,10 @@ public class SplitDialogueSaveListener implements ActionListener
 		int index = splitDia.getIndex();
 		AbstractPiece ap = GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().get(index);
 		splitDia.dispose();
+		pointList = new ArrayList<Point>();
+		GameManager.getSingleton().getBoard().checkingValidPathPiece(ap, pointList, point.y, point.x);
+		
+		
 	}
 	
 	
