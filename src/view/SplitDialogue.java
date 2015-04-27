@@ -88,7 +88,6 @@ public class SplitDialogue extends JDialog
 	
 	public int getIndex(){
 		selectedIndex = pieceGroup.getSelectedIndex();
-	    System.out.println("#SELECTED: " +selectedIndex);
 		return selectedIndex;
 	}
 }
