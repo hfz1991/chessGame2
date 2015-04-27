@@ -123,7 +123,6 @@ public class PieceMovementListener implements MouseListener
 			point = GameManager.getSingleton().getBoard()
 					.getValidMoves(currY, currX);
 
-
 				for (int i = 0; i < currSquares.length; i++) 
 				{
 					for (int j = 0; j < currSquares.length; j++) 
@@ -140,11 +139,8 @@ public class PieceMovementListener implements MouseListener
 
 							}
 						}
-
 					}
 				}
-			
-
 		} else 
 		{
 			if (PieceMovementListener.selectedPieceSquarePanel != null) 
