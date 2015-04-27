@@ -1,6 +1,7 @@
 package test;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -96,10 +97,15 @@ public class mainTest {
 		System.out.println("Size of Square(5,4) (Bishop) is :" + square[5][4].getPieces().size());
 
 		//Testing checkValidPathPiece for splitPiece() in order to show the particular piece
-		int AssumedIndex = 1;
+		System.out.println("==============================================");
+		System.out.println("Testing checkValidPathPiece for (Rock) case ...");
+		int AssumedIndex = 1; 
+		ArrayList<Point> list = new ArrayList<Point>();
 		AbstractPiece thisRock = gm.getBoard().getPiece(5, 1).getPieces().get(AssumedIndex);
-		gm.getBoard().checkingValidPathPiece(thisRock, validArray, x, y);
-		
+		gm.getBoard().checkingValidPathPiece(thisRock, list, 5, 1);
+		for(int i = 0 ; i < list.size() ; i++){
+			System.out.println("Point x: " + list.get(i).x + " Point y: " + list.get(i).y);
+		}
 		//Testing splitPiece() in Board
 		System.out.println("==============================================");
 		System.out.println("Testing splitPiece() case 1...(SPLIT)");
