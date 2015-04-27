@@ -420,15 +420,33 @@ public class Board extends Observable {
 	 * @pre A PieceGroup with multiple pieces exists.
 	 * @post The multiple pieces in the PieceGroup are separated.
 	 */
-	public void splitPiece(Point fromP, Point toP, AbstractPiece piece){
+	public int splitPiece(Point fromP, Point toP, AbstractPiece piece){
+		int scoreChange = 0;
 		PieceGroup fromPG = squareArray[fromP.y][fromP.x];
+		PieceGroup toPG = squareArray[toP.y][toP.x];
 		for(int i=0 ; i < fromPG.getPieces().size(); i++){
 			if(piece.getClass() == fromPG.getPieces().get(i).getClass()){
+				//Target position is null
 				if(squareArray[toP.y][toP.x] == null){
 					squareArray[toP.y][toP.x] = new PieceGroup(piece);
 				}
+				//Target position is not null
 				else{
-					squareArray[toP.y][toP.x].getPieces().add(piece);
+					
+					
+					//Same team, add into group 
+					if(fromPG.getPieces().get(0).getColour() == toPG.getPieces().get(0).getColour())
+					{
+						squareArray[toP.y][toP.x].getPieces().add(piece);
+					}
+					else
+					{
+						scoreChange = toPG.getPieceGroupScore();
+						squareArray[toP.y][toP.x] = null;
+						squareArray[toP.y][toP.x] = new PieceGroup(piece);
+					}
+					
+					
 				}
 				fromPG.removePiece(piece);
 			}
@@ -436,6 +454,7 @@ public class Board extends Observable {
 		this.setChanged();
 		this.notifyObservers();
 		
+		return scoreChange;
 	}
 	
 	public int getNumberOfPlayerPieces(int playerNumber) {

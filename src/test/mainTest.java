@@ -93,8 +93,11 @@ public class mainTest {
 		System.out.println("\nMoving One More Piece(5,4) to merge Bishop(5,1)...");
 		Point ExtraP = new Point(4,5);
 		gm.getBoard().movePieces(ExtraP, targetPoint);
-		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
-		System.out.println("Size of Square(5,4) (Bishop) is :" + square[5][4].getPieces().size());
+		System.out.println("Size of Square(5,1) is :" + square[5][1].getPieces().size());
+		System.out.println("Size of Square(5,4) is :" + square[5][4].getPieces().size());
+		System.out.println("#1 Piece in Square(5,1) is :" + square[5][1].getPieces().get(0).getName());
+		System.out.println("#2 Piece in Square(5,1) is :" + square[5][1].getPieces().get(1).getName());
+		System.out.println("#3 Piece in Square(5,1) is :" + square[5][1].getPieces().get(2).getName());
 
 		//Testing checkValidPathPiece for splitPiece() in order to show the particular piece
 		System.out.println("==============================================");
@@ -114,9 +117,24 @@ public class mainTest {
 		AbstractPiece myRock = gm.getBoard().getPiece(5, 1).getPieces().get(1);
 		System.out.println("\nSplit Rock(5,1) to Square(5,0)...");
 		gm.getBoard().splitPiece(fromPoint, toPoint, myRock);
-		System.out.println("\nSize of Square(5,0) (Rock) is :" + square[5][0].getPieces().size());
-		System.out.println("Size of Square(5,1) (Bishop) is :" + square[5][1].getPieces().size());
+		System.out.println("\nSize of Square(5,0) is :" + square[5][0].getPieces().size());
+		System.out.println("Size of Square(5,1) is :" + square[5][1].getPieces().size());
+		System.out.println("#1 Piece in Square(5,1) is :" + square[5][1].getPieces().get(0).getName());
+		System.out.println("#2 Piece in Square(5,1) is :" + square[5][1].getPieces().get(1).getName());
 		
+		//Testing take barrier in splitPiece()
+		System.out.println("======================");
+		System.out.println("Testing splitPiece() case 2...(SPLIT)");
+		AbstractPiece myBishop = gm.getBoard().getPiece(5, 1).getPieces().get(0);
+		System.out.println("\nSplit Bishop(5,1) to Barrier(3,3)...");
+		Point newToPoint = new Point (3,3);
+		int score = gm.getBoard().splitPiece(fromPoint, newToPoint, myBishop);
+		System.out.println("\nSize of Square(5,1) is :" + square[5][1].getPieces().size());
+		System.out.println("#1 Piece in Square(5,1) is :" + square[5][1].getPieces().get(0).getName());
+		System.out.println("Size of Barrier(3,3) is :" + square[3][3].getPieces().size());
+		System.out.println("#1 Piece in Square(3,3) is :" + square[3][3].getPieces().get(0).getName());
+		System.out.println("Got " + score + " point!");
+
 		//Testing addPiece() in PieceGroup
 		System.out.println("==============================================");
 		System.out.println("Testing addPiece() case 1...");
