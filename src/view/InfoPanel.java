@@ -40,11 +40,19 @@ public class InfoPanel extends JPanel implements Observer
 	private JPanel whitePanel, blackPanel;
 	private MyTimerActionListener timerActionListener;
 	private Timer timer;
-
 	
-	public InfoPanel(final JFrame parent, BoardPanel panel)
+	private int indexN;
+
+	public void setIndexN(int indexN) {
+		this.indexN = indexN;
+	}
+	
+	public int getIndexN() {
+		return indexN;
+	}
+	
+	public InfoPanel(final JFrame parent)
 	{
-		
 	    setPreferredSize(new Dimension(240, 640));
 	    
 	    //White Player//
@@ -132,7 +140,7 @@ public class InfoPanel extends JPanel implements Observer
 	    newGame.addActionListener(new NewGameDialogueListener(this));
 	    
 	    goBack.addActionListener(new UndoDialogueListener());
-	    split.addActionListener(new SplitDialogueListener());
+	    split.addActionListener(new SplitDialogueListener(this));
 	    
 	    buttonBox.add(goBack).setEnabled(false);
 	    buttonBox.add(split).setEnabled(false);

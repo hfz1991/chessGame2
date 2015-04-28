@@ -14,6 +14,7 @@ import model.GameManager;
 import model.PieceGroup;
 import model.Player;
 import view.GameOverDialogue;
+import view.SplitDialogue;
 import view.SquarePanel;
 import view.View;
 
@@ -25,7 +26,7 @@ import view.View;
  * @author Michael Kowalenko
  */
 
-public class PieceMovementListener implements MouseListener 
+public class PieceMovementListener implements MouseListener
 {
 
 	private SquarePanel parentSquarePanel;
@@ -37,6 +38,7 @@ public class PieceMovementListener implements MouseListener
 	private int currY;
 	private int oldX;
 	private int oldY;
+	private int size;
 
 	private SquarePanel currSquares[][];
 	private SquarePanel oldSquares[][];
@@ -160,12 +162,24 @@ public class PieceMovementListener implements MouseListener
 
 				int numberOfPiecesMoved = 0;
 				int scoreChange = 0;
+				size=GameManager.getSingleton().getBoard().getPiece(oldY, oldX).getPieces().size();
 				
 				for (int x = 0; x < pointA.size(); x++) 
 				{
 					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) 
 					{
-						scoreChange += GameManager.getSingleton().getBoard().movePieces(from, to);
+						if(size==1){
+							scoreChange += GameManager.getSingleton().getBoard().movePieces(from, to);
+						}else if(size>1){
+							int index = View.getView().getInfo().getIndexN();
+							System.out.println("index" + index);
+							AbstractPiece ap = GameManager.getSingleton().getBoard().getPiece(oldY, oldX).getPieces().get(index);
+							
+							GameManager.getSingleton().getBoard().splitPiece(from, to, ap);
+							System.out.println("split 2 piece");
+						}else{
+							System.out.println("error!");
+						}
 						numberOfPiecesMoved++;
 					}
 				}
@@ -206,5 +220,6 @@ public class PieceMovementListener implements MouseListener
 
 	@Override
 	public void mouseExited(MouseEvent e) {}
+
 
 }

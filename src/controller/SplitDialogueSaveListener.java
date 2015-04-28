@@ -22,14 +22,16 @@ import view.View;
  * @author Fang Zhou He
  */
 
-public class SplitDialogueSaveListener implements ActionListener 
+public class SplitDialogueSaveListener implements ActionListener
 {
 
 	private SplitDialogue splitDia;
 	private ArrayList<Point> pointList;
 	private SquarePanel currSquares[][];
 	private ArrayList<Point> oldpoint;
+	private int index_a;
 	
+
 	public SplitDialogueSaveListener(SplitDialogue splitDialogue) 
 	{
 		splitDia = splitDialogue;
@@ -40,8 +42,8 @@ public class SplitDialogueSaveListener implements ActionListener
 	{
 		Board board = GameManager.getSingleton().getBoard();
 		Point point = board.getcurrentSelectedPoint();
-		int index = splitDia.getIndex();
-		AbstractPiece ap = GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().get(index);
+		index_a = splitDia.getIndex();
+		AbstractPiece ap = GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().get(index_a);
 		splitDia.dispose();
 		pointList = new ArrayList<Point>();
 		GameManager.getSingleton().getBoard().checkingValidPathPiece(ap, pointList, point.y, point.x);
@@ -78,7 +80,6 @@ public class SplitDialogueSaveListener implements ActionListener
 					{
 						currSquares[j][i].setBorder(BorderFactory
 								.createLineBorder(Color.RED, 3));
-
 					}
 				}
 			}
@@ -86,6 +87,9 @@ public class SplitDialogueSaveListener implements ActionListener
 		
 	}
 	
-	
+	public int getIndex() {
+		index_a=splitDia.getIndex();
+		return index_a;
+	}
 
 }

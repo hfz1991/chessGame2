@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.GameManager;
+import view.BoardPanel;
+import view.InfoPanel;
 import view.SplitDialogue;
 
 /**
@@ -17,7 +19,14 @@ import view.SplitDialogue;
 public class SplitDialogueListener implements ActionListener 
 {
 	private SplitDialogue splitDia;
+	private InfoPanel infoPanelN;
 	
+
+
+	public SplitDialogueListener(InfoPanel infoPanel) {
+		this.infoPanelN = infoPanel;
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
@@ -28,7 +37,7 @@ public class SplitDialogueListener implements ActionListener
 		for(int i=0; i < size ; i++){
 			pieceName[i]=GameManager.getSingleton().getBoard().getPiece(point.y, point.x).getPieces().get(i).getName();
 		}
-		splitDia = new SplitDialogue(pieceName);
+		splitDia = new SplitDialogue(pieceName,infoPanelN);
 	}
 
 }

@@ -35,11 +35,11 @@ public class SplitDialogue extends JDialog
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
 	private int selectedIndex;
+	private InfoPanel infoPanelN;
 	
-	public SplitDialogue(String[] pieceName)
+	public SplitDialogue(String[] pieceName, InfoPanel infoPanel)
 	{
-		
-		
+		this.infoPanelN=infoPanel;
 		//select number of moves
 		piece = Box.createHorizontalBox();
 		selectPiece = new JLabel("Select the piece you would like to move next: ");
@@ -52,7 +52,7 @@ public class SplitDialogue extends JDialog
 		}
 		
 		piece.add(pieceGroup);	  
-		
+
 		this.setModal(true);
 		
 		//setup buttons
@@ -82,12 +82,13 @@ public class SplitDialogue extends JDialog
 		setLocationRelativeTo(v);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
-	    
-	   
+
 	}
-	
+
 	public int getIndex(){
 		selectedIndex = pieceGroup.getSelectedIndex();
+		infoPanelN.setIndexN(selectedIndex);
+		System.out.println("SplitDialogue     " + selectedIndex);
 		return selectedIndex;
 	}
 }

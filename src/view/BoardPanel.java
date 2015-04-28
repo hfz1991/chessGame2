@@ -19,7 +19,7 @@ public class BoardPanel extends JPanel implements Observer
 
 	GridLayout layout = new GridLayout(6, 6);
 	SquarePanel squares[][] = new SquarePanel[6][6];
-
+	
 	public SquarePanel[][] getSquares() 
 	{
 		return squares;

@@ -40,9 +40,8 @@ public class View extends JFrame
 
 	public View() 
 	{ 
-  
 		this.board=new BoardPanel(); 
-		this.info=new InfoPanel(this, board);
+		this.info=new InfoPanel(this);
 		this.add(board,BorderLayout.WEST);
 		this.add(info,BorderLayout.EAST);
 	    
@@ -51,7 +50,7 @@ public class View extends JFrame
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		this.setVisible(true); 
+		this.setVisible(true);
 	} 
 
 	
