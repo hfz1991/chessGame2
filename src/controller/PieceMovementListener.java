@@ -151,9 +151,7 @@ public class PieceMovementListener implements MouseListener
 		} else 
 		{
 			if (PieceMovementListener.selectedPieceSquarePanel != null) 
-			{
-				System.out.println("++++++++++++++++++++++++++++++++++++++++++" );
-				
+			{	
 				// move from
 				Point from = selectedPieceSquarePanel.getGridLocation();
 				// move to
@@ -175,16 +173,12 @@ public class PieceMovementListener implements MouseListener
 					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) 
 					{
 						int index = View.getView().getInfo().getIndexN();
-						System.out.println("index"+index);
-						
-
 						
 						isSplited = View.getView().getInfo().getIsSplited();
 						View.getView().getInfo().setSplited(false);
 						
 						if(isSplited==false){
 							scoreChange += GameManager.getSingleton().getBoard().movePieces(from, to);
-							System.out.println("normal move piece");
 						}else if(isSplited==true){
 							ap=null;
 							ap = GameManager.getSingleton().getBoard().getPiece(oldY, oldX).getPieces().get(index);
@@ -196,7 +190,6 @@ public class PieceMovementListener implements MouseListener
 								{
 
 									GameManager.getSingleton().getBoard().splitPiece(from, to, ap);
-									System.out.println("*******************************move split piece");
 								}
 							}
 							
