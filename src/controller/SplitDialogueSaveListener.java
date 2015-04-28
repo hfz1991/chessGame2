@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import model.AbstractPiece;
 import model.Board;
 import model.GameManager;
+import view.InfoPanel;
 import view.SplitDialogue;
 import view.SquarePanel;
 import view.View;
@@ -30,11 +31,14 @@ public class SplitDialogueSaveListener implements ActionListener
 	private SquarePanel currSquares[][];
 	private ArrayList<Point> oldpoint;
 	private int index_a;
+	private InfoPanel infoPanelN;
+	private boolean isSplited=false;
 	
 
-	public SplitDialogueSaveListener(SplitDialogue splitDialogue) 
+	public SplitDialogueSaveListener(SplitDialogue splitDialogue, InfoPanel infoPanel) 
 	{
-		splitDia = splitDialogue;
+		this.splitDia = splitDialogue;
+		this.infoPanelN = infoPanel;
 	}
 
 	@Override
@@ -85,6 +89,9 @@ public class SplitDialogueSaveListener implements ActionListener
 			}
 		}
 		
+		isSplited=true;
+		infoPanelN.setSplited(isSplited);
+		isSplited=false;
 	}
 	
 	public int getIndex() {

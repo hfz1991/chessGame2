@@ -42,6 +42,15 @@ public class InfoPanel extends JPanel implements Observer
 	private Timer timer;
 	
 	private int indexN;
+	private boolean isSplited=false;
+
+	public boolean getIsSplited() {
+		return isSplited;
+	}
+
+	public void setSplited(boolean isSplited) {
+		this.isSplited = isSplited;
+	}
 
 	public void setIndexN(int indexN) {
 		this.indexN = indexN;

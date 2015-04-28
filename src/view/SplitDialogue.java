@@ -57,7 +57,7 @@ public class SplitDialogue extends JDialog
 		
 		//setup buttons
 		save = new JButton("OK");
-		save.addActionListener(new SplitDialogueSaveListener(this));
+		save.addActionListener(new SplitDialogueSaveListener(this,infoPanelN));
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new CancelListener(this));
 		
@@ -88,7 +88,6 @@ public class SplitDialogue extends JDialog
 	public int getIndex(){
 		selectedIndex = pieceGroup.getSelectedIndex();
 		infoPanelN.setIndexN(selectedIndex);
-		System.out.println("SplitDialogue     " + selectedIndex);
 		return selectedIndex;
 	}
 }

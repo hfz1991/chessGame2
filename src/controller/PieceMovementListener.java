@@ -33,12 +33,15 @@ public class PieceMovementListener implements MouseListener
 
 	private ArrayList<Point> point;
 	private ArrayList<Point> pointA;
-
+	private ArrayList<Point> pointList;
+	
 	private int currX;
 	private int currY;
 	private int oldX;
 	private int oldY;
 	private int size;
+	
+	private boolean isSplited=false;
 
 	private SquarePanel currSquares[][];
 	private SquarePanel oldSquares[][];
@@ -47,6 +50,8 @@ public class PieceMovementListener implements MouseListener
 
 	private static SquarePanel prevSP = null;
 	private static ArrayList<SquarePanel> prevSPList = null;
+	
+	private AbstractPiece ap=null;
 
 	public static SquarePanel selectedPieceSquarePanel = null;
 
@@ -147,7 +152,8 @@ public class PieceMovementListener implements MouseListener
 		{
 			if (PieceMovementListener.selectedPieceSquarePanel != null) 
 			{
-
+				System.out.println("++++++++++++++++++++++++++++++++++++++++++" );
+				
 				// move from
 				Point from = selectedPieceSquarePanel.getGridLocation();
 				// move to
@@ -163,20 +169,37 @@ public class PieceMovementListener implements MouseListener
 				int numberOfPiecesMoved = 0;
 				int scoreChange = 0;
 				size=GameManager.getSingleton().getBoard().getPiece(oldY, oldX).getPieces().size();
-				
+
 				for (int x = 0; x < pointA.size(); x++) 
 				{
 					if (to.x == pointA.get(x).y && to.y == pointA.get(x).x) 
 					{
-						if(size==1){
+						int index = View.getView().getInfo().getIndexN();
+						System.out.println("index"+index);
+						
+
+						
+						isSplited = View.getView().getInfo().getIsSplited();
+						View.getView().getInfo().setSplited(false);
+						
+						if(isSplited==false){
 							scoreChange += GameManager.getSingleton().getBoard().movePieces(from, to);
-						}else if(size>1){
-							int index = View.getView().getInfo().getIndexN();
-							System.out.println("index" + index);
-							AbstractPiece ap = GameManager.getSingleton().getBoard().getPiece(oldY, oldX).getPieces().get(index);
+							System.out.println("normal move piece");
+						}else if(isSplited==true){
+							ap=null;
+							ap = GameManager.getSingleton().getBoard().getPiece(oldY, oldX).getPieces().get(index);
+							pointList = new ArrayList<Point>();
+							GameManager.getSingleton().getBoard().checkingValidPathPiece(ap, pointList, oldY, oldX);
+							for (int y = 0; y < pointList.size(); y++) 
+							{
+								if (to.x == pointList.get(y).y && to.y == pointList.get(y).x) 
+								{
+
+									GameManager.getSingleton().getBoard().splitPiece(from, to, ap);
+									System.out.println("*******************************move split piece");
+								}
+							}
 							
-							GameManager.getSingleton().getBoard().splitPiece(from, to, ap);
-							System.out.println("split 2 piece");
 						}else{
 							System.out.println("error!");
 						}
@@ -191,7 +214,6 @@ public class PieceMovementListener implements MouseListener
 					GameManager.getSingleton().nextPlayersTurn();
 				}
 				
-
 				// change back to no border -- show selected piece
 				selectedPieceSquarePanel.setBorder(BorderFactory
 						.createLineBorder(Color.BLUE, 0));
