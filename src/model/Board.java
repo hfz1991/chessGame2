@@ -13,9 +13,11 @@ public class Board extends Observable {
 
 	private PieceGroup[][] squareArray;
 	private Point currentSelectedPoint;
+	private Moves moves;
 	
 	public Board() {
 		currentSelectedPoint = new Point();
+		this.moves = new Moves();
 	}
 	
 	public void setCurrentSelectedPoint(int x, int y){
@@ -25,6 +27,10 @@ public class Board extends Observable {
 	
 	public Point getcurrentSelectedPoint(){
 		return currentSelectedPoint;
+	}
+	
+	public Moves getMoves(){
+		return moves;
 	}
 	
 	/**
