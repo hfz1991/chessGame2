@@ -4,20 +4,25 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.swing.border.LineBorder;
+
 import model.GameManager;
 import model.Player;
 import controller.MyTimerActionListener;
 import controller.NewGameDialogueListener;
+import controller.SaveGameListener;
 import controller.SplitDialogueListener;
 import controller.UndoDialogueListener;
 
@@ -35,7 +40,7 @@ public class InfoPanel extends JPanel implements Observer
 	private JLabel whiteLabel, moveW, scoreW, numMoveW, numScoreW;
 	private JLabel blackLabel, moveB, scoreB, numMoveB, numScoreB;
 	private JLabel time, timerLabel;
-	private JButton newGame, goBack, split;
+	private JButton newGame, goBack, split, save;
 	private Box moveWhite, scoreWhite, scoreBlack, moveBlack, timerBox, buttonBox;
 	private JPanel whitePanel, blackPanel;
 	private MyTimerActionListener timerActionListener;
@@ -138,6 +143,7 @@ public class InfoPanel extends JPanel implements Observer
 	    newGame = new JButton("New Game");
 	    goBack = new JButton("Undo");
 	    split = new JButton("Split");
+	    save = new JButton("Save");
 	    
 	    timerBox = Box.createHorizontalBox();
 	    
@@ -150,9 +156,11 @@ public class InfoPanel extends JPanel implements Observer
 	    
 	    goBack.addActionListener(new UndoDialogueListener());
 	    split.addActionListener(new SplitDialogueListener(this));
+	    save.addActionListener(new SaveGameListener());
 	    
 	    buttonBox.add(goBack).setEnabled(false);
 	    buttonBox.add(split).setEnabled(false);
+	    buttonBox.add(save).setEnabled(false);
 	    
 	    buttonP.add(timerBox);
 	    buttonP.add(newGame);
@@ -233,7 +241,10 @@ public class InfoPanel extends JPanel implements Observer
 		this.split = split;
 	}
 	
-	
+	public JButton getSave() 
+	{
+		return save;
+	}
 
 	//player takes turn to move
 	public void update(Observable o, Object arg) 

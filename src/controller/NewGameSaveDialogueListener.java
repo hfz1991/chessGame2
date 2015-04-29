@@ -37,7 +37,8 @@ public class NewGameSaveDialogueListener implements ActionListener
 		
 		this.parentView.dispose(); 
 		this.infoPanel.getGoBack().setEnabled(true);
-		this.infoPanel.getSplit().setEnabled(true);;
+		this.infoPanel.getSplit().setEnabled(true);
+		this.infoPanel.getSave().setEnabled(true);
 		
 		View v = View.getView();
 		
