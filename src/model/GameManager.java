@@ -18,7 +18,7 @@ public class GameManager {
 	private int totalOfMoves;
 	
 	public GameManager() {
-		this.board = new Board();
+		this.board = new Board(6);
 		this.totalOfMoves = 10;
 	}
 	

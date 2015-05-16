@@ -14,10 +14,12 @@ public class Board extends Observable {
 	private PieceGroup[][] squareArray;
 	private Point currentSelectedPoint;
 	private Moves moves;
+	private int sizeOfBoard;
 	
-	public Board() {
+	public Board(int boardSize) {
 		currentSelectedPoint = new Point();
 		this.moves = new Moves();
+		this.sizeOfBoard = boardSize;
 	}
 	
 	public void setCurrentSelectedPoint(int x, int y){
@@ -124,7 +126,7 @@ public class Board extends Observable {
 	 * @post The Board object contains a set of pieces in default positions
 	 */
 	public void initialisePieces() {
-		this.squareArray = new PieceGroup[6][6];
+		this.squareArray = new PieceGroup[sizeOfBoard][sizeOfBoard];
 
 
 		squareArray[0][0] = new PieceGroup(new Rock(GameManager.BLACK_PLAYER, 0, 0 ));
@@ -219,8 +221,8 @@ public class Board extends Observable {
 			//Bishop
 			if(piece instanceof Bishop){
 				//Right Bottom
-				for(int i=1;x+i<6;i++){
-					if(y+i<6){
+				for(int i=1;x+i<sizeOfBoard;i++){
+					if(y+i<sizeOfBoard){
 						if(this.squareArray[x+i][y+i] == null && reachToPieceFlag == false){
 							Point p = new Point((x+i),(y+i));
 							validArray.add(p);
@@ -236,7 +238,7 @@ public class Board extends Observable {
 				
 				//Left Bottom
 				reachToPieceFlag = false;
-				for(int i=1;x+i<6;i++){
+				for(int i=1;x+i<sizeOfBoard;i++){
 					if(y-i>=0){
 						if(this.squareArray[x+i][y-i] == null && reachToPieceFlag == false){
 							Point p = new Point((x+i),(y-i));
@@ -254,7 +256,7 @@ public class Board extends Observable {
 				//Right Up
 				reachToPieceFlag = false;
 				for(int i=1;x-i>=0;i++){
-					if(y+i<6){
+					if(y+i<sizeOfBoard){
 						if(this.squareArray[x-i][y+i] == null && reachToPieceFlag == false){
 							Point p = new Point((x-i),(y+i));
 							validArray.add(p);
@@ -306,7 +308,7 @@ public class Board extends Observable {
 				
 				reachToPieceFlag = false;
 				// Down
-				for (int i = 1; x + i < 6; i++) {
+				for (int i = 1; x + i < sizeOfBoard; i++) {
 					if(this.squareArray[x+i][y] == null && reachToPieceFlag == false){
 						Point p = new Point((x + i), (y));
 						validArray.add(p);
@@ -322,7 +324,7 @@ public class Board extends Observable {
 
 				reachToPieceFlag = false;
 				 //Right
-				for (int i = 1; y + i < 6; i++) {
+				for (int i = 1; y + i < sizeOfBoard; i++) {
 					if (this.squareArray[x][y+i] == null && reachToPieceFlag == false) {
 						Point p = new Point((x), (y+i));
 						validArray.add(p);
@@ -352,23 +354,23 @@ public class Board extends Observable {
 			//Knight
 			if(piece instanceof Knight){
 				// Right Bottom Horizontal 
-				if (x + 1 < 6) {
-					if (y + 2 < 6) {
+				if (x + 1 < sizeOfBoard) {
+					if (y + 2 < sizeOfBoard) {
 						Point p = new Point((x + 1), (y + 2));
 						validArray.add(p);
 					}
 				}
 
 				// Right Bottom Vertical
-				if (x + 2 < 6) {
-					if (y + 1 < 6) {
+				if (x + 2 < sizeOfBoard) {
+					if (y + 1 < sizeOfBoard) {
 						Point p = new Point((x + 2), (y + 1));
 						validArray.add(p);
 					}
 				}	
 						
 				// Left Bottom Horizontal
-				if ( x + 1 < 6) {
+				if ( x + 1 < sizeOfBoard) {
 					if (y - 2 >= 0) {
 						Point p = new Point((x + 1), (y - 2));
 						validArray.add(p);
@@ -376,7 +378,7 @@ public class Board extends Observable {
 				}
 
 				// Left Bottom Vertical
-				if (x + 2 < 6) {
+				if (x + 2 < sizeOfBoard) {
 					if (y - 1 >= 0) {
 						Point p = new Point((x + 2), (y - 1));
 						validArray.add(p);
@@ -385,7 +387,7 @@ public class Board extends Observable {
 				
 				// Right Up Horizontal
 				if (x - 1 >= 0) {
-					if (y + 2 < 6) {
+					if (y + 2 < sizeOfBoard) {
 						Point p = new Point((x - 1), (y + 2));
 						validArray.add(p);
 					}
@@ -393,7 +395,7 @@ public class Board extends Observable {
 
 				// Right Up Vertical
 				if (x - 2 >= 0) {
-					if (y + 1 < 6) {
+					if (y + 1 < sizeOfBoard) {
 						Point p = new Point((x - 2), (y + 1));
 						validArray.add(p);
 					}
@@ -479,8 +481,8 @@ public class Board extends Observable {
 	}
 	
 	public PieceGroup getPiece(int x, int y){
-		for(int i=0;i<6;i++){
-			for(int j=0;j<6;j++){
+		for(int i=0;i<sizeOfBoard;i++){
+			for(int j=0;j<sizeOfBoard;j++){
 				if(x==i && y==j) {
 					return squareArray[x][y];
 				}
