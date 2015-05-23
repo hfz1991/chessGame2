@@ -126,8 +126,10 @@ public class Board extends Observable {
 	 * @post The Board object contains a set of pieces in default positions
 	 */
 	public void initialisePieces() {
-		this.squareArray = new PieceGroup[sizeOfBoard][sizeOfBoard];
 
+
+		// TODO: make this dynamic according to board size and allow the user to specify the number of pieces
+		this.squareArray = new PieceGroup[sizeOfBoard][sizeOfBoard];
 
 		squareArray[0][0] = new PieceGroup(new Rock(GameManager.BLACK_PLAYER, 0, 0 ));
 		squareArray[0][1] = new PieceGroup(new Bishop(GameManager.BLACK_PLAYER, 0, 1));
@@ -489,6 +491,12 @@ public class Board extends Observable {
 			}
 		}
 		return null;
+	}
+	
+
+	public void setSizeOfBoard(int sizeOfBoard) {
+		this.sizeOfBoard = sizeOfBoard;
+		this.initialisePieces();
 	}
 	
 

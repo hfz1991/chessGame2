@@ -22,6 +22,10 @@ public class NewGameDialogue extends JDialog
 	private JLabel selectNum;
 	private JComboBox numOfMove;
 	
+
+	private JLabel selectSizeLabel;
+	private JComboBox boardSizeBox;
+	
 	private JButton save;
 	private JButton cancel;
 	
@@ -33,6 +37,10 @@ public class NewGameDialogue extends JDialog
 	private int startNum=10;
 	private int verticalAxis=400;
 	private int horizontalAxis=160;
+
+	
+	private int minBoardSize = 6;
+	private int maxBoardSize = 12;
 
 	public NewGameDialogue(InfoPanel infoPanel)
 	{
@@ -50,7 +58,17 @@ public class NewGameDialogue extends JDialog
 			numOfMove.addItem(i+startNum);
 		}
 		
-		Num.add(numOfMove);	  
+
+		Num.add(numOfMove);
+		
+		this.selectSizeLabel = new JLabel("Select board size");
+		this.boardSizeBox = new JComboBox();
+		for(int i = this.minBoardSize; i <= this.maxBoardSize; i++) {
+			this.boardSizeBox.addItem(i);
+		}
+		
+		Num.add(this.selectSizeLabel);
+		Num.add(this.boardSizeBox);
 		
 		this.setModal(true);
 		
@@ -87,5 +105,10 @@ public class NewGameDialogue extends JDialog
 	public int getNumberOfMoves()
 	{
 		return Integer.parseInt(this.numOfMove.getSelectedItem().toString());
+	}
+
+	
+	public int getEnteredBoardSize() {
+		return Integer.parseInt(this.boardSizeBox.getSelectedItem().toString());
 	}
 }

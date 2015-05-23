@@ -17,8 +17,12 @@ import model.PieceGroup;
 public class BoardPanel extends JPanel implements Observer 
 {
 
-	GridLayout layout = new GridLayout(6, 6);
-	SquarePanel squares[][] = new SquarePanel[6][6];
+
+	private int startupBoardSize = 6;
+	
+	private GridLayout layout;
+	private SquarePanel squares[][];
+
 	
 	public SquarePanel[][] getSquares() 
 	{
@@ -33,17 +37,30 @@ public class BoardPanel extends JPanel implements Observer
 	public BoardPanel() 
 	{
 		// setup Chess board
+		this.create();
+	}
+
+	// end of Chess board
+	
+	public void create() {
+		// setup Chess board
+		this.removeAll();
+		this.layout = new GridLayout(this.startupBoardSize, this.startupBoardSize);
+		this.squares = new SquarePanel[this.startupBoardSize][this.startupBoardSize];
+		
 		setLayout(layout);
 		setPreferredSize(new Dimension(600, 600));
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		//paint the chess board
-		for (int i = 0; i < 6; i++) 
+
+		for (int i = 0; i < this.startupBoardSize; i++) 
 		{
-			for (int j = 0; j < 6; j++) 
+			for (int j = 0; j < this.startupBoardSize; j++) 
 			{
 				squares[i][j] = new SquarePanel(j, i);
-				squares[i][j].setPreferredSize(new Dimension(95, 95));
+				squares[i][j].setPreferredSize(new Dimension(600 / this.startupBoardSize - 5, 600 / this.startupBoardSize - 5));
+
 
 				squares[i][j].setBackground(Color.WHITE);
 				
@@ -56,7 +73,14 @@ public class BoardPanel extends JPanel implements Observer
 		}
 	}
 
+
 	// end of Chess board
+
+	
+	public void recreate(int boardSize) {
+		this.startupBoardSize = boardSize;
+		this.create();
+	}
 
 	/**
 	 * @pre a PieceGroup must exist
@@ -64,6 +88,11 @@ public class BoardPanel extends JPanel implements Observer
 	 */
 	private void setBoardPieces(PieceGroup[][] pieces) 
 	{
+
+		if (this.squares.length != pieces.length) {
+			this.recreate(pieces.length);
+		}
+		
 		for (int i = 0; i < pieces.length; i++) 
 		{
 			for (int j = 0; j < pieces[i].length; j++) 

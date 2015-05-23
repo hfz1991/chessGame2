@@ -33,6 +33,9 @@ public class NewGameSaveDialogueListener implements ActionListener
 	{
 		// TODO Auto-generated method stub
 		GameManager.getSingleton().setTotalOfMoves(parentView.getNumberOfMoves());
+
+		GameManager.getSingleton().getBoard().setSizeOfBoard(parentView.getEnteredBoardSize());
+
 		GameManager.getSingleton().newGame();
 		
 		this.parentView.dispose(); 
