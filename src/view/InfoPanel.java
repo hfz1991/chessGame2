@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import model.GameManager;
 import model.Player;
+import controller.controller;
 import controller.MyTimerActionListener;
 import controller.NewGameDialogueListener;
 import controller.SaveGameListener;

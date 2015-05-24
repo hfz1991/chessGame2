@@ -24,10 +24,11 @@ public class SaveGameListener implements ActionListener
 		Point tp = new Point(1,1);
 		
 		//should setPoint in PieceMovementListener each time
-		GameManager.getSingleton().getBoard().getMoves().setPoint(op, tp);
+		GameManager.getSingleton().getPlayerList().get(0).getMoves().setPoint(op, tp);
 		
 		try {
-			GameManager.getSingleton().getBoard().getMoves().fileHandling();
+			GameManager.getSingleton().getPlayerList().get(0).getMoves().setPoint(op, tp);
+			GameManager.getSingleton().getPlayerList().get(0).getMoves().fileHandling();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

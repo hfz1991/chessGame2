@@ -13,12 +13,10 @@ public class Board extends Observable {
 
 	private PieceGroup[][] squareArray;
 	private Point currentSelectedPoint;
-	private Moves moves;
 	private int sizeOfBoard;
 	
 	public Board(int boardSize) {
 		currentSelectedPoint = new Point();
-		this.moves = new Moves();
 		this.sizeOfBoard = boardSize;
 	}
 	
@@ -31,9 +29,7 @@ public class Board extends Observable {
 		return currentSelectedPoint;
 	}
 	
-	public Moves getMoves(){
-		return moves;
-	}
+	
 	
 	/**
 	 * @pre a Piece must exist in the point fromP

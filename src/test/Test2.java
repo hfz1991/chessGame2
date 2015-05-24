@@ -11,8 +11,7 @@ public class Test2 {
 
 		GameManager gm = GameManager.getSingleton();
 		gm.getBoard().initialisePieces();
-		Moves moves = gm.getBoard().getMoves();
-		
+		Moves moves = gm.getPlayerList().get(0).getMoves();
 		Point op = new Point(1,0);
 		Point tp = new Point(1,1);
 		moves.setPoint(op, tp);

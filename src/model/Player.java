@@ -14,7 +14,8 @@ public class Player extends Observable {
 	private int score;
 	private boolean currentTurn;
 	private boolean hasRedone;
-	
+	private Moves moves;
+
 	public Player(int playerNumber) {
 		super();
 		this.playerNumber = playerNumber;
@@ -22,6 +23,7 @@ public class Player extends Observable {
 		this.score = 0;
 		this.currentTurn = false;
 		this.hasRedone = false;
+		this.moves = new Moves();
 		this.setChanged();
 		this.notifyObservers(this.playerNumber);
 	}
@@ -43,6 +45,10 @@ public class Player extends Observable {
 		this.setChanged();
 		this.notifyObservers(this.playerNumber);
 		return true;
+	}
+	
+	public Moves getMoves(){
+		return moves;
 	}
 	
 	public int getScore() {
